@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Ethereum (ETH) Analysis</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Custom styles for SB Admin 2 template-->
+    <link href="https://startbootstrap.github.io/startbootstrap-sb-admin-2/css/sb-admin-2.min.css" rel="stylesheet">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Custom additional styles -->
+    <style>
+        .crypto-up { color: #1cc88a; }
+        .crypto-down { color: #e74a3b; }
+        .crypto-neutral { color: #858796; }
+        
+        .trend-up { color: #1cc88a; }
+        .trend-down { color: #e74a3b; }
+        .trend-neutral { color: #858796; }
+        
+        .progress-sm { height: 0.5rem; }
+        
+        .coin-header {
+            background: linear-gradient(135deg, #627eea, #4e73df);
+            color: white;
+            padding: 2rem;
+            border-radius: 0.35rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .coin-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+        }
+        
+        .price-display {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0;
+        }
+        
+        .price-change {
+            padding: 0.5rem 1rem;
+            border-radius: 10rem;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        
+        .price-up {
+            background: rgba(28, 200, 138, 0.2);
+            color: #ffffff;
+        }
+        
+        .price-down {
+            background: rgba(231, 74, 59, 0.2);
+            color: #ffffff;
+        }
+        
+        .technical-level {
+            background: rgba(78, 115, 223, 0.1);
+            border-left: 4px solid #4e73df;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border-radius: 0.35rem;
+        }
+        
+        .support-level {
+            border-left-color: #1cc88a;
+            background: rgba(28, 200, 138, 0.1);
+        }
+        
+        .resistance-level {
+            border-left-color: #e74a3b;
+            background: rgba(231, 74, 59, 0.1);
+        }
+        
+        .risk-badge {
+            padding: 0.5rem 1rem;
+            border-radius: 10rem;
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+        }
+        
+        .risk-low {
+            background: rgba(28, 200, 138, 0.1);
+            color: #1cc88a;
+        }
+        
+        .risk-medium {
+            background: rgba(246, 194, 62, 0.1);
+            color: #f6c23e;
+        }
+        
+        .risk-high {
+            background: rgba(231, 74, 59, 0.1);
+            color: #e74a3b;
+        }
+        
+        .news-item {
+            border-left: 4px solid #4e73df;
+            background: #f8f9fc;
+            border-radius: 0.35rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Topbar Title -->
+                    <div class="navbar-brand">
+                        <div class="sidebar-brand-icon rotate-n-15 mr-2">
+                            <i class="fab fa-ethereum text-primary"></i>
+                        </div>
+                        <span class="h4 mb-0 text-gray-800">Ethereum Analysis</span>
+                    </div>
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <!-- Nav Item - Coin Symbol -->
+                        <li class="nav-item dropdown no-arrow">
+                            <span class="nav-link">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                    ETH | Rank #2
+                                </span>
+                            </span>
+                        </li>
+
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!-- Nav Item - Generated Date -->
+                        <li class="nav-item dropdown no-arrow">
+                            <span class="nav-link">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                    Generated: June 3, 2025
+                                </span>
+                                <i class="fas fa-calendar fa-sm fa-fw text-gray-400"></i>
+                            </span>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Coin Header -->
+                    <div class="coin-header shadow">
+                        <div class="row align-items-center">
+                            <div class="col-md-2">
+                                <div class="coin-logo">
+                                    <i class="fab fa-ethereum"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h1 class="h2 mb-2">Ethereum</h1>
+                                <div class="h5 mb-0">ETH • Rank #2</div>
+                            </div>
+                            <div class="col-md-4 text-right">
+                                <div class="price-display">$2,615</div>
+                                <div class="price-change price-up mt-2">
+                                    <i class="fas fa-arrow-up"></i>
+                                    +29.6%
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content Row - Key Metrics -->
+                    <div class="row">
+
+                        <!-- Market Cap Card -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Market Cap</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$316.1B</div>
+                                            <div class="text-xs text-gray-600">Rank #2</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-chart-pie fa-2x text-primary"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 24h Volume Card -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                24h Volume</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$19.5B</div>
+                                            <div class="text-xs text-gray-600">Vol/MCap: 6.2%</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-exchange-alt fa-2x text-info"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Circulating Supply Card -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                Circulating Supply</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">120.7M</div>
+                                            <div class="text-xs text-gray-600">No Max Supply</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-coins fa-2x text-warning"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- All-Time High Card -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                All-Time High</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$4,878</div>
+                                            <div class="text-xs text-gray-600">1,470 days ago</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-chart-line fa-2x text-success"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content Row - Performance Metrics -->
+                    <div class="row">
+
+                        <!-- 7-Day Performance -->
+                        <div class="col-lg-4 mb-4">
+                            <div class="card shadow h-100">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">
+                                        <i class="fas fa-calendar-week mr-2"></i>7-Day Performance
+                                    </h6>
+                                </div>
+                                <div class="card-body text-center">
+                                    <div class="h4 mb-0 font-weight-bold trend-up">+29.6%</div>
+                                    <div class="progress progress-sm mt-3">
+                                        <div class="progress-bar bg-success" style="width: 90%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 30-Day Performance -->
+                        <div class="col-lg-4 mb-4">
+                            <div class="card shadow h-100">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">
+                                        <i class="fas fa-calendar-month mr-2"></i>30-Day Performance
+                                    </h6>
+                                </div>
+                                <div class="card-body text-center">
+                                    <div class="h4 mb-0 font-weight-bold trend-up">+40%</div>
+                                    <div class="progress progress-sm mt-3">
+                                        <div class="progress-bar bg-success" style="width: 95%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 90-Day Performance -->
+                        <div class="col-lg-4 mb-4">
+                            <div class="card shadow h-100">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">
+                                        <i class="fas fa-calendar-range mr-2"></i>90-Day Performance
+                                    </h6>
+                                </div>
+                                <div class="card-body text-center">
+                                    <div class="h4 mb-0 font-weight-bold trend-up">+88.3%</div>
+                                    <div class="progress progress-sm mt-3">
+                                        <div class="progress-bar bg-success" style="width: 100%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content Row - Technical Analysis -->
+                    <div class="row">
+
+                        <!-- Support Levels -->
+                        <div class="col-lg-6">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">
+                                        <i class="fas fa-shield-alt mr-2"></i>Support Levels
+                                    </h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="technical-level support-level">
+                                        <div class="d-flex justify-content-between">
+                                            <span class="font-weight-bold">S1 - Immediate</span>
+                                            <span class="text-success">$2,496</span>
+                                        </div>
+                                        <small class="text-muted">20-day EMA defended, strong buying interest</small>
+                                    </div>
+                                    <div class="technical-level support-level">
+                                        <div class="d-flex justify-content-between">
+                                            <span class="font-weight-bold">S2 - Major</span>
+                                            <span class="text-success">$2,456</span>
+                                        </div>
+                                        <small class="text-muted">Key psychological level, previous resistance</small>
+                                    </div>
+                                    <div class="technical-level support-level">
+                                        <div class="d-flex justify-content-between">
+                                            <span class="font-weight-bold">S3 - Critical</span>
+                                            <span class="text-success">$2,430</span>
+                                        </div>
+                                        <small class="text-muted">Major support zone, must hold for bullish structure</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Resistance Levels -->
+                        <div class="col-lg-6">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">
+                                        <i class="fas fa-shield-virus mr-2"></i>Resistance Levels
+                                    </h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="technical-level resistance-level">
+                                        <div class="d-flex justify-content-between">
+                                            <span class="font-weight-bold">R1 - Immediate</span>
+                                            <span class="text-danger">$2,650</span>
+                                        </div>
+                                        <small class="text-muted">Testing current resistance, key breakout level</small>
+                                    </div>
+                                    <div class="technical-level resistance-level">
+                                        <div class="d-flex justify-content-between">
+                                            <span class="font-weight-bold">R2 - Major</span>
+                                            <span class="text-danger">$2,700</span>
+                                        </div>
+                                        <small class="text-muted">Stronger barrier, institutional selling pressure</small>
+                                    </div>
+                                    <div class="technical-level resistance-level">
+                                        <div class="d-flex justify-content-between">
+                                            <span class="font-weight-bold">R3 - Strong</span>
+                                            <span class="text-danger">$2,850</span>
+                                        </div>
+                                        <small class="text-muted">Next major target if momentum continues</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content Row - Technical Indicators -->
+                    <div class="row">
+
+                        <!-- RSI Card -->
+                        <div class="col-lg-4 mb-4">
+                            <div class="card shadow h-100">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">RSI (14)</h6>
+                                </div>
+                                <div class="card-body text-center">
+                                    <div class="h4 mb-0 font-weight-bold text-warning">56.7</div>
+                                    <div class="small text-gray-600 mb-3">Neutral Territory</div>
+                                    <div class="progress progress-sm">
+                                        <div class="progress-bar bg-warning" style="width: 56.7%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Moving Averages Card -->
+                        <div class="col-lg-4 mb-4">
+                            <div class="card shadow h-100">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Moving Averages</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>MA 20:</span>
+                                        <span class="font-weight-bold trend-up">$2,502</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>MA 50:</span>
+                                        <span class="font-weight-bold trend-up">$2,168</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <span>MA 200:</span>
+                                        <span class="font-weight-bold trend-up">$2,326</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Trend Direction Card -->
+                        <div class="col-lg-4 mb-4">
+                            <div class="card shadow h-100">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Trend Direction</h6>
+                                </div>
+                                <div class="card-body text-center">
+                                    <div class="h4 mb-0 font-weight-bold trend-up">BULLISH</div>
+                                    <div class="small text-gray-600 mb-3">Strong Momentum</div>
+                                    <div class="mt-3">
+                                        <i class="fas fa-arrow-up trend-up" style="font-size: 2rem;"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content Row - Risk Assessment -->
+                    <div class="row">
+
+                        <!-- Risk Assessment Card -->
+                        <div class="col-lg-12">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">
+                                        <i class="fas fa-exclamation-triangle mr-2"></i>Risk Assessment
+                                    </h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-lg-3 text-center mb-3">
+                                            <h6 class="text-gray-600">Volatility Risk</h6>
+                                            <div class="risk-badge risk-high">HIGH</div>
+                                            <div class="small text-gray-600 mt-2">30D: 12.1%</div>
+                                        </div>
+                                        <div class="col-lg-3 text-center mb-3">
+                                            <h6 class="text-gray-600">Liquidity Risk</h6>
+                                            <div class="risk-badge risk-low">LOW</div>
+                                            <div class="small text-gray-600 mt-2">Score: 9.0/10</div>
+                                        </div>
+                                        <div class="col-lg-3 text-center mb-3">
+                                            <h6 class="text-gray-600">Regulatory Risk</h6>
+                                            <div class="risk-badge risk-medium">MEDIUM</div>
+                                            <div class="small text-gray-600 mt-2">Score: 7.5/10</div>
+                                        </div>
+                                        <div class="col-lg-3 text-center mb-3">
+                                            <h6 class="text-gray-600">Overall Risk</h6>
+                                            <div class="risk-badge risk-medium">MEDIUM</div>
+                                            <div class="small text-gray-600 mt-2">Post-Upgrade</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content Row - Network & Analysis -->
+                    <div class="row">
+
+                        <!-- Network Analysis -->
+                        <div class="col-lg-6">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">
+                                        <i class="fas fa-network-wired mr-2"></i>Network Activity
+                                    </h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <h6 class="text-success mb-2">
+                                            <i class="fas fa-rocket mr-2"></i>Pectra Upgrade
+                                        </h6>
+                                        <p class="text-gray-700">Successfully completed on May 7, 2025. Major EIPs include expanded staking cap to 2,048 ETH, improved blob space for L2s, and enhanced wallet functionality.</p>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <h6 class="text-info mb-2">
+                                            <i class="fas fa-lock mr-2"></i>DeFi Activity
+                                        </h6>
+                                        <p class="text-gray-700">Total Value Locked (TVL): $61.2B. Stablecoin market cap on Ethereum: $123.7B. Active addresses: 408,541.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Exchange Flow Analysis -->
+                        <div class="col-lg-6">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">
+                                        <i class="fas fa-exchange-alt mr-2"></i>Market Dynamics
+                                    </h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <h6 class="text-success mb-2">
+                                            <i class="fas fa-chart-line mr-2"></i>Spot Buying Dominance
+                                        </h6>
+                                        <p class="text-gray-700">Rally characterized by spot buying rather than leverage. Increased staking activity following Pectra upgrade with improved validator economics.</p>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <h6 class="text-warning mb-2">
+                                            <i class="fas fa-fire mr-2"></i>ETH Burning
+                                        </h6>
+                                        <p class="text-gray-700">High network activity increasing ETH burn rate, reducing total supply. This deflationary mechanism supports price appreciation alongside growing utility.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content Row - Recent News -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">
+                                        <i class="fas fa-newspaper mr-2"></i>Recent News & Events
+                                    </h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="news-item">
+                                        <h6 class="font-weight-bold text-primary mb-2">Pectra Upgrade Successfully Deployed</h6>
+                                        <p class="mb-2">Ethereum's most ambitious upgrade since the Merge went live on May 7, 2025. EIP-7251 raises staking cap to 2,048 ETH, EIP-7691 expands blob space for L2 scaling, and EIP-7702 enhances wallet capabilities.</p>
+                                        <small class="text-muted">Impact: <span class="text-success">Highly Bullish</span> - Major technical improvements</small>
+                                    </div>
+                                    
+                                    <div class="news-item">
+                                        <h6 class="font-weight-bold text-primary mb-2">ETH/BTC Ratio Showing Strength</h6>
+                                        <p class="mb-2">Ethereum gaining ground against Bitcoin with ETH/BTC ratio testing key resistance levels. Analysts suggest potential altcoin season if ratio breaks above 0.04.</p>
+                                        <small class="text-muted">Impact: <span class="text-success">Bullish</span> - Relative strength indicator</small>
+                                    </div>
+                                    
+                                    <div class="news-item">
+                                        <h6 class="font-weight-bold text-primary mb-2">SharpLink Gaming $425M ETH Treasury</h6>
+                                        <p class="mb-2">Major gaming company announces substantial Ethereum treasury allocation, following corporate adoption trend. Expected to begin accumulation in June 2025.</p>
+                                        <small class="text-muted">Impact: <span class="text-success">Bullish</span> - Corporate treasury adoption</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content Row - Analysis Summary -->
+                    <div class="row">
+
+                        <!-- Analysis Summary -->
+                        <div class="col-lg-8">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">
+                                        <i class="fas fa-clipboard-check mr-2"></i>Analysis Summary & Outlook
+                                    </h6>
+                                </div>
+                                <div class="card-body">
+                                    <h6 class="mb-3">Summary</h6>
+                                    <p>Ethereum demonstrates exceptional strength at $2,615, posting +40% monthly gains following the successful Pectra upgrade. The network's technical improvements, including expanded staking caps and enhanced L2 scaling, position ETH for continued growth. Despite being 48% below its 2021 ATH of $4,878, current momentum suggests potential for significant appreciation. Strong spot buying and increased staking activity, rather than leverage-driven speculation, indicate healthier market dynamics.</p>
+                                    
+                                    <h6 class="mb-3 mt-4">Key Factors to Watch</h6>
+                                    <ul>
+                                        <li><strong>Pectra Impact:</strong> Monitoring adoption of new features, especially institutional staking with 2,048 ETH cap</li>
+                                        <li><strong>ETH/BTC Ratio:</strong> Key resistance at 0.04 could signal altcoin season if broken</li>
+                                        <li><strong>Layer 2 Growth:</strong> Expanded blob space should reduce L2 costs and increase adoption</li>
+                                        <li><strong>Corporate Adoption:</strong> SharpLink Gaming and other treasury allocations boosting demand</li>
+                                        <li><strong>DeFi Renaissance:</strong> $61.2B TVL showing resilience amid improved network economics</li>
+                                    </ul>
+                                    
+                                    <h6 class="mb-3 mt-4">Short-term Outlook (1-4 weeks)</h6>
+                                    <p>Technical setup extremely bullish with price above all major moving averages. RSI at neutral 56.7 provides room for further upside. Immediate resistance at $2,650-$2,700 represents near-term hurdle, but momentum suggests eventual breakout. Target $2,850-$2,900 range if current strength continues. Support firmly established at $2,496 (20-day EMA).</p>
+                                    
+                                    <h6 class="mb-3 mt-4">Medium-term Outlook (1-3 months)</h6>
+                                    <p>Expecting continued outperformance as altcoin season potentially emerges. Targets of $3,500-$4,000 realistic given technical improvements and institutional adoption trends. Pectra upgrade benefits will likely compound over coming months as validators adapt to new economics. Risk/reward highly favorable for medium-term holds, though volatility remains elevated at 12.1%.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Analyst Rating -->
+                        <div class="col-lg-4">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary text-center">Analyst Rating</h6>
+                                </div>
+                                <div class="card-body text-center">
+                                    <div class="h2 font-weight-bold text-success mb-3">STRONG BUY</div>
+                                    <div class="small text-gray-600 mb-4">Overall Score: 8.2/10</div>
+                                    
+                                    <div class="row text-center">
+                                        <div class="col-6 mb-3">
+                                            <div class="small text-gray-600">Technical</div>
+                                            <div class="font-weight-bold">9/10</div>
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <div class="small text-gray-600">Fundamental</div>
+                                            <div class="font-weight-bold">9/10</div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="small text-gray-600">Sentiment</div>
+                                            <div class="font-weight-bold">8/10</div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="small text-gray-600">Risk/Reward</div>
+                                            <div class="font-weight-bold">7/10</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Analysis generated on June 3, 2025 | Data sources: CoinGecko, CoinMarketCap, CoinBase, Ethereum Foundation</span><br>
+                        <small class="text-muted">This analysis is for informational purposes only and should not be considered financial advice.</small>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="https://startbootstrap.github.io/startbootstrap-sb-admin-2/vendor/jquery/jquery.min.js"></script>
+    <script src="https://startbootstrap.github.io/startbootstrap-sb-admin-2/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="https://startbootstrap.github.io/startbootstrap-sb-admin-2/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="https://startbootstrap.github.io/startbootstrap-sb-admin-2/js/sb-admin-2.min.js"></script>
+
+    <!-- Custom animations -->
+    <script>
+        // Initialize page animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate cards on load
+            const cards = document.querySelectorAll('.card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    card.style.transition = 'all 0.6s ease';
+                    
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 100);
+                }, index * 100);
+            });
+
+            // Add hover effects
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px)';
+                });
+
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>

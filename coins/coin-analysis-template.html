@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>{COIN_NAME} ({COIN_SYMBOL}) Analysis</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Custom styles for SB Admin 2 template-->
+    <link href="https://startbootstrap.github.io/startbootstrap-sb-admin-2/css/sb-admin-2.min.css" rel="stylesheet">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Custom additional styles -->
+    <style>
+        .crypto-up { color: #1cc88a; }
+        .crypto-down { color: #e74a3b; }
+        .crypto-neutral { color: #858796; }
+        
+        .trend-up { color: #1cc88a; }
+        .trend-down { color: #e74a3b; }
+        .trend-neutral { color: #858796; }
+        
+        .progress-sm { height: 0.5rem; }
+        
+        .coin-header {
+            background: linear-gradient(135deg, #4e73df, #224abe);
+            color: white;
+            padding: 2rem;
+            border-radius: 0.35rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .coin-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+        }
+        
+        .price-display {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0;
+        }
+        
+        .price-change {
+            padding: 0.5rem 1rem;
+            border-radius: 10rem;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        
+        .price-up {
+            background: rgba(28, 200, 138, 0.2);
+            color: #ffffff;
+        }
+        
+        .price-down {
+            background: rgba(231, 74, 59, 0.2);
+            color: #ffffff;
+        }
+        
+        .technical-level {
+            background: rgba(78, 115, 223, 0.1);
+            border-left: 4px solid #4e73df;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border-radius: 0.35rem;
+        }
+        
+        .support-level {
+            border-left-color: #1cc88a;
+            background: rgba(28, 200, 138, 0.1);
+        }
+        
+        .resistance-level {
+            border-left-color: #e74a3b;
+            background: rgba(231, 74, 59, 0.1);
+        }
+        
+        .risk-badge {
+            padding: 0.5rem 1rem;
+            border-radius: 10rem;
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+        }
+        
+        .risk-low {
+            background: rgba(28, 200, 138, 0.1);
+            color: #1cc88a;
+        }
+        
+        .risk-medium {
+            background: rgba(246, 194, 62, 0.1);
+            color: #f6c23e;
+        }
+        
+        .risk-high {
+            background: rgba(231, 74, 59, 0.1);
+            color: #e74a3b;
+        }
+        
+        .news-item {
+            border-left: 4px solid #4e73df;
+            background: #f8f9fc;
+            border-radius: 0.35rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Topbar Title -->
+                    <div class="navbar-brand">
+                        <div class="sidebar-brand-icon rotate-n-15 mr-2">
+                            <i class="fas fa-coins text-primary"></i>
+                        </div>
+                        <span class="h4 mb-0 text-gray-800">{COIN_NAME} Analysis</span>
+                    </div>
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <!-- Nav Item - Coin Symbol -->
+                        <li class="nav-item dropdown no-arrow">
+                            <span class="nav-link">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                    {COIN_SYMBOL} | Rank #{MARKET_CAP_RANK}
+                                </span>
+                            </span>
+                        </li>
+
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!-- Nav Item - Generated Date -->
+                        <li class="nav-item dropdown no-arrow">
+                            <span class="nav-link">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                    Generated: {GENERATION_DATE}
+                                </span>
+                                <i class="fas fa-calendar fa-sm fa-fw text-gray-400"></i>
+                            </span>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Coin Header -->
+                    <div class="coin-header shadow">
+                        <div class="row align-items-center">
+                            <div class="col-md-2">
+                                <div class="coin-logo">
+                                    <i class="fas fa-coins"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h1 class="h2 mb-2">{COIN_NAME}</h1>
+                                <div class="h5 mb-0">{COIN_SYMBOL} • Rank #{MARKET_CAP_RANK}</div>
+                            </div>
+                            <div class="col-md-4 text-right">
+                                <div class="price-display">${CURRENT_PRICE}</div>
+                                <div class="price-change {PRICE_CHANGE_CLASS} mt-2">
+                                    <i class="fas fa-arrow-{PRICE_ARROW}"></i>
+                                    {PRICE_CHANGE_24H}%
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content Row - Key Metrics -->
+                    <div class="row">
+
+                        <!-- Market Cap Card -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Market Cap</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">${MARKET_CAP}</div>
+                                            <div class="text-xs text-gray-600">Rank #{MARKET_CAP_RANK}</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-chart-pie fa-2x text-primary"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 24h Volume Card -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                24h Volume</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">${VOLUME_24H}</div>
+                                            <div class="text-xs text-gray-600">Vol/MCap: {VOL_TO_MCAP_RATIO}</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-exchange-alt fa-2x text-info"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Circulating Supply Card -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                Circulating Supply</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{CIRCULATING_SUPPLY}</div>
+                                            <div class="text-xs text-gray-600">Max: {MAX_SUPPLY}</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-coins fa-2x text-warning"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- All-Time High Card -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                All-Time High</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">${ATH_PRICE}</div>
+                                            <div class="text-xs text-gray-600">{DAYS_FROM_ATH} days ago</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-chart-line fa-2x text-success"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content Row - Performance Metrics -->
+                    <div class="row">
+
+                        <!-- 7-Day Performance -->
+                        <div class="col-lg-4 mb-4">
+                            <div class="card shadow h-100">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">
+                                        <i class="fas fa-calendar-week mr-2"></i>7-Day Performance
+                                    </h6>
+                                </div>
+                                <div class="card-body text-center">
+                                    <div class="h4 mb-0 font-weight-bold {PERFORMANCE_7D_CLASS}">{PERFORMANCE_7D}%</div>
+                                    <div class="progress progress-sm mt-3">
+                                        <div class="progress-bar bg-primary" style="width: {PERFORMANCE_7D_WIDTH}%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 30-Day Performance -->
+                        <div class="col-lg-4 mb-4">
+                            <div class="card shadow h-100">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">
+                                        <i class="fas fa-calendar-month mr-2"></i>30-Day Performance
+                                    </h6>
+                                </div>
+                                <div class="card-body text-center">
+                                    <div class="h4 mb-0 font-weight-bold {PERFORMANCE_30D_CLASS}">{PERFORMANCE_30D}%</div>
+                                    <div class="progress progress-sm mt-3">
+                                        <div class="progress-bar bg-info" style="width: {PERFORMANCE_30D_WIDTH}%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 90-Day Performance -->
+                        <div class="col-lg-4 mb-4">
+                            <div class="card shadow h-100">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">
+                                        <i class="fas fa-calendar-range mr-2"></i>90-Day Performance
+                                    </h6>
+                                </div>
+                                <div class="card-body text-center">
+                                    <div class="h4 mb-0 font-weight-bold {PERFORMANCE_90D_CLASS}">{PERFORMANCE_90D}%</div>
+                                    <div class="progress progress-sm mt-3">
+                                        <div class="progress-bar bg-success" style="width: {PERFORMANCE_90D_WIDTH}%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content Row - Technical Analysis -->
+                    <div class="row">
+
+                        <!-- Support Levels -->
+                        <div class="col-lg-6">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">
+                                        <i class="fas fa-shield-alt mr-2"></i>Support Levels
+                                    </h6>
+                                </div>
+                                <div class="card-body">
+                                    {SUPPORT_LEVELS}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Resistance Levels -->
+                        <div class="col-lg-6">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">
+                                        <i class="fas fa-shield-virus mr-2"></i>Resistance Levels
+                                    </h6>
+                                </div>
+                                <div class="card-body">
+                                    {RESISTANCE_LEVELS}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content Row - Technical Indicators -->
+                    <div class="row">
+
+                        <!-- RSI Card -->
+                        <div class="col-lg-4 mb-4">
+                            <div class="card shadow h-100">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">RSI (14)</h6>
+                                </div>
+                                <div class="card-body text-center">
+                                    <div class="h4 mb-0 font-weight-bold {RSI_COLOR}">{RSI_VALUE}</div>
+                                    <div class="small text-gray-600 mb-3">{RSI_SIGNAL}</div>
+                                    <div class="progress progress-sm">
+                                        <div class="progress-bar bg-warning" style="width: {RSI_VALUE}%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Moving Averages Card -->
+                        <div class="col-lg-4 mb-4">
+                            <div class="card shadow h-100">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Moving Averages</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>MA 20:</span>
+                                        <span class="font-weight-bold {MA20_COLOR}">${MA20_VALUE}</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>MA 50:</span>
+                                        <span class="font-weight-bold {MA50_COLOR}">${MA50_VALUE}</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <span>MA 200:</span>
+                                        <span class="font-weight-bold {MA200_COLOR}">${MA200_VALUE}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Trend Direction Card -->
+                        <div class="col-lg-4 mb-4">
+                            <div class="card shadow h-100">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Trend Direction</h6>
+                                </div>
+                                <div class="card-body text-center">
+                                    <div class="h4 mb-0 font-weight-bold {TREND_COLOR}">{TREND_DIRECTION}</div>
+                                    <div class="small text-gray-600 mb-3">{TREND_STRENGTH}</div>
+                                    <div class="mt-3">
+                                        <i class="fas fa-arrow-{TREND_ICON} {TREND_COLOR}" style="font-size: 2rem;"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content Row - Risk Assessment -->
+                    <div class="row">
+
+                        <!-- Risk Assessment Card -->
+                        <div class="col-lg-12">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">
+                                        <i class="fas fa-exclamation-triangle mr-2"></i>Risk Assessment
+                                    </h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-lg-3 text-center mb-3">
+                                            <h6 class="text-gray-600">Volatility Risk</h6>
+                                            <div class="risk-badge {VOLATILITY_RISK_CLASS}">{VOLATILITY_RISK}</div>
+                                            <div class="small text-gray-600 mt-2">30D: {VOLATILITY_30D}%</div>
+                                        </div>
+                                        <div class="col-lg-3 text-center mb-3">
+                                            <h6 class="text-gray-600">Liquidity Risk</h6>
+                                            <div class="risk-badge {LIQUIDITY_RISK_CLASS}">{LIQUIDITY_RISK}</div>
+                                            <div class="small text-gray-600 mt-2">Score: {LIQUIDITY_SCORE}</div>
+                                        </div>
+                                        <div class="col-lg-3 text-center mb-3">
+                                            <h6 class="text-gray-600">Regulatory Risk</h6>
+                                            <div class="risk-badge {REGULATORY_RISK_CLASS}">{REGULATORY_RISK}</div>
+                                            <div class="small text-gray-600 mt-2">Score: {REGULATORY_SCORE}</div>
+                                        </div>
+                                        <div class="col-lg-3 text-center mb-3">
+                                            <h6 class="text-gray-600">Overall Risk</h6>
+                                            <div class="risk-badge {OVERALL_RISK_CLASS}">{OVERALL_RISK}</div>
+                                            <div class="small text-gray-600 mt-2">Composite</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content Row - Network & Analysis -->
+                    <div class="row">
+
+                        <!-- Network Analysis -->
+                        <div class="col-lg-6">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">
+                                        <i class="fas fa-network-wired mr-2"></i>Network Activity
+                                    </h6>
+                                </div>
+                                <div class="card-body">
+                                    {NETWORK_METRICS}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Exchange Flow Analysis -->
+                        <div class="col-lg-6">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">
+                                        <i class="fas fa-exchange-alt mr-2"></i>Exchange Flows
+                                    </h6>
+                                </div>
+                                <div class="card-body">
+                                    {EXCHANGE_FLOW_ANALYSIS}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content Row - Recent News -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">
+                                        <i class="fas fa-newspaper mr-2"></i>Recent News & Events
+                                    </h6>
+                                </div>
+                                <div class="card-body">
+                                    {RECENT_NEWS}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content Row - Analysis Summary -->
+                    <div class="row">
+
+                        <!-- Analysis Summary -->
+                        <div class="col-lg-8">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">
+                                        <i class="fas fa-clipboard-check mr-2"></i>Analysis Summary & Outlook
+                                    </h6>
+                                </div>
+                                <div class="card-body">
+                                    <h6 class="mb-3">Summary</h6>
+                                    <p>{ANALYSIS_SUMMARY}</p>
+                                    
+                                    <h6 class="mb-3 mt-4">Key Factors to Watch</h6>
+                                    <ul>
+                                        {KEY_FACTORS}
+                                    </ul>
+                                    
+                                    <h6 class="mb-3 mt-4">Short-term Outlook (1-4 weeks)</h6>
+                                    <p>{SHORT_TERM_OUTLOOK}</p>
+                                    
+                                    <h6 class="mb-3 mt-4">Medium-term Outlook (1-3 months)</h6>
+                                    <p>{MEDIUM_TERM_OUTLOOK}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Analyst Rating -->
+                        <div class="col-lg-4">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary text-center">Analyst Rating</h6>
+                                </div>
+                                <div class="card-body text-center">
+                                    <div class="h2 font-weight-bold {RATING_COLOR} mb-3">{ANALYST_RATING}</div>
+                                    <div class="small text-gray-600 mb-4">Overall Score: {RATING_SCORE}/10</div>
+                                    
+                                    <div class="row text-center">
+                                        <div class="col-6 mb-3">
+                                            <div class="small text-gray-600">Technical</div>
+                                            <div class="font-weight-bold">{TECHNICAL_SCORE}/10</div>
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <div class="small text-gray-600">Fundamental</div>
+                                            <div class="font-weight-bold">{FUNDAMENTAL_SCORE}/10</div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="small text-gray-600">Sentiment</div>
+                                            <div class="font-weight-bold">{SENTIMENT_SCORE}/10</div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="small text-gray-600">Risk/Reward</div>
+                                            <div class="font-weight-bold">{RISK_REWARD_SCORE}/10</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Analysis generated on {GENERATION_DATE} | Data sources: {DATA_SOURCES}</span><br>
+                        <small class="text-muted">This analysis is for informational purposes only and should not be considered financial advice.</small>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="https://startbootstrap.github.io/startbootstrap-sb-admin-2/vendor/jquery/jquery.min.js"></script>
+    <script src="https://startbootstrap.github.io/startbootstrap-sb-admin-2/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="https://startbootstrap.github.io/startbootstrap-sb-admin-2/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="https://startbootstrap.github.io/startbootstrap-sb-admin-2/js/sb-admin-2.min.js"></script>
+
+    <!-- Custom animations -->
+    <script>
+        // Initialize page animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate cards on load
+            const cards = document.querySelectorAll('.card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    card.style.transition = 'all 0.6s ease';
+                    
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 100);
+                }, index * 100);
+            });
+
+            // Add hover effects
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px)';
+                });
+
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
