@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title id="page-title">Coin Analysis</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Custom styles for SB Admin 2 template-->
+    <link href="https://startbootstrap.github.io/startbootstrap-sb-admin-2/css/sb-admin-2.min.css" rel="stylesheet">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Custom additional styles -->
+    <style>
+        .crypto-up { color: #1cc88a; }
+        .crypto-down { color: #e74a3b; }
+        .crypto-neutral { color: #858796; }
+        
+        .trend-up { color: #1cc88a; }
+        .trend-down { color: #e74a3b; }
+        .trend-neutral { color: #858796; }
+        
+        .progress-sm { height: 0.5rem; }
+        
+        .coin-header {
+            background: linear-gradient(135deg, #4e73df, #224abe);
+            color: white;
+            padding: 2rem;
+            border-radius: 0.35rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .coin-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+        }
+        
+        .price-display {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0;
+        }
+        
+        .price-change {
+            padding: 0.5rem 1rem;
+            border-radius: 10rem;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        
+        .price-up {
+            background: rgba(28, 200, 138, 0.2);
+            color: #ffffff;
+        }
+        
+        .price-down {
+            background: rgba(231, 74, 59, 0.2);
+            color: #ffffff;
+        }
+        
+        .technical-level {
+            background: rgba(78, 115, 223, 0.1);
+            border-left: 4px solid #4e73df;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border-radius: 0.35rem;
+        }
+        
+        .support-level {
+            border-left-color: #1cc88a;
+            background: rgba(28, 200, 138, 0.1);
+        }
+        
+        .resistance-level {
+            border-left-color: #e74a3b;
+            background: rgba(231, 74, 59, 0.1);
+        }
+        
+        .risk-badge {
+            padding: 0.5rem 1rem;
+            border-radius: 10rem;
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+        }
+        
+        .risk-low {
+            background: rgba(28, 200, 138, 0.1);
+            color: #1cc88a;
+        }
+        
+        .risk-medium {
+            background: rgba(246, 194, 62, 0.1);
+            color: #f6c23e;
+        }
+        
+        .risk-high {
+            background: rgba(231, 74, 59, 0.1);
+            color: #e74a3b;
+        }
+        
+        .news-item {
+            border-left: 4px solid #4e73df;
+            background: #f8f9fc;
+            border-radius: 0.35rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Loading states */
+        .loading-overlay {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .loading-spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #4e73df;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error-message {
+            display

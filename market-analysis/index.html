@@ -90,7 +90,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <span class="nav-link">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                                    Week of June 3, 2025 | Report #1
+                                    <span data-bind="text:reportMetadata.weekDate">Loading...</span> | Report #<span data-bind="text:reportMetadata.reportNumber">--</span>
                                 </span>
                             </span>
                         </li>
@@ -101,7 +101,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <span class="nav-link">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                                    Generated: June 3, 2025
+                                    Generated: <span data-bind="text:reportMetadata.generationDate">--</span>
                                 </span>
                                 <i class="fas fa-calendar fa-sm fa-fw text-gray-400"></i>
                             </span>
@@ -126,9 +126,9 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                                 Bitcoin (BTC)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$105,166</div>
-                                            <div class="text-xs trend-up">
-                                                <i class="fas fa-arrow-up"></i> +2.1% (24h)
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$<span data-bind="text:marketOverview.bitcoin.price">--</span></div>
+                                            <div class="text-xs" data-bind="class:marketOverview.bitcoin.trendClass">
+                                                <i class="fas" id="btc-trend-icon"></i> <span data-bind="text:marketOverview.bitcoin.change">--%</span> (24h)
                                             </div>
                                         </div>
                                         <div class="col-auto">
@@ -147,9 +147,9 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 Ethereum (ETH)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$2,900</div>
-                                            <div class="text-xs trend-up">
-                                                <i class="fas fa-arrow-up"></i> +1.8% (24h)
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$<span data-bind="text:marketOverview.ethereum.price">--</span></div>
+                                            <div class="text-xs" data-bind="class:marketOverview.ethereum.trendClass">
+                                                <i class="fas" id="eth-trend-icon"></i> <span data-bind="text:marketOverview.ethereum.change">--%</span> (24h)
                                             </div>
                                         </div>
                                         <div class="col-auto">
@@ -168,9 +168,9 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                 Total Market Cap</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$3.27T</div>
-                                            <div class="text-xs trend-up">
-                                                <i class="fas fa-arrow-up"></i> +1.5% (24h)
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800" data-bind="text:marketOverview.totalMarketCap.value">$--</div>
+                                            <div class="text-xs" data-bind="class:marketOverview.totalMarketCap.trendClass">
+                                                <i class="fas" id="total-trend-icon"></i> <span data-bind="text:marketOverview.totalMarketCap.change">--%</span> (24h)
                                             </div>
                                         </div>
                                         <div class="col-auto">
@@ -190,18 +190,18 @@
                                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">BTC Dominance</div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">63.6%</div>
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><span data-bind="text:marketOverview.bitcoinDominance.percentage">--</span>%</div>
                                                 </div>
                                                 <div class="col">
                                                     <div class="progress progress-sm mr-2">
-                                                        <div class="progress-bar bg-info" role="progressbar"
-                                                             style="width: 63.6%" aria-valuenow="63.6" aria-valuemin="0"
+                                                        <div class="progress-bar bg-info" role="progressbar" id="dominance-progress"
+                                                             style="width: 0%" aria-valuenow="0" aria-valuemin="0"
                                                              aria-valuemax="100"></div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="text-xs trend-down">
-                                                <i class="fas fa-arrow-down"></i> -0.8% (24h)
+                                            <div class="text-xs" data-bind="class:marketOverview.bitcoinDominance.trendClass">
+                                                <i class="fas" id="dom-trend-icon"></i> <span data-bind="text:marketOverview.bitcoinDominance.change">--%</span> (24h)
                                             </div>
                                         </div>
                                         <div class="col-auto">
@@ -223,13 +223,13 @@
                                     <h6 class="m-0 font-weight-bold text-primary">Fear & Greed Index</h6>
                                 </div>
                                 <div class="card-body text-center">
-                                    <div class="h1 mb-0 font-weight-bold text-gray-800">64</div>
+                                    <div class="h1 mb-0 font-weight-bold text-gray-800" data-bind="text:sentimentData.fearGreedIndex.value">--</div>
                                     <div class="mb-3">
-                                        <span class="badge badge-warning px-3 py-2">Greed</span>
+                                        <span class="badge badge-warning px-3 py-2" data-bind="text:sentimentData.fearGreedIndex.label">Loading...</span>
                                     </div>
                                     <div class="progress progress-sm mb-2">
-                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 64%"
-                                             aria-valuenow="64" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar bg-warning" role="progressbar" id="fear-greed-progress" style="width: 0%"
+                                             aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                     <div class="text-xs text-gray-600">
                                         <span class="float-left">Extreme Fear (0)</span>
@@ -251,9 +251,9 @@
                                             <div class="border-left-success border-bottom-success p-3 mb-3">
                                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                     Altcoin Market Cap</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">$1.19T</div>
-                                                <div class="text-xs trend-up">
-                                                    <i class="fas fa-arrow-up"></i> +2.3% (24h)
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800" data-bind="text:marketOverview.altcoinMarketCap.value">$--</div>
+                                                <div class="text-xs" data-bind="class:marketOverview.altcoinMarketCap.trendClass">
+                                                    <i class="fas" id="alt-trend-icon"></i> <span data-bind="text:marketOverview.altcoinMarketCap.change">--%</span> (24h)
                                                 </div>
                                             </div>
                                         </div>
@@ -280,8 +280,8 @@
                                     </h6>
                                 </div>
                                 <div class="card-body">
-                                    <div class="h5 mb-2 font-weight-bold text-gray-800">-2,400 BTC (7d)</div>
-                                    <p class="card-text">Net outflow from exchanges indicates strong holding sentiment. Coins moving to cold storage suggests long-term bullish positioning by holders.</p>
+                                    <div class="h5 mb-2 font-weight-bold text-gray-800" data-bind="text:onChainMetrics.exchangeFlow.value">--</div>
+                                    <p class="card-text" data-bind="text:onChainMetrics.exchangeFlow.analysis">Loading analysis...</p>
                                 </div>
                             </div>
                         </div>
@@ -295,8 +295,8 @@
                                     </h6>
                                 </div>
                                 <div class="card-body">
-                                    <div class="h5 mb-2 font-weight-bold text-gray-800">2.1</div>
-                                    <p class="card-text">MVRV at 2.1 suggests fair to slightly overvalued conditions. Historical cycle peaks occur around 3.0-7.0, indicating room for further growth in this cycle.</p>
+                                    <div class="h5 mb-2 font-weight-bold text-gray-800" data-bind="text:onChainMetrics.mvrvRatio.value">--</div>
+                                    <p class="card-text" data-bind="text:onChainMetrics.mvrvRatio.analysis">Loading analysis...</p>
                                 </div>
                             </div>
                         </div>
@@ -310,8 +310,8 @@
                                     </h6>
                                 </div>
                                 <div class="card-body">
-                                    <div class="h5 mb-2 font-weight-bold text-gray-800">1.04</div>
-                                    <p class="card-text">SOPR slightly above 1.0 indicates modest profit-taking, but levels remain healthy. Values above 1.1 would signal more significant distribution phase.</p>
+                                    <div class="h5 mb-2 font-weight-bold text-gray-800" data-bind="text:onChainMetrics.sopr.value">--</div>
+                                    <p class="card-text" data-bind="text:onChainMetrics.sopr.analysis">Loading analysis...</p>
                                 </div>
                             </div>
                         </div>
@@ -333,20 +333,20 @@
                                             <div class="bg-primary text-white p-4 rounded mb-3">
                                                 <h5 class="mb-3">
                                                     <i class="fas fa-bullseye mr-2"></i>
-                                                    Current Position: 78% Through Late Bull Market
+                                                    Current Position: <span data-bind="text:cycleAnalysis.currentPosition.cyclePositionPercent">--%</span> Through <span data-bind="text:cycleAnalysis.currentPosition.cyclePhase">Loading...</span>
                                                 </h5>
                                                 <div class="row">
                                                     <div class="col-6">
                                                         <div class="text-white-50 text-xs">Phase Started</div>
-                                                        <div class="h6">October 2023</div>
+                                                        <div class="h6" data-bind="text:cycleAnalysis.currentPosition.cycleStartDate">--</div>
                                                     </div>
                                                     <div class="col-6">
                                                         <div class="text-white-50 text-xs">Days Running</div>
-                                                        <div class="h6">410</div>
+                                                        <div class="h6" data-bind="text:cycleAnalysis.currentPosition.daysInCycle">--</div>
                                                     </div>
                                                 </div>
                                                 <div class="progress bg-primary-dark mt-3" style="height: 8px;">
-                                                    <div class="progress-bar bg-white" style="width: 78%"></div>
+                                                    <div class="progress-bar bg-white" id="cycle-progress-bar" style="width: 0%"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -359,29 +359,29 @@
                                                     <div class="mb-3">
                                                         <div class="d-flex justify-content-between">
                                                             <span class="text-xs text-gray-600">Cycle Peak Target:</span>
-                                                            <span class="font-weight-bold text-success">$250,000-310,000</span>
+                                                            <span class="font-weight-bold text-success" data-bind="text:cycleAnalysis.predictions.btcCyclePeakTarget">$--</span>
                                                         </div>
                                                         <div class="d-flex justify-content-between">
                                                             <span class="text-xs text-gray-600">Peak Date Estimate:</span>
-                                                            <span class="font-weight-bold">August-October 2025</span>
+                                                            <span class="font-weight-bold" data-bind="text:cycleAnalysis.predictions.predictedPeakDate">--</span>
                                                         </div>
                                                         <div class="d-flex justify-content-between">
                                                             <span class="text-xs text-gray-600">Confidence Level:</span>
-                                                            <span class="font-weight-bold text-warning">75%</span>
+                                                            <span class="font-weight-bold text-warning"><span data-bind="text:cycleAnalysis.predictions.peakConfidence">--</span>%</span>
                                                         </div>
                                                     </div>
                                                     <div class="mb-3">
                                                         <div class="d-flex justify-content-between">
                                                             <span class="text-xs text-gray-600">Bear Market Start:</span>
-                                                            <span class="font-weight-bold text-danger">Q4 2025-Q1 2026</span>
+                                                            <span class="font-weight-bold text-danger" data-bind="text:cycleAnalysis.predictions.bearMarketStart">--</span>
                                                         </div>
                                                         <div class="d-flex justify-content-between">
                                                             <span class="text-xs text-gray-600">Bottom Target:</span>
-                                                            <span class="font-weight-bold text-danger">$50,000-75,000</span>
+                                                            <span class="font-weight-bold text-danger" data-bind="text:cycleAnalysis.predictions.bearMarketBottom">$--</span>
                                                         </div>
                                                         <div class="d-flex justify-content-between">
                                                             <span class="text-xs text-gray-600">Bottom Timeline:</span>
-                                                            <span class="font-weight-bold">Q1-Q2 2027</span>
+                                                            <span class="font-weight-bold" data-bind="text:cycleAnalysis.predictions.bottomTimeline">--</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -409,22 +409,7 @@
                                             <h6 class="text-success mb-3">
                                                 <i class="fas fa-clock mr-2"></i>Next 30 Days
                                             </h6>
-                                            <div class="mb-3">
-                                                <div class="d-flex justify-content-between align-items-center mb-2">
-                                                    <span class="font-weight-bold text-primary">Jun 12</span>
-                                                    <span class="badge badge-warning">HIGH IMPACT</span>
-                                                </div>
-                                                <div class="text-sm">CPI Release - May inflation data</div>
-                                                <div class="text-xs text-muted">Expected: 3.1% vs 3.4% prior | 85% pump probability if under 3.0%</div>
-                                            </div>
-                                            <div class="mb-3">
-                                                <div class="d-flex justify-content-between align-items-center mb-2">
-                                                    <span class="font-weight-bold text-success">Jun 17-18</span>
-                                                    <span class="badge badge-danger">CRITICAL</span>
-                                                </div>
-                                                <div class="text-sm">FOMC Meeting Decision</div>
-                                                <div class="text-xs text-muted">70% chance of 25bp cut | Dovish = highly bullish for crypto</div>
-                                            </div>
+                                            <div id="next-30-days-container">Loading events...</div>
                                         </div>
                                         
                                         <!-- Next 90 Days -->
@@ -432,22 +417,7 @@
                                             <h6 class="text-warning mb-3">
                                                 <i class="fas fa-clock mr-2"></i>Next 90 Days
                                             </h6>
-                                            <div class="mb-3">
-                                                <div class="d-flex justify-content-between align-items-center mb-2">
-                                                    <span class="font-weight-bold text-warning">Jul 29-30</span>
-                                                    <span class="badge badge-info">MEDIUM</span>
-                                                </div>
-                                                <div class="text-sm">Next FOMC Meeting</div>
-                                                <div class="text-xs text-muted">Further rate cuts expected | Watch for dovish guidance</div>
-                                            </div>
-                                            <div class="mb-3">
-                                                <div class="d-flex justify-content-between align-items-center mb-2">
-                                                    <span class="font-weight-bold text-danger">Aug 24</span>
-                                                    <span class="badge badge-danger">CRITICAL</span>
-                                                </div>
-                                                <div class="text-sm">Pi Cycle Top Signal Date</div>
-                                                <div class="text-xs text-muted">Potential cycle peak indicator | 99% historical accuracy</div>
-                                            </div>
+                                            <div id="next-90-days-container">Loading events...</div>
                                         </div>
                                         
                                         <!-- Major Cycle Events -->
@@ -455,22 +425,7 @@
                                             <h6 class="text-danger mb-3">
                                                 <i class="fas fa-exclamation-triangle mr-2"></i>Major Cycle Events
                                             </h6>
-                                            <div class="mb-3">
-                                                <div class="d-flex justify-content-between align-items-center mb-2">
-                                                    <span class="font-weight-bold text-danger">Q3 2025</span>
-                                                    <span class="badge badge-danger">PEAK</span>
-                                                </div>
-                                                <div class="text-sm">Expected Cycle Peak</div>
-                                                <div class="text-xs text-muted">Begin systematic profit taking above $200K</div>
-                                            </div>
-                                            <div class="mb-3">
-                                                <div class="d-flex justify-content-between align-items-center mb-2">
-                                                    <span class="font-weight-bold text-dark">Q4 2025</span>
-                                                    <span class="badge badge-secondary">DISTRIBUTION</span>
-                                                </div>
-                                                <div class="text-sm">Bear Market Transition</div>
-                                                <div class="text-xs text-muted">Heavy cash position recommended by November</div>
-                                            </div>
+                                            <div id="major-cycle-events-container">Loading cycle events...</div>
                                         </div>
                                     </div>
                                     
@@ -480,30 +435,30 @@
                                         <div class="row">
                                             <div class="col-md-3 text-center mb-3">
                                                 <div class="text-xs text-gray-600">Next Week Pump</div>
-                                                <div class="h4 text-success">72%</div>
+                                                <div class="h4 text-success"><span data-bind="text:marketProbabilities.pumpProbability1W">--</span>%</div>
                                                 <div class="progress progress-sm">
-                                                    <div class="progress-bar bg-success" style="width: 72%"></div>
+                                                    <div class="progress-bar bg-success" id="pump-1w-progress" style="width: 0%"></div>
                                                 </div>
                                             </div>
                                             <div class="col-md-3 text-center mb-3">
                                                 <div class="text-xs text-gray-600">Next Month Pump</div>
-                                                <div class="h4 text-success">85%</div>
+                                                <div class="h4 text-success"><span data-bind="text:marketProbabilities.pumpProbability1M">--</span>%</div>
                                                 <div class="progress progress-sm">
-                                                    <div class="progress-bar bg-success" style="width: 85%"></div>
+                                                    <div class="progress-bar bg-success" id="pump-1m-progress" style="width: 0%"></div>
                                                 </div>
                                             </div>
                                             <div class="col-md-3 text-center mb-3">
                                                 <div class="text-xs text-gray-600">Dump Risk (30d)</div>
-                                                <div class="h4 text-danger">25%</div>
+                                                <div class="h4 text-danger"><span data-bind="text:marketProbabilities.dumpRisk30D">--</span>%</div>
                                                 <div class="progress progress-sm">
-                                                    <div class="progress-bar bg-danger" style="width: 25%"></div>
+                                                    <div class="progress-bar bg-danger" id="dump-30d-progress" style="width: 0%"></div>
                                                 </div>
                                             </div>
                                             <div class="col-md-3 text-center mb-3">
                                                 <div class="text-xs text-gray-600">Sideways Action</div>
-                                                <div class="h4 text-info">20%</div>
+                                                <div class="h4 text-info"><span data-bind="text:marketProbabilities.sidewaysProbability">--</span>%</div>
                                                 <div class="progress progress-sm">
-                                                    <div class="progress-bar bg-info" style="width: 20%"></div>
+                                                    <div class="progress-bar bg-info" id="sideways-progress" style="width: 0%"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -525,23 +480,7 @@
                                     </h6>
                                 </div>
                                 <div class="card-body">
-                                    <div class="news-item">
-                                        <h6 class="font-weight-bold text-primary mb-2">U.S. Senate Advances Stablecoin Regulation Framework</h6>
-                                        <p class="mb-2">The Senate has passed the GENIUS Act, a comprehensive bill designed to regulate stablecoins in the U.S., marking significant regulatory progress for the crypto industry.</p>
-                                        <small class="text-muted">Impact: <span class="text-success">Bullish</span> - Regulatory clarity typically drives institutional adoption</small>
-                                    </div>
-                                    
-                                    <div class="news-item">
-                                        <h6 class="font-weight-bold text-primary mb-2">Ethereum Completes Pectra Upgrade</h6>
-                                        <p class="mb-2">The Ethereum network completed its latest technology upgrade, enabling lower network fees, streamlined staking, and support for smart wallets.</p>
-                                        <small class="text-muted">Impact: <span class="text-success">Bullish</span> - Technical improvements support long-term value proposition</small>
-                                    </div>
-                                    
-                                    <div class="news-item">
-                                        <h6 class="font-weight-bold text-primary mb-2">Bitcoin ETF Inflows Surpass $40 Billion</h6>
-                                        <p class="mb-2">Cumulative inflows into Bitcoin exchange-traded funds have exceeded $40 billion, with only two days of outflows recorded in May.</p>
-                                        <small class="text-muted">Impact: <span class="text-success">Bullish</span> - Continued institutional demand validates digital asset thesis</small>
-                                    </div>
+                                    <div id="news-container">Loading news...</div>
                                 </div>
                             </div>
                         </div>
@@ -558,34 +497,14 @@
                                     <h6 class="text-warning mb-3">
                                         <i class="fas fa-bank mr-2"></i>Economic Events
                                     </h6>
-                                    <ul class="list-unstyled">
-                                        <li class="mb-2">
-                                            <strong class="text-primary">June 12:</strong> CPI Release - May inflation data expected
-                                        </li>
-                                        <li class="mb-2">
-                                            <strong class="text-primary">June 17-18:</strong> FOMC Meeting - 70% probability of rate cut
-                                        </li>
-                                        <li class="mb-2">
-                                            <strong class="text-primary">July 29-30:</strong> Next FOMC Meeting
-                                        </li>
-                                    </ul>
+                                    <div id="economic-events-container">Loading events...</div>
                                     
                                     <hr>
                                     
                                     <h6 class="text-info mb-3">
                                         <i class="fas fa-unlock mr-2"></i>Crypto Events
                                     </h6>
-                                    <ul class="list-unstyled">
-                                        <li class="mb-2">
-                                            <strong class="text-primary">August 24:</strong> Pi Cycle Top indicator convergence date
-                                        </li>
-                                        <li class="mb-2">
-                                            <strong class="text-primary">Q3 2025:</strong> Expected altcoin season peak
-                                        </li>
-                                        <li class="mb-2">
-                                            <strong class="text-primary">Q4 2025:</strong> Predicted bear market transition
-                                        </li>
-                                    </ul>
+                                    <div id="crypto-events-container">Loading events...</div>
                                 </div>
                             </div>
                         </div>
@@ -601,12 +520,12 @@
                                     </h6>
                                 </div>
                                 <div class="card-body">
-                                    <div class="alert alert-warning mb-4" role="alert">
+                                    <div class="alert alert-warning mb-4" data-bind="class:tradingActionPlan.primarySignal.signalColor" role="alert">
                                         <h5 class="alert-heading">
-                                            <i class="fas fa-pause mr-2"></i>
-                                            Primary Signal: STRATEGIC HOLD
+                                            <i class="fas fa-pause mr-2" data-bind="class:tradingActionPlan.primarySignal.signalIcon"></i>
+                                            Primary Signal: <span data-bind="text:tradingActionPlan.primarySignal.signal">LOADING</span>
                                         </h5>
-                                        <p class="mb-0">Market is in late bull phase at 78% completion. Hold current positions but prepare exit strategy. Begin taking profits above $200K. Risk/reward still favorable but deteriorating.</p>
+                                        <p class="mb-0" data-bind="text:tradingActionPlan.primarySignal.reasoning">Loading reasoning...</p>
                                     </div>
                                     
                                     <div class="row">
@@ -615,15 +534,15 @@
                                             <ul class="list-unstyled">
                                                 <li class="mb-2">
                                                     <span class="badge badge-success mr-2">Strong</span>
-                                                    $95,000 <small class="text-muted">(25% hit probability)</small>
+                                                    $<span data-bind="text:tradingActionPlan.entryLevels.btcEntryLevel1">--</span> <small class="text-muted">(<span data-bind="text:tradingActionPlan.entryLevels.btcEntry1Probability">--</span>% hit probability)</small>
                                                 </li>
                                                 <li class="mb-2">
                                                     <span class="badge badge-warning mr-2">Good</span>
-                                                    $98,000 <small class="text-muted">(45% hit probability)</small>
+                                                    $<span data-bind="text:tradingActionPlan.entryLevels.btcEntryLevel2">--</span> <small class="text-muted">(<span data-bind="text:tradingActionPlan.entryLevels.btcEntry2Probability">--</span>% hit probability)</small>
                                                 </li>
                                                 <li class="mb-2">
                                                     <span class="badge badge-info mr-2">Fair</span>
-                                                    $102,000 <small class="text-muted">(70% hit probability)</small>
+                                                    $<span data-bind="text:tradingActionPlan.entryLevels.btcEntryLevel3">--</span> <small class="text-muted">(<span data-bind="text:tradingActionPlan.entryLevels.btcEntry3Probability">--</span>% hit probability)</small>
                                                 </li>
                                             </ul>
                                         </div>
@@ -633,15 +552,15 @@
                                             <ul class="list-unstyled">
                                                 <li class="mb-2">
                                                     <span class="badge badge-warning mr-2">TP1</span>
-                                                    $150,000 <small class="text-muted">(2-4 months)</small>
+                                                    $<span data-bind="text:tradingActionPlan.exitTargets.btcTarget1">--</span> <small class="text-muted">(<span data-bind="text:tradingActionPlan.exitTargets.btcTarget1Timeline">--</span>)</small>
                                                 </li>
                                                 <li class="mb-2">
                                                     <span class="badge badge-success mr-2">TP2</span>
-                                                    $250,000 <small class="text-muted">(4-6 months)</small>
+                                                    $<span data-bind="text:tradingActionPlan.exitTargets.btcTarget2">--</span> <small class="text-muted">(<span data-bind="text:tradingActionPlan.exitTargets.btcTarget2Timeline">--</span>)</small>
                                                 </li>
                                                 <li class="mb-2">
                                                     <span class="badge badge-danger mr-2">SL</span>
-                                                    $85,000 <small class="text-muted">(Cycle invalidation)</small>
+                                                    $<span data-bind="text:tradingActionPlan.exitTargets.btcStopLoss">--</span> <small class="text-muted">(Risk management)</small>
                                                 </li>
                                             </ul>
                                         </div>
@@ -649,9 +568,9 @@
                                     
                                     <h6 class="mt-4 mb-3">Position Sizing Recommendation</h6>
                                     <div class="alert alert-info">
-                                        <strong>Recommended Allocation:</strong> 25-40% of risk capital<br>
-                                        <strong>Risk Level:</strong> Medium-High (late cycle)<br>
-                                        <strong>Time Horizon:</strong> 3-6 months for peak targeting
+                                        <strong>Recommended Allocation:</strong> <span data-bind="text:tradingActionPlan.positionSizing.recommendedAllocation">--</span><br>
+                                        <strong>Risk Level:</strong> <span data-bind="text:tradingActionPlan.positionSizing.riskLevel">--</span><br>
+                                        <strong>Time Horizon:</strong> <span data-bind="text:tradingActionPlan.positionSizing.timeHorizon">--</span>
                                     </div>
                                 </div>
                             </div>
@@ -667,43 +586,45 @@
                                 </div>
                                 <div class="card-body text-center">
                                     <div class="mb-4">
-                                        <div class="h3 font-weight-bold text-warning">MEDIUM-HIGH</div>
+                                        <div class="h3 font-weight-bold text-warning" data-bind="class:riskManagement.overallRisk.color">
+                                            <span data-bind="text:riskManagement.overallRisk.level">--</span>
+                                        </div>
                                         <div class="small text-gray-600">Overall Market Risk</div>
                                     </div>
                                     
                                     <div class="row text-center mb-3">
                                         <div class="col-6">
                                             <div class="small text-gray-600">Drawdown Risk</div>
-                                            <div class="font-weight-bold text-danger">30-40%</div>
+                                            <div class="font-weight-bold text-danger" data-bind="text:riskManagement.riskMetrics.drawdownRisk">--</div>
                                         </div>
                                         <div class="col-6">
                                             <div class="small text-gray-600">Volatility</div>
-                                            <div class="font-weight-bold text-warning">HIGH</div>
+                                            <div class="font-weight-bold text-warning" data-bind="text:riskManagement.riskMetrics.volatilityIndex">--</div>
                                         </div>
                                     </div>
                                     
-                                    <div class="alert alert-warning alert-sm">
+                                    <div class="alert alert-warning" data-bind="class:riskManagement.riskAlert.alertColor">
                                         <strong>Risk Alert:</strong><br>
-                                        Late cycle dynamics increase downside risk. Prepare profit-taking strategy.
+                                        <span data-bind="text:riskManagement.riskAlert.message">Loading alert...</span>
                                     </div>
                                     
                                     <h6 class="mt-4 mb-3">Portfolio Balance</h6>
                                     <div class="text-left">
                                         <div class="d-flex justify-content-between mb-2">
                                             <span>BTC:</span>
-                                            <span class="font-weight-bold">45%</span>
+                                            <span class="font-weight-bold"><span data-bind="text:riskManagement.portfolioAllocation.btc">--</span>%</span>
                                         </div>
                                         <div class="d-flex justify-content-between mb-2">
                                             <span>ETH:</span>
-                                            <span class="font-weight-bold">25%</span>
+                                            <span class="font-weight-bold"><span data-bind="text:riskManagement.portfolioAllocation.eth">--</span>%</span>
                                         </div>
                                         <div class="d-flex justify-content-between mb-2">
                                             <span>Alts:</span>
-                                            <span class="font-weight-bold">20%</span>
+                                            <span class="font-weight-bold"><span data-bind="text:riskManagement.portfolioAllocation.alts">--</span>%</span>
                                         </div>
                                         <div class="d-flex justify-content-between">
                                             <span>Cash:</span>
-                                            <span class="font-weight-bold">10%</span>
+                                            <span class="font-weight-bold"><span data-bind="text:riskManagement.portfolioAllocation.cash">--</span>%</span>
                                         </div>
                                     </div>
                                 </div>
@@ -720,10 +641,10 @@
                                 </div>
                                 <div class="card-body">
                                     <h6 class="mb-3">Executive Summary</h6>
-                                    <p class="card-text">Bitcoin continues its march higher at $105,166, with the crypto market showing resilience despite macro headwinds. At an estimated 78% through the current bull cycle, we're approaching the critical final phase where risk-reward dynamics shift significantly. The Pi Cycle Top indicator suggests a peak between August-October 2025, with price targets of $250K-$310K. Fear & Greed at 64 indicates optimism without extreme euphoria. Key catalysts ahead include the June 17-18 FOMC meeting (70% probability of rate cut) and CPI data on June 12.</p>
+                                    <p class="card-text" data-bind="text:analysis.executiveSummary">Loading summary...</p>
                                     
                                     <h6 class="mb-3 mt-4">Next Week Outlook</h6>
-                                    <p class="card-text">The upcoming week is pivotal with high-impact economic data that could significantly move crypto markets. A cooler-than-expected CPI print (under 3.0%) has an 85% probability of triggering a pump, while the FOMC meeting could provide the dovish catalyst crypto needs. Technical support at $102K should hold, with resistance at $108K. Ethereum's continued strength following the Pectra upgrade suggests altcoin rotation may accelerate if Bitcoin stabilizes above current levels. Overall bias remains cautiously optimistic with disciplined risk management.</p>
+                                    <p class="card-text" data-bind="text:analysis.nextWeekOutlook">Loading outlook...</p>
                                 </div>
                             </div>
                         </div>
@@ -739,7 +660,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Generated on June 3, 2025 | Data sources: CoinGecko, Alternative.me, Federal Reserve, CoinDesk, CryptoQuant</span><br>
+                        <span>Generated on <span data-bind="text:reportMetadata.generationDate">--</span> | Data sources: <span data-bind="text:analysis.dataSources">Loading...</span></span><br>
                         <small class="text-muted">This analysis is for informational purposes only and should not be considered financial advice.</small>
                     </div>
                 </div>
@@ -762,40 +683,94 @@
     <!-- Custom scripts for all pages-->
     <script src="https://startbootstrap.github.io/startbootstrap-sb-admin-2/js/sb-admin-2.min.js"></script>
 
+    <!-- Crypto Analysis Data Engine -->
+    <script src="data_engine.js"></script>
+
     <!-- Chart.js for dominance chart -->
     <script>
-        // Bitcoin Dominance Pie Chart
-        var ctx = document.getElementById("dominanceChart");
-        var dominanceChart = new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: ["Bitcoin", "Altcoins"],
-                datasets: [{
-                    data: [63.6, 36.4],
-                    backgroundColor: ['#f6c23e', '#4e73df'],
-                    hoverBackgroundColor: ['#f4b619', '#224abe'],
-                    hoverBorderColor: "rgba(234, 236, 244, 1)",
-                }],
-            },
-            options: {
-                maintainAspectRatio: false,
-                tooltips: {
-                    backgroundColor: "rgb(255,255,255)",
-                    bodyFontColor: "#858796",
-                    borderColor: '#dddfeb',
-                    borderWidth: 1,
-                    xPadding: 15,
-                    yPadding: 15,
-                    displayColors: false,
-                    caretPadding: 10,
-                },
-                legend: {
-                    display: true,
-                    position: 'bottom',
-                },
-                cutoutPercentage: 80,
-            },
+        // Chart.js integration with data engine
+        let dominanceChart = null;
+        
+        // Initialize chart after data engine loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Wait for data engine to initialize before setting up chart
+            setTimeout(() => {
+                initDominanceChart();
+            }, 1500); // Increased delay to ensure data engine is ready
         });
+
+        function initDominanceChart() {
+            const ctx = document.getElementById("dominanceChart");
+            if (!ctx) {
+                console.log('Dominance chart canvas not found');
+                return;
+            }
+            
+            if (typeof Chart === 'undefined') {
+                console.log('Chart.js not loaded, retrying in 1 second...');
+                setTimeout(initDominanceChart, 1000);
+                return;
+            }
+            
+            try {
+                // Get initial data from data engine if available
+                let btcDominance = 50;
+                let altDominance = 50;
+                
+                if (window.cryptoDataEngine && window.cryptoDataEngine.data) {
+                    const domData = window.cryptoDataEngine.getData('marketOverview.bitcoinDominance.percentage');
+                    if (domData) {
+                        btcDominance = parseFloat(domData);
+                        altDominance = 100 - btcDominance;
+                    }
+                }
+                
+                // Create chart
+                dominanceChart = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ["Bitcoin", "Altcoins"],
+                        datasets: [{
+                            data: [btcDominance, altDominance],
+                            backgroundColor: ['#f6c23e', '#4e73df'],
+                            hoverBackgroundColor: ['#f4b619', '#224abe'],
+                            hoverBorderColor: "rgba(234, 236, 244, 1)",
+                        }],
+                    },
+                    options: {
+                        maintainAspectRatio: false,
+                        tooltips: {
+                            backgroundColor: "rgb(255,255,255)",
+                            bodyFontColor: "#858796",
+                            borderColor: '#dddfeb',
+                            borderWidth: 1,
+                            xPadding: 15,
+                            yPadding: 15,
+                            displayColors: false,
+                            caretPadding: 10,
+                        },
+                        legend: {
+                            display: true,
+                            position: 'bottom',
+                        },
+                        cutoutPercentage: 80,
+                    },
+                });
+                
+                // Make chart globally accessible
+                window.dominanceChart = dominanceChart;
+                
+                // Notify data engine that chart is ready
+                if (window.cryptoDataEngine && typeof window.cryptoDataEngine.onChartReady === 'function') {
+                    window.cryptoDataEngine.onChartReady();
+                }
+                
+                console.log('✅ Dominance chart initialized successfully');
+                
+            } catch (error) {
+                console.error('Failed to initialize dominance chart:', error);
+            }
+        }
     </script>
 
 </body>

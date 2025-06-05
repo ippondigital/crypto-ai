@@ -1,0 +1,674 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Crypto Market Analysis Report Schema",
+  "description": "Schema for populating the weekly crypto market analysis HTML template",
+  "type": "object",
+  "properties": {
+    "reportMetadata": {
+      "type": "object",
+      "description": "Basic report information and timestamps",
+      "properties": {
+        "weekDate": {
+          "type": "string",
+          "description": "Week period for the report (e.g., 'Week of June 3, 2025')"
+        },
+        "reportNumber": {
+          "type": "string",
+          "description": "Sequential report number (e.g., '1', '2', '3')"
+        },
+        "generationDate": {
+          "type": "string",
+          "description": "Date when report was generated (e.g., 'June 3, 2025')"
+        }
+      },
+      "required": ["weekDate", "reportNumber", "generationDate"]
+    },
+    "marketOverview": {
+      "type": "object",
+      "description": "Core market data for major cryptocurrencies and overall market",
+      "properties": {
+        "bitcoin": {
+          "type": "object",
+          "properties": {
+            "price": {
+              "type": "string",
+              "description": "Bitcoin price without $ symbol (e.g., '105,166')"
+            },
+            "change": {
+              "type": "string",
+              "description": "24h change with +/- sign (e.g., '+2.1%')"
+            },
+            "trendClass": {
+              "type": "string",
+              "enum": ["trend-up", "trend-down", "trend-neutral"],
+              "description": "CSS class for trend styling"
+            },
+            "trendIcon": {
+              "type": "string",
+              "enum": ["fa-arrow-up", "fa-arrow-down", "fa-arrow-right"],
+              "description": "FontAwesome icon class for trend"
+            }
+          },
+          "required": ["price", "change", "trendClass", "trendIcon"]
+        },
+        "ethereum": {
+          "type": "object",
+          "properties": {
+            "price": {
+              "type": "string",
+              "description": "Ethereum price without $ symbol (e.g., '2,900')"
+            },
+            "change": {
+              "type": "string",
+              "description": "24h change with +/- sign (e.g., '+1.8%')"
+            },
+            "trendClass": {
+              "type": "string",
+              "enum": ["trend-up", "trend-down", "trend-neutral"],
+              "description": "CSS class for trend styling"
+            },
+            "trendIcon": {
+              "type": "string",
+              "enum": ["fa-arrow-up", "fa-arrow-down", "fa-arrow-right"],
+              "description": "FontAwesome icon class for trend"
+            }
+          },
+          "required": ["price", "change", "trendClass", "trendIcon"]
+        },
+        "totalMarketCap": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string",
+              "description": "Total market cap formatted (e.g., '$3.27T')"
+            },
+            "change": {
+              "type": "string",
+              "description": "24h change with +/- sign (e.g., '+1.5%')"
+            },
+            "trendClass": {
+              "type": "string",
+              "enum": ["trend-up", "trend-down", "trend-neutral"],
+              "description": "CSS class for trend styling"
+            },
+            "trendIcon": {
+              "type": "string",
+              "enum": ["fa-arrow-up", "fa-arrow-down", "fa-arrow-right"],
+              "description": "FontAwesome icon class for trend"
+            }
+          },
+          "required": ["value", "change", "trendClass", "trendIcon"]
+        },
+        "bitcoinDominance": {
+          "type": "object",
+          "properties": {
+            "percentage": {
+              "type": "string",
+              "description": "BTC dominance percentage without % symbol (e.g., '63.6')"
+            },
+            "change": {
+              "type": "string",
+              "description": "24h change with +/- sign (e.g., '-0.8%')"
+            },
+            "trendClass": {
+              "type": "string",
+              "enum": ["trend-up", "trend-down", "trend-neutral"],
+              "description": "CSS class for trend styling"
+            },
+            "trendIcon": {
+              "type": "string",
+              "enum": ["fa-arrow-up", "fa-arrow-down", "fa-arrow-right"],
+              "description": "FontAwesome icon class for trend"
+            }
+          },
+          "required": ["percentage", "change", "trendClass", "trendIcon"]
+        },
+        "altcoinMarketCap": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string",
+              "description": "Altcoin market cap formatted (e.g., '$1.19T')"
+            },
+            "change": {
+              "type": "string",
+              "description": "24h change with +/- sign (e.g., '+2.3%')"
+            },
+            "trendClass": {
+              "type": "string",
+              "enum": ["trend-up", "trend-down", "trend-neutral"],
+              "description": "CSS class for trend styling"
+            },
+            "trendIcon": {
+              "type": "string",
+              "enum": ["fa-arrow-up", "fa-arrow-down", "fa-arrow-right"],
+              "description": "FontAwesome icon class for trend"
+            }
+          },
+          "required": ["value", "change", "trendClass", "trendIcon"]
+        }
+      },
+      "required": ["bitcoin", "ethereum", "totalMarketCap", "bitcoinDominance", "altcoinMarketCap"]
+    },
+    "sentimentData": {
+      "type": "object",
+      "description": "Market sentiment indicators",
+      "properties": {
+        "fearGreedIndex": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string",
+              "description": "Index value 0-100 (e.g., '64')"
+            },
+            "label": {
+              "type": "string",
+              "enum": ["Extreme Fear", "Fear", "Neutral", "Greed", "Extreme Greed"],
+              "description": "Text classification of the index"
+            }
+          },
+          "required": ["value", "label"]
+        }
+      },
+      "required": ["fearGreedIndex"]
+    },
+    "onChainMetrics": {
+      "type": "object",
+      "description": "On-chain analysis data",
+      "properties": {
+        "exchangeFlow": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string",
+              "description": "Exchange flow data (e.g., '-2,400 BTC (7d)')"
+            },
+            "analysis": {
+              "type": "string",
+              "description": "Analysis text explaining the metric significance"
+            }
+          },
+          "required": ["value", "analysis"]
+        },
+        "mvrvRatio": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string",
+              "description": "MVRV ratio value (e.g., '2.1')"
+            },
+            "analysis": {
+              "type": "string",
+              "description": "Analysis text explaining the metric significance"
+            }
+          },
+          "required": ["value", "analysis"]
+        },
+        "sopr": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string",
+              "description": "SOPR value (e.g., '1.04')"
+            },
+            "analysis": {
+              "type": "string",
+              "description": "Analysis text explaining the metric significance"
+            }
+          },
+          "required": ["value", "analysis"]
+        }
+      },
+      "required": ["exchangeFlow", "mvrvRatio", "sopr"]
+    },
+    "cycleAnalysis": {
+      "type": "object",
+      "description": "Market cycle position and predictions",
+      "properties": {
+        "currentPosition": {
+          "type": "object",
+          "properties": {
+            "cyclePositionPercent": {
+              "type": "string",
+              "description": "Percentage through current cycle (e.g., '78')"
+            },
+            "cyclePhase": {
+              "type": "string",
+              "description": "Current cycle phase (e.g., 'Late Bull Market')"
+            },
+            "cycleStartDate": {
+              "type": "string",
+              "description": "When current phase started (e.g., 'October 2023')"
+            },
+            "daysInCycle": {
+              "type": "string",
+              "description": "Days since phase started (e.g., '410')"
+            }
+          },
+          "required": ["cyclePositionPercent", "cyclePhase", "cycleStartDate", "daysInCycle"]
+        },
+        "predictions": {
+          "type": "object",
+          "properties": {
+            "btcCyclePeakTarget": {
+              "type": "string",
+              "description": "Predicted BTC peak price range (e.g., '$250,000-310,000')"
+            },
+            "predictedPeakDate": {
+              "type": "string",
+              "description": "Estimated peak timing (e.g., 'August-October 2025')"
+            },
+            "peakConfidence": {
+              "type": "string",
+              "description": "Confidence in peak prediction (e.g., '75')"
+            },
+            "bearMarketStart": {
+              "type": "string",
+              "description": "Predicted bear market start (e.g., 'Q4 2025-Q1 2026')"
+            },
+            "bearMarketBottom": {
+              "type": "string",
+              "description": "Predicted bottom price range (e.g., '$50,000-75,000')"
+            },
+            "bottomTimeline": {
+              "type": "string",
+              "description": "Timeline to reach bottom (e.g., 'Q1-Q2 2027')"
+            }
+          },
+          "required": ["btcCyclePeakTarget", "predictedPeakDate", "peakConfidence", "bearMarketStart", "bearMarketBottom", "bottomTimeline"]
+        }
+      },
+      "required": ["currentPosition", "predictions"]
+    },
+    "tradingTimeline": {
+      "type": "object",
+      "description": "Upcoming events and market-moving dates",
+      "properties": {
+        "next30Days": {
+          "type": "array",
+          "description": "Key events in next 30 days",
+          "items": {
+            "type": "object",
+            "properties": {
+              "date": {
+                "type": "string",
+                "description": "Event date (e.g., 'Jun 12')"
+              },
+              "impact": {
+                "type": "string",
+                "enum": ["HIGH IMPACT", "MEDIUM", "LOW", "CRITICAL"],
+                "description": "Impact level"
+              },
+              "title": {
+                "type": "string",
+                "description": "Event title"
+              },
+              "description": {
+                "type": "string",
+                "description": "Event details and market implications"
+              }
+            },
+            "required": ["date", "impact", "title", "description"]
+          }
+        },
+        "next90Days": {
+          "type": "array",
+          "description": "Key events in next 90 days",
+          "items": {
+            "type": "object",
+            "properties": {
+              "date": {
+                "type": "string",
+                "description": "Event date (e.g., 'Jul 29-30')"
+              },
+              "impact": {
+                "type": "string",
+                "enum": ["HIGH IMPACT", "MEDIUM", "LOW", "CRITICAL"],
+                "description": "Impact level"
+              },
+              "title": {
+                "type": "string",
+                "description": "Event title"
+              },
+              "description": {
+                "type": "string",
+                "description": "Event details and market implications"
+              }
+            },
+            "required": ["date", "impact", "title", "description"]
+          }
+        },
+        "majorCycleEvents": {
+          "type": "array",
+          "description": "Major cycle-defining events",
+          "items": {
+            "type": "object",
+            "properties": {
+              "date": {
+                "type": "string",
+                "description": "Event date (e.g., 'Q3 2025')"
+              },
+              "impact": {
+                "type": "string",
+                "enum": ["PEAK", "DISTRIBUTION", "ACCUMULATION", "BOTTOM"],
+                "description": "Cycle impact type"
+              },
+              "title": {
+                "type": "string",
+                "description": "Event title"
+              },
+              "description": {
+                "type": "string",
+                "description": "Event details and cycle implications"
+              }
+            },
+            "required": ["date", "impact", "title", "description"]
+          }
+        }
+      },
+      "required": ["next30Days", "next90Days", "majorCycleEvents"]
+    },
+    "marketProbabilities": {
+      "type": "object",
+      "description": "Calculated probabilities for market movements",
+      "properties": {
+        "pumpProbability1W": {
+          "type": "string",
+          "description": "1-week pump probability percentage (e.g., '72')"
+        },
+        "pumpProbability1M": {
+          "type": "string",
+          "description": "1-month pump probability percentage (e.g., '85')"
+        },
+        "dumpRisk30D": {
+          "type": "string",
+          "description": "30-day dump risk percentage (e.g., '25')"
+        },
+        "sidewaysProbability": {
+          "type": "string",
+          "description": "Sideways movement probability percentage (e.g., '20')"
+        }
+      },
+      "required": ["pumpProbability1W", "pumpProbability1M", "dumpRisk30D", "sidewaysProbability"]
+    },
+    "newsAndEvents": {
+      "type": "object",
+      "description": "Recent news and upcoming events",
+      "properties": {
+        "newsItems": {
+          "type": "array",
+          "description": "Recent crypto news with market impact",
+          "items": {
+            "type": "object",
+            "properties": {
+              "headline": {
+                "type": "string",
+                "description": "News headline"
+              },
+              "summary": {
+                "type": "string",
+                "description": "Brief news summary"
+              },
+              "impact": {
+                "type": "string",
+                "enum": ["Bullish", "Bearish", "Neutral"],
+                "description": "Market impact assessment"
+              }
+            },
+            "required": ["headline", "summary", "impact"]
+          }
+        },
+        "economicEvents": {
+          "type": "array",
+          "description": "Upcoming economic events",
+          "items": {
+            "type": "object",
+            "properties": {
+              "date": {
+                "type": "string",
+                "description": "Event date"
+              },
+              "description": {
+                "type": "string",
+                "description": "Event description"
+              }
+            },
+            "required": ["date", "description"]
+          }
+        },
+        "cryptoEvents": {
+          "type": "array",
+          "description": "Upcoming crypto-specific events",
+          "items": {
+            "type": "object",
+            "properties": {
+              "date": {
+                "type": "string",
+                "description": "Event date"
+              },
+              "description": {
+                "type": "string",
+                "description": "Event description"
+              }
+            },
+            "required": ["date", "description"]
+          }
+        }
+      },
+      "required": ["newsItems", "economicEvents", "cryptoEvents"]
+    },
+    "tradingActionPlan": {
+      "type": "object",
+      "description": "Trading signals and recommended actions",
+      "properties": {
+        "primarySignal": {
+          "type": "object",
+          "properties": {
+            "signal": {
+              "type": "string",
+              "enum": ["ACCUMULATE", "HOLD", "STRATEGIC HOLD", "REDUCE", "SELL"],
+              "description": "Primary trading signal"
+            },
+            "signalColor": {
+              "type": "string",
+              "enum": ["success", "warning", "danger", "info"],
+              "description": "Bootstrap alert color for signal"
+            },
+            "signalIcon": {
+              "type": "string",
+              "enum": ["fa-chart-up", "fa-pause", "fa-chart-down", "fa-exclamation-triangle"],
+              "description": "FontAwesome icon for signal"
+            },
+            "reasoning": {
+              "type": "string",
+              "description": "Explanation of the trading signal"
+            }
+          },
+          "required": ["signal", "signalColor", "signalIcon", "reasoning"]
+        },
+        "entryLevels": {
+          "type": "object",
+          "properties": {
+            "btcEntryLevel1": {
+              "type": "string",
+              "description": "Best BTC entry level (e.g., '95,000')"
+            },
+            "btcEntry1Probability": {
+              "type": "string",
+              "description": "Probability of hitting level 1 (e.g., '25')"
+            },
+            "btcEntryLevel2": {
+              "type": "string",
+              "description": "Good BTC entry level (e.g., '98,000')"
+            },
+            "btcEntry2Probability": {
+              "type": "string",
+              "description": "Probability of hitting level 2 (e.g., '45')"
+            },
+            "btcEntryLevel3": {
+              "type": "string",
+              "description": "Fair BTC entry level (e.g., '102,000')"
+            },
+            "btcEntry3Probability": {
+              "type": "string",
+              "description": "Probability of hitting level 3 (e.g., '70')"
+            }
+          },
+          "required": ["btcEntryLevel1", "btcEntry1Probability", "btcEntryLevel2", "btcEntry2Probability", "btcEntryLevel3", "btcEntry3Probability"]
+        },
+        "exitTargets": {
+          "type": "object",
+          "properties": {
+            "btcTarget1": {
+              "type": "string",
+              "description": "First take profit target (e.g., '150,000')"
+            },
+            "btcTarget1Timeline": {
+              "type": "string",
+              "description": "Timeline for target 1 (e.g., '2-4 months')"
+            },
+            "btcTarget2": {
+              "type": "string",
+              "description": "Second take profit target (e.g., '250,000')"
+            },
+            "btcTarget2Timeline": {
+              "type": "string",
+              "description": "Timeline for target 2 (e.g., '4-6 months')"
+            },
+            "btcStopLoss": {
+              "type": "string",
+              "description": "Stop loss level (e.g., '85,000')"
+            }
+          },
+          "required": ["btcTarget1", "btcTarget1Timeline", "btcTarget2", "btcTarget2Timeline", "btcStopLoss"]
+        },
+        "positionSizing": {
+          "type": "object",
+          "properties": {
+            "recommendedAllocation": {
+              "type": "string",
+              "description": "Recommended position size (e.g., '25-40% of risk capital')"
+            },
+            "riskLevel": {
+              "type": "string",
+              "description": "Current risk level (e.g., 'Medium-High (late cycle)')"
+            },
+            "timeHorizon": {
+              "type": "string",
+              "description": "Recommended holding period (e.g., '3-6 months for peak targeting')"
+            }
+          },
+          "required": ["recommendedAllocation", "riskLevel", "timeHorizon"]
+        }
+      },
+      "required": ["primarySignal", "entryLevels", "exitTargets", "positionSizing"]
+    },
+    "riskManagement": {
+      "type": "object",
+      "description": "Risk assessment and portfolio allocation",
+      "properties": {
+        "overallRisk": {
+          "type": "object",
+          "properties": {
+            "level": {
+              "type": "string",
+              "enum": ["LOW", "MEDIUM", "MEDIUM-HIGH", "HIGH", "CRITICAL"],
+              "description": "Overall market risk level"
+            },
+            "color": {
+              "type": "string",
+              "enum": ["success", "warning", "danger", "info"],
+              "description": "Bootstrap color for risk level"
+            }
+          },
+          "required": ["level", "color"]
+        },
+        "riskMetrics": {
+          "type": "object",
+          "properties": {
+            "drawdownRisk": {
+              "type": "string",
+              "description": "Potential drawdown percentage (e.g., '30-40%')"
+            },
+            "volatilityIndex": {
+              "type": "string",
+              "enum": ["LOW", "MEDIUM", "HIGH", "EXTREME"],
+              "description": "Current volatility level"
+            }
+          },
+          "required": ["drawdownRisk", "volatilityIndex"]
+        },
+        "riskAlert": {
+          "type": "object",
+          "properties": {
+            "alertColor": {
+              "type": "string",
+              "enum": ["success", "warning", "danger", "info"],
+              "description": "Bootstrap alert color"
+            },
+            "message": {
+              "type": "string",
+              "description": "Risk management alert message"
+            }
+          },
+          "required": ["alertColor", "message"]
+        },
+        "portfolioAllocation": {
+          "type": "object",
+          "properties": {
+            "btc": {
+              "type": "string",
+              "description": "Recommended BTC percentage (e.g., '45')"
+            },
+            "eth": {
+              "type": "string",
+              "description": "Recommended ETH percentage (e.g., '25')"
+            },
+            "alts": {
+              "type": "string",
+              "description": "Recommended altcoin percentage (e.g., '20')"
+            },
+            "cash": {
+              "type": "string",
+              "description": "Recommended cash percentage (e.g., '10')"
+            }
+          },
+          "required": ["btc", "eth", "alts", "cash"]
+        }
+      },
+      "required": ["overallRisk", "riskMetrics", "riskAlert", "portfolioAllocation"]
+    },
+    "analysis": {
+      "type": "object",
+      "description": "Executive summary and market outlook",
+      "properties": {
+        "executiveSummary": {
+          "type": "string",
+          "description": "Comprehensive summary of current market conditions and key insights"
+        },
+        "nextWeekOutlook": {
+          "type": "string",
+          "description": "Outlook and expectations for the upcoming week"
+        },
+        "dataSources": {
+          "type": "string",
+          "description": "List of data sources used in the analysis (e.g., 'CoinGecko, Alternative.me, Federal Reserve, CoinDesk, CryptoQuant')"
+        }
+      },
+      "required": ["executiveSummary", "nextWeekOutlook", "dataSources"]
+    }
+  },
+  "required": [
+    "reportMetadata",
+    "marketOverview", 
+    "sentimentData",
+    "onChainMetrics",
+    "cycleAnalysis",
+    "tradingTimeline",
+    "marketProbabilities",
+    "newsAndEvents",
+    "tradingActionPlan",
+    "riskManagement",
+    "analysis"
+  ]
+}

@@ -1,0 +1,223 @@
+{
+  "reportMetadata": {
+    "weekDate": "Week of June 3, 2025",
+    "reportNumber": "1",
+    "generationDate": "June 3, 2025"
+  },
+  "marketOverview": {
+    "bitcoin": {
+      "price": "105,166",
+      "change": "+2.1%",
+      "trendClass": "trend-up",
+      "trendIcon": "fa-arrow-up"
+    },
+    "ethereum": {
+      "price": "2,900",
+      "change": "+1.8%",
+      "trendClass": "trend-up",
+      "trendIcon": "fa-arrow-up"
+    },
+    "totalMarketCap": {
+      "value": "$3.27T",
+      "change": "+1.5%",
+      "trendClass": "trend-up",
+      "trendIcon": "fa-arrow-up"
+    },
+    "bitcoinDominance": {
+      "percentage": "63.6",
+      "change": "-0.8%",
+      "trendClass": "trend-down",
+      "trendIcon": "fa-arrow-down"
+    },
+    "altcoinMarketCap": {
+      "value": "$1.19T",
+      "change": "+2.3%",
+      "trendClass": "trend-up",
+      "trendIcon": "fa-arrow-up"
+    }
+  },
+  "sentimentData": {
+    "fearGreedIndex": {
+      "value": "64",
+      "label": "Greed"
+    }
+  },
+  "onChainMetrics": {
+    "exchangeFlow": {
+      "value": "-2,400 BTC (7d)",
+      "analysis": "Net outflow from exchanges indicates strong holding sentiment. Coins moving to cold storage suggests long-term bullish positioning by holders."
+    },
+    "mvrvRatio": {
+      "value": "2.1",
+      "analysis": "MVRV at 2.1 suggests fair to slightly overvalued conditions. Historical cycle peaks occur around 3.0-7.0, indicating room for further growth in this cycle."
+    },
+    "sopr": {
+      "value": "1.04",
+      "analysis": "SOPR slightly above 1.0 indicates modest profit-taking, but levels remain healthy. Values above 1.1 would signal more significant distribution phase."
+    }
+  },
+  "cycleAnalysis": {
+    "currentPosition": {
+      "cyclePositionPercent": "78",
+      "cyclePhase": "Late Bull Market",
+      "cycleStartDate": "October 2023",
+      "daysInCycle": "410"
+    },
+    "predictions": {
+      "btcCyclePeakTarget": "$250,000-310,000",
+      "predictedPeakDate": "August-October 2025",
+      "peakConfidence": "75",
+      "bearMarketStart": "Q4 2025-Q1 2026",
+      "bearMarketBottom": "$50,000-75,000",
+      "bottomTimeline": "Q1-Q2 2027"
+    }
+  },
+  "tradingTimeline": {
+    "next30Days": [
+      {
+        "date": "Jun 12",
+        "impact": "HIGH IMPACT",
+        "title": "CPI Release - May inflation data",
+        "description": "Expected: 3.1% vs 3.4% prior | 85% pump probability if under 3.0%"
+      },
+      {
+        "date": "Jun 17-18",
+        "impact": "CRITICAL",
+        "title": "FOMC Meeting Decision",
+        "description": "70% chance of 25bp cut | Dovish = highly bullish for crypto"
+      }
+    ],
+    "next90Days": [
+      {
+        "date": "Jul 29-30",
+        "impact": "MEDIUM",
+        "title": "Next FOMC Meeting",
+        "description": "Further rate cuts expected | Watch for dovish guidance"
+      },
+      {
+        "date": "Aug 24",
+        "impact": "CRITICAL",
+        "title": "Pi Cycle Top Signal Date",
+        "description": "Potential cycle peak indicator | 99% historical accuracy"
+      }
+    ],
+    "majorCycleEvents": [
+      {
+        "date": "Q3 2025",
+        "impact": "PEAK",
+        "title": "Expected Cycle Peak",
+        "description": "Begin systematic profit taking above $200K"
+      },
+      {
+        "date": "Q4 2025",
+        "impact": "DISTRIBUTION",
+        "title": "Bear Market Transition",
+        "description": "Heavy cash position recommended by November"
+      }
+    ]
+  },
+  "marketProbabilities": {
+    "pumpProbability1W": "72",
+    "pumpProbability1M": "85",
+    "dumpRisk30D": "25",
+    "sidewaysProbability": "20"
+  },  "newsAndEvents": {
+    "newsItems": [
+      {
+        "headline": "U.S. Senate Advances Stablecoin Regulation Framework",
+        "summary": "The Senate has passed the GENIUS Act, a comprehensive bill designed to regulate stablecoins in the U.S., marking significant regulatory progress for the crypto industry.",
+        "impact": "Bullish"
+      },
+      {
+        "headline": "Ethereum Completes Pectra Upgrade",
+        "summary": "The Ethereum network completed its latest technology upgrade, enabling lower network fees, streamlined staking, and support for smart wallets.",
+        "impact": "Bullish"
+      },
+      {
+        "headline": "Bitcoin ETF Inflows Surpass $40 Billion",
+        "summary": "Cumulative inflows into Bitcoin exchange-traded funds have exceeded $40 billion, with only two days of outflows recorded in May.",
+        "impact": "Bullish"
+      }
+    ],
+    "economicEvents": [
+      {
+        "date": "June 12",
+        "description": "CPI Release - May inflation data expected"
+      },
+      {
+        "date": "June 17-18",
+        "description": "FOMC Meeting - 70% probability of rate cut"
+      },
+      {
+        "date": "July 29-30",
+        "description": "Next FOMC Meeting"
+      }
+    ],
+    "cryptoEvents": [
+      {
+        "date": "August 24",
+        "description": "Pi Cycle Top indicator convergence date"
+      },
+      {
+        "date": "Q3 2025",
+        "description": "Expected altcoin season peak"
+      },
+      {
+        "date": "Q4 2025",
+        "description": "Predicted bear market transition"
+      }
+    ]
+  },
+  "tradingActionPlan": {
+    "primarySignal": {
+      "signal": "STRATEGIC HOLD",
+      "signalColor": "warning",
+      "signalIcon": "fa-pause",
+      "reasoning": "Market is in late bull phase at 78% completion. Hold current positions but prepare exit strategy. Begin taking profits above $200K. Risk/reward still favorable but deteriorating."
+    },
+    "entryLevels": {
+      "btcEntryLevel1": "95,000",
+      "btcEntry1Probability": "25",
+      "btcEntryLevel2": "98,000",
+      "btcEntry2Probability": "45",
+      "btcEntryLevel3": "102,000",
+      "btcEntry3Probability": "70"
+    },
+    "exitTargets": {
+      "btcTarget1": "150,000",
+      "btcTarget1Timeline": "2-4 months",
+      "btcTarget2": "250,000",
+      "btcTarget2Timeline": "4-6 months",
+      "btcStopLoss": "85,000"
+    },
+    "positionSizing": {
+      "recommendedAllocation": "25-40% of risk capital",
+      "riskLevel": "Medium-High (late cycle)",
+      "timeHorizon": "3-6 months for peak targeting"
+    }
+  },  "riskManagement": {
+    "overallRisk": {
+      "level": "MEDIUM-HIGH",
+      "color": "warning"
+    },
+    "riskMetrics": {
+      "drawdownRisk": "30-40%",
+      "volatilityIndex": "HIGH"
+    },
+    "riskAlert": {
+      "alertColor": "warning",
+      "message": "Late cycle dynamics increase downside risk. Prepare profit-taking strategy."
+    },
+    "portfolioAllocation": {
+      "btc": "45",
+      "eth": "25",
+      "alts": "20",
+      "cash": "10"
+    }
+  },
+  "analysis": {
+    "executiveSummary": "Bitcoin continues its march higher at $105,166, with the crypto market showing resilience despite macro headwinds. At an estimated 78% through the current bull cycle, we're approaching the critical final phase where risk-reward dynamics shift significantly. The Pi Cycle Top indicator suggests a peak between August-October 2025, with price targets of $250K-$310K. Fear & Greed at 64 indicates optimism without extreme euphoria. Key catalysts ahead include the June 17-18 FOMC meeting (70% probability of rate cut) and CPI data on June 12.",
+    "nextWeekOutlook": "The upcoming week is pivotal with high-impact economic data that could significantly move crypto markets. A cooler-than-expected CPI print (under 3.0%) has an 85% probability of triggering a pump, while the FOMC meeting could provide the dovish catalyst crypto needs. Technical support at $102K should hold, with resistance at $108K. Ethereum's continued strength following the Pectra upgrade suggests altcoin rotation may accelerate if Bitcoin stabilizes above current levels. Overall bias remains cautiously optimistic with disciplined risk management.",
+    "dataSources": "CoinGecko, Alternative.me, Federal Reserve, CoinDesk, CryptoQuant"
+  }
+}
