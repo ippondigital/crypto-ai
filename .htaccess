@@ -1,3 +1,6 @@
 RewriteEngine On
 RewriteRule ^$ /market-analysis/index.html [R=301,L]
+
+# Only redirect if not already in /market-analysis/
+RewriteCond %{REQUEST_URI} !^/market-analysis/
 RewriteRule ^(.*)$ /market-analysis/$1 [R=301,L]
