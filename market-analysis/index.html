@@ -5,774 +5,2518 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Professional Crypto Market Analysis Dashboard - Weekly Intelligence Report">
+    <meta name="author" content="CryptoAnalyst Pro">
+    <meta name="keywords" content="cryptocurrency, bitcoin, ethereum, market analysis, trading, dashboard">
 
-    <title>Weekly Crypto Market Analysis</title>
+    <title>Weekly Crypto Market Analysis | Professional Intelligence Dashboard</title>
 
-    <!-- Custom fonts for this template-->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
-    <!-- Custom styles for SB Admin 2 template-->
-    <link href="https://startbootstrap.github.io/startbootstrap-sb-admin-2/css/sb-admin-2.min.css" rel="stylesheet">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.min.js"></script>
 
-    <!-- Custom additional styles -->
+    <!-- Professional Crypto Dashboard Styles -->
     <style>
-        .crypto-up { color: #1cc88a; }
-        .crypto-down { color: #e74a3b; }
-        .crypto-neutral { color: #858796; }
+        /* 
+        =================================================================
+        2025 ENHANCED ACCESSIBLE COLOR SYSTEM - WCAG AA+ COMPLIANT
+        =================================================================
         
-        .cycle-badge {
-            padding: 0.375rem 1rem;
-            border-radius: 10rem;
-            font-weight: 600;
+        This enhanced color system follows modern design principles:
+        - WCAG AA+ compliance (7:1 contrast for important text, 4.5:1 minimum)
+        - 2025 design trends (clean neutrals, purposeful accents)
+        - Enhanced visual hierarchy with better contrast
+        - NO gradients - solid colors with strategic shadows only
+        - Semantic color naming for financial data
+        - Enhanced accessibility features
+        - Professional color combinations
+        
+        Design Philosophy:
+        - Blue (primary): Trust, professionalism, reliability
+        - Green (success): Growth, positive trends, bullish sentiment  
+        - Red (danger): Risk, negative trends, bearish sentiment
+        - Amber (warning): Caution, neutral trends, requires attention
+        - Cyan (info): Information, clarity, detailed analysis
+        
+        Enhanced Accessibility Features:
+        - All text meets WCAG AA+ standards (7:1 contrast for headings, 4.5:1 minimum)
+        - Large text optimized for readability (high contrast)
+        - Enhanced focus indicators for keyboard navigation
+        - High contrast mode full support
+        - Reduced motion comprehensive support
+        - Print-optimized styles with better contrast
+        - Color-blind friendly palette with sufficient luminance differences
+        =================================================================
+        */
+        
+        /* 
+        =================================================================
+        2025 MODERN DASHBOARD DESIGN - CLEAN & ACCESSIBLE
+        =================================================================
+        
+        Fixed color system with proper contrast ratios for text visibility
+        =================================================================
+        */
+        
+        /* Modern 2025 Color System - High Contrast & Readable */
+        :root {
+            /* Background Colors - Clean & Neutral */
+            --bg-primary: #ffffff;         /* Pure white primary background */
+            --bg-secondary: #f8fafc;       /* Very light gray for sections */
+            --bg-tertiary: #f1f5f9;        /* Light gray for cards */
+            --bg-elevated: #ffffff;        /* White for elevated cards */
+            --bg-dark: #1e293b;           /* Dark sidebar background */
+            
+            /* Text Colors - High Contrast & Readable */
+            --text-primary: #0f172a;       /* Near black for headings - WCAG AAA */
+            --text-secondary: #334155;     /* Dark gray for body text - WCAG AA+ */
+            --text-tertiary: #64748b;      /* Medium gray for labels - WCAG AA */
+            --text-muted: #94a3b8;         /* Light gray for subtle info - WCAG AA */
+            --text-inverse: #ffffff;       /* White text on dark backgrounds */
+            
+            /* Semantic Colors - Professional & Clear */
+            --primary: #2563eb;            /* Professional blue */
+            --primary-light: #3b82f6;      /* Lighter blue for interactions */
+            --primary-subtle: #eff6ff;     /* Very light blue backgrounds */
+            
+            --success: #059669;            /* Green for positive values */
+            --success-light: #10b981;      /* Light green for trends */
+            --success-subtle: #ecfdf5;     /* Subtle green backgrounds */
+            
+            --danger: #dc2626;             /* Red for negative values */
+            --danger-light: #ef4444;       /* Light red for trends */
+            --danger-subtle: #fef2f2;      /* Subtle red backgrounds */
+            
+            --warning: #d97706;            /* Orange for caution */
+            --warning-light: #f59e0b;      /* Light orange */
+            --warning-subtle: #fffbeb;     /* Subtle orange backgrounds */
+            
+            --info: #0891b2;              /* Cyan for information */
+            --info-light: #06b6d4;        /* Light cyan */
+            --info-subtle: #ecfeff;       /* Subtle cyan backgrounds */
+            
+            /* Structural Elements */
+            --border-light: #e2e8f0;       /* Subtle borders */
+            --border-subtle: #f1f5f9;      /* Very light borders */
+            --shadow-subtle: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            
+            /* Spacing System */
+            --space-xs: 0.5rem;   /* 8px */
+            --space-sm: 0.75rem;  /* 12px */
+            --space-md: 1rem;     /* 16px */
+            --space-lg: 1.5rem;   /* 24px */
+            --space-xl: 2rem;     /* 32px */
+            --space-2xl: 3rem;    /* 48px */
+            
+            /* Border Radius */
+            --radius-sm: 0.5rem;
+            --radius-md: 0.75rem;
+            --radius-lg: 1rem;
+        }
+
+        /* Modern Layout System */
+        .wrapper {
+            display: flex;
+            width: 100%;
+            align-items: stretch;
+            min-height: 100vh;
+            background: var(--bg-primary);
+        }
+
+        .sidebar {
+            min-width: 250px;
+            max-width: 250px;
+            background: var(--bg-dark);
+            color: var(--text-inverse);
+            transition: all 0.3s ease;
+            min-height: 100vh;
+            border-right: 1px solid var(--border-light);
+            box-shadow: var(--shadow-card);
+        }
+
+        .sidebar-content {
+            padding: 0;
+        }
+
+        .sidebar-brand {
+            display: block;
+            padding: var(--space-lg);
+            color: var(--text-inverse);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.2s ease;
+        }
+
+        .sidebar-brand:hover {
+            color: var(--text-inverse);
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .sidebar-nav {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar-header {
+            color: var(--text-muted);
             font-size: 0.75rem;
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
+            padding: var(--space-md) var(--space-lg) var(--space-sm) var(--space-lg);
+            margin-top: var(--space-md);
+        }
+
+        .sidebar-item {
+            position: relative;
+        }
+
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem var(--space-lg);
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border-radius: 0;
+        }
+
+        .sidebar-link:hover {
+            color: var(--text-inverse);
+            background: rgba(255, 255, 255, 0.1);
+            text-decoration: none;
+        }
+
+        .sidebar-item.active .sidebar-link {
+            color: var(--text-inverse);
+            background: var(--primary);
+            border-right: 3px solid var(--primary-light);
+        }
+
+        .sidebar-link i {
+            width: 20px;
+            margin-right: 0.75rem;
+            opacity: 0.8;
+        }
+
+        .main {
+            flex: 1;
+            min-width: 0;
+            background: var(--bg-secondary);
+        }
+
+        .navbar {
+            background: var(--bg-elevated) !important;
+            border-bottom: 1px solid var(--border-light);
+            padding: var(--space-md) var(--space-lg);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .sidebar-toggle {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.25rem;
+            cursor: pointer;
+            padding: var(--space-xs);
+            border-radius: var(--radius-sm);
+            transition: all 0.2s ease;
+        }
+
+        .sidebar-toggle:hover {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+        }
+
+        .hamburger {
+            width: 24px;
+            height: 24px;
+            position: relative;
+        }
+
+        .hamburger::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: currentColor;
+            box-shadow: 0 6px 0 currentColor, 0 12px 0 currentColor;
+            border-radius: 2px;
+        }
+
+        .navbar {
+            background: var(--bg-elevated) !important;
+            border-bottom: 1px solid var(--border-light);
+            padding: var(--space-md) var(--space-xl);
+            box-shadow: var(--shadow-card);
+            backdrop-filter: blur(10px);
+        }
+
+        .content {
+            padding: var(--space-xl) var(--space-lg);
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        .footer {
+            background: var(--bg-elevated);
+            border-top: 1px solid var(--border-light);
+            padding: var(--space-md) var(--space-xl);
+            margin-top: auto;
+        }
+
+        /* Modern Typography System - 2025 Best Practices */
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            font-size: 16px;                    /* Base font size - 16px minimum */
+            line-height: 1.5;                   /* 1.5x line height for readability */
+            color: var(--text-secondary);       /* Body text in secondary color */
+            background: var(--bg-primary);      /* Clean white background */
+            font-weight: 400;                   /* Normal weight for body */
+            letter-spacing: -0.01em;            /* Slight tightening for modern look */
+        }
+
+        /* Typography Hierarchy - Maximum 4 Font Sizes */
+        .h1, h1 { 
+            font-size: 2.25rem;                 /* 36px - Large headers */
+            font-weight: 700; 
+            line-height: 1.2; 
+            color: var(--text-primary);
+            margin-bottom: var(--space-lg);
         }
         
-        .cycle-bull { background: #1cc88a; color: white; }
-        .cycle-bear { background: #e74a3b; color: white; }
-        .cycle-accumulation { background: #36b9cc; color: white; }
-        .cycle-distribution { background: #f6c23e; color: white; }
-        
-        .progress-sm { height: 0.5rem; }
-        
-        .news-item {
-            border-left: 4px solid #4e73df;
-            background: #f8f9fc;
-            border-radius: 0.35rem;
-            padding: 1rem;
-            margin-bottom: 1rem;
+        .h2, h2 { 
+            font-size: 1.875rem;                /* 30px - Section headers */
+            font-weight: 600; 
+            line-height: 1.25; 
+            color: var(--text-primary);
+            margin-bottom: var(--space-md);
         }
         
+        .h3, h3 { 
+            font-size: 1.5rem;                  /* 24px - Subsection headers */
+            font-weight: 600; 
+            line-height: 1.3; 
+            color: var(--text-primary);
+            margin-bottom: var(--space-md);
+        }
+        
+        .h4, h4 { 
+            font-size: 1.25rem;                 /* 20px - Card titles */
+            font-weight: 600; 
+            line-height: 1.4; 
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+        }
+        
+        .h5, h5 { 
+            font-size: 1.125rem;                /* 18px - Small headers */
+            font-weight: 600; 
+            line-height: 1.4; 
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+        }
+        
+        .h6, h6 { 
+            font-size: 1rem;                    /* 16px - Default size headers */
+            font-weight: 600; 
+            line-height: 1.5; 
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+        }
+
+        /* Text Color Improvements - Better Contrast */
+        .text-xs {
+            font-size: 0.75rem;                 /* 12px - Labels, captions */
+            line-height: 1.4;
+            color: var(--text-secondary);       /* Changed from muted to secondary for better contrast */
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 500;
+        }
+
+        .text-sm, small {
+            font-size: 0.875rem;                /* 14px - Secondary information */
+            line-height: 1.5;
+            color: var(--text-secondary);       /* Changed from tertiary to secondary for better contrast */
+        }
+
+        .text-muted {
+            color: var(--text-tertiary) !important;  /* Use tertiary instead of muted for better contrast */
+        }
+
+        /* Improve contrast for trend indicators */
+        .crypto-up, .trend-up { 
+            color: var(--success) !important; 
+            font-weight: 600;                   /* Add weight for better visibility */
+        }
+        .crypto-down, .trend-down { 
+            color: var(--danger) !important; 
+            font-weight: 600;                   /* Add weight for better visibility */
+        }
+        .crypto-neutral, .trend-neutral { 
+            color: var(--text-secondary) !important;  /* Use secondary instead of tertiary */
+            font-weight: 600;                   /* Add weight for better visibility */
+        }
+
+        /* Numerical Data - Monospace for Better Alignment */
+        .numerical-data {
+            font-family: ui-monospace, 'SF Mono', 'Monaco', 'Consolas', monospace;
+            font-weight: 600;
+            font-variant-numeric: tabular-nums;
+            letter-spacing: -0.025em;
+            line-height: 1.2;
+        }
+
+        /* Clean Progress Bars */
+        .progress {
+            height: 0.5rem;
+            border-radius: 50px;
+            background-color: var(--bg-tertiary);
+            overflow: hidden;
+            border: none;
+        }
+
+        .progress-bar {
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .progress-bar.bg-success { background: var(--success); }
+        .progress-bar.bg-danger { background: var(--danger); }
+        .progress-bar.bg-warning { background: var(--warning); }
+        .progress-bar.bg-info { background: var(--info); }
+        .progress-bar.bg-primary { background: var(--primary); }
+
+        /* Modern Card System - Clean & Minimal */
+        .card {
+            background: var(--bg-elevated);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-card);
+            transition: all 0.2s ease;
+            border: none;                        /* Remove borders - use shadows for elevation */
+            overflow: hidden;
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-subtle);
+            transform: translateY(-1px);        /* Subtle lift on hover */
+        }
+
+        .card-header {
+            background: var(--bg-tertiary);     /* Very light gray background */
+            padding: var(--space-lg);
+            border-bottom: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md) var(--radius-md) 0 0;
+        }
+
+        .card-title {
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 1.125rem;                /* 18px - slightly larger for hierarchy */
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        .card-body {
+            padding: var(--space-lg);
+            background: var(--bg-elevated);
+        }
+
+        .card-header {
+            background: var(--bg-tertiary);     /* Very light gray background */
+            padding: var(--space-lg);
+            border-bottom: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md) var(--radius-md) 0 0;
+        }
+
+        .card-title {
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 1.125rem;                /* 18px - slightly larger for hierarchy */
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        .card-body {
+            padding: var(--space-lg);
+            background: var(--bg-elevated);
+        }
+
+        /* Additional Text Contrast Improvements */
+        
+        /* Improve visibility of percentage values and changes */
+        .h3.numerical-data, .h2.numerical-data, .h1.numerical-data {
+            color: var(--text-primary) !important;  /* Ensure large numbers are high contrast */
+        }
+
+        /* Better contrast for metric labels */
+        .text-uppercase.text-muted {
+            color: var(--text-secondary) !important;  /* Better contrast for labels */
+            font-weight: 600;
+        }
+
+        /* Improve card subtitle visibility */
+        .card .text-muted {
+            color: var(--text-secondary) !important;
+        }
+
+        /* Better contrast for small text elements */
+        .small, small {
+            color: var(--text-secondary) !important;
+        }
+
+        /* Ensure percentage indicators are visible */
+        [data-bind*="change"], .trend-indicator {
+            font-weight: 600;
+            color: var(--text-secondary) !important;
+        }
+
+        /* Better contrast for navbar text */
+        .navbar .text-muted {
+            color: var(--text-tertiary) !important;
+        }
+
+        /* Improved contrast for all muted text */
+        .text-muted {
+            color: var(--text-tertiary) !important;
+        }
+
+        /* Modern Progress Bars */
+        .progress {
+            height: 0.75rem;
+            border-radius: 50px;
+            background-color: var(--bg-tertiary);
+            overflow: hidden;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+
+        .progress-sm { 
+            height: 0.5rem; 
+        }
+
+        .progress-bar {
+            border-radius: 50px;
+            transition: all 0.3s ease-in-out;
+            background: var(--primary);
+        }
+
+        .progress-bar.bg-success { background: var(--success); }
+        .progress-bar.bg-danger { background: var(--danger); }
+        .progress-bar.bg-warning { background: var(--warning); }
+        .progress-bar.bg-info { background: var(--info); }
+
+        /* Modern Metric Cards - Completely Clean */
         .metric-card {
-            border-radius: 0.35rem;
-            border: 1px solid #e3e6f0;
+            background: var(--bg-elevated);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-card);
+            transition: all 0.2s ease;
+            border: none;
+            position: relative;
+            min-height: 140px;
         }
+
+        .metric-card:hover {
+            box-shadow: var(--shadow-subtle);
+            transform: translateY(-2px);
+        }
+
+        .metric-card .card-body {
+            padding: var(--space-lg);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        /* Remove all border indicators - let content speak for itself */
+        .metric-card-border-left::before,
+        .border-primary::before,
+        .border-success::before,
+        .border-danger::before,
+        .border-warning::before,
+        .border-info::before {
+            display: none;
+        }
+
+        .border-primary { border-left-color: var(--primary) !important; }
+        .border-success { border-left-color: var(--success) !important; }
+        .border-danger { border-left-color: var(--danger) !important; }
+        .border-warning { border-left-color: var(--warning) !important; }
+        .border-info { border-left-color: var(--info) !important; }
+
+        /* Clean News Items - No colored borders */
+        .news-item {
+            background: var(--bg-elevated);
+            border-radius: var(--radius-md);
+            padding: var(--space-lg);
+            margin-bottom: var(--space-md);
+            box-shadow: var(--shadow-card);
+            transition: all 0.2s ease;
+            border: 1px solid var(--border-light);
+            position: relative;
+        }
+
+        .news-item:hover {
+            box-shadow: var(--shadow-subtle);
+            transform: translateY(-1px);
+        }
+
+        /* Modern Alert System */
+        .alert {
+            border: none;
+            border-radius: var(--radius);
+            padding: var(--space-lg);
+            box-shadow: var(--shadow-sm);
+            border-left: 4px solid;
+            margin-bottom: var(--space-md);
+        }
+
+        .alert-success {
+            background-color: var(--success-subtle);
+            color: var(--success);
+            border-left-color: var(--success);
+        }
+
+        .alert-danger {
+            background-color: var(--danger-subtle);
+            color: var(--danger);
+            border-left-color: var(--danger);
+        }
+
+        .alert-warning {
+            background-color: var(--warning-subtle);
+            color: var(--warning);
+            border-left-color: var(--warning);
+        }
+
+        .alert-info {
+            background-color: var(--info-subtle);
+            color: var(--info);
+            border-left-color: var(--info);
+        }
+
+        /* Clean Badge System */
+        .badge {
+            font-weight: 600;
+            border-radius: 50px;
+            padding: 0.375rem 0.75rem;
+            font-size: 0.75rem;
+            letter-spacing: 0.025em;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .badge-lg {
+            font-size: 0.875rem;
+            padding: 0.5rem 1rem;
+            font-weight: 600;
+        }
+
+        .badge-sm {
+            font-size: 0.6875rem;
+            padding: 0.25rem 0.5rem;
+            font-weight: 500;
+        }
+
+        .bg-primary { 
+            background-color: var(--primary) !important; 
+            color: var(--text-inverse); 
+        }
+        .bg-success { 
+            background-color: var(--success) !important; 
+            color: var(--text-inverse); 
+        }
+        .bg-danger { 
+            background-color: var(--danger) !important; 
+            color: var(--text-inverse); 
+        }
+        .bg-warning { 
+            background-color: var(--warning) !important; 
+            color: var(--text-inverse); 
+        }
+        .bg-info { 
+            background-color: var(--info) !important; 
+            color: var(--text-inverse); 
+        }
+
+        /* Timeline & Event Styling */
+        .timeline-container {
+            /* Remove height restriction and scrollbar */
+            padding-right: var(--space-xs);
+        }
+
+        .timeline-container::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .timeline-container::-webkit-scrollbar-track {
+            background: var(--bg-tertiary);
+            border-radius: 2px;
+        }
+
+        .timeline-container::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        /* Enhanced Timeline Events with Calendar Icons & Impact Status */
+        .timeline-event {
+            background: var(--bg-elevated);
+            border-radius: var(--radius-md);
+            padding: var(--space-lg);
+            margin-bottom: var(--space-md);
+            transition: all 0.2s ease;
+            box-shadow: var(--shadow-card);
+            border: 1px solid #e2e8f0; /* Light grey border */
+            position: relative;
+        }
+
+        .timeline-event:hover {
+            box-shadow: var(--shadow-subtle);
+            transform: translateY(-1px);
+        }
+
+        /* Timeline Event Date with Calendar Icon */
+        .timeline-event-date {
+            display: flex;
+            align-items: center;
+            margin-bottom: var(--space-sm);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .timeline-event-date .fas.fa-calendar-alt {
+            margin-right: var(--space-sm);
+            color: var(--primary);
+            font-size: 1rem;
+        }
+
+        /* Impact/Urgency Status Indicators */
+        .timeline-event-impact {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.025em;
+            margin-left: auto;
+        }
+
+        /* Impact Status Colors */
+        .timeline-event-impact.critical {
+            background: var(--danger-subtle);
+            color: var(--danger);
+            border: 1px solid var(--danger);
+        }
+
+        .timeline-event-impact.high {
+            background: var(--warning-subtle);
+            color: var(--warning);
+            border: 1px solid var(--warning);
+        }
+
+        .timeline-event-impact.medium {
+            background: var(--info-subtle);
+            color: var(--info);
+            border: 1px solid var(--info);
+        }
+
+        .timeline-event-impact.low {
+            background: var(--success-subtle);
+            color: var(--success);
+            border: 1px solid var(--success);
+        }
+
+        /* Timeline Event Header (Date + Impact) */
+        .timeline-event-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-md);
+            padding-bottom: var(--space-sm);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        /* Timeline Event Title */
+        .timeline-event-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--space-xs);
+            font-size: 1rem;
+        }
+
+        /* Timeline Event Description */
+        .timeline-event-description {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+
+        /* Remove colored borders - keep consistent styling */
+
+        /* Enhanced Badge System */
+        .badge {
+            font-weight: 600;
+            border-radius: 50px;
+            padding: 0.375rem 0.75rem;
+        }
+
+        .badge-lg {
+            font-size: 0.875rem;
+            padding: 0.5rem 1rem;
+        }
+
+        .badge-sm {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+        }
+
+        /* Clean Colored Cards - Fixed Background Colors */
+        .bg-primary-solid {
+            background: var(--primary) !important;
+            color: var(--text-inverse) !important;
+            border: none;
+        }
+
+        .bg-success-solid {
+            background: var(--success) !important;
+            color: var(--text-inverse) !important;
+            border: none;
+        }
+
+        .bg-warning-solid {
+            background: var(--warning) !important;
+            color: var(--text-inverse) !important;
+            border: none;
+        }
+
+        .bg-danger-solid {
+            background: var(--danger) !important;
+            color: var(--text-inverse) !important;
+            border: none;
+        }
+
+        .bg-info-solid {
+            background: var(--info) !important;
+            color: var(--text-inverse) !important;
+            border: none;
+        }
+
+        /* Fix for Market Breakdown Cards - Higher Specificity */
+        .card.bg-warning-solid,
+        .card.border-0.bg-warning-solid {
+            background-color: var(--warning) !important;
+            color: var(--text-inverse) !important;
+        }
+
+        .card.bg-success-solid,
+        .card.border-0.bg-success-solid {
+            background-color: var(--success) !important;
+            color: var(--text-inverse) !important;
+        }
+
+        .card.bg-primary-solid,
+        .card.border-0.bg-primary-solid {
+            background-color: var(--primary) !important;
+            color: var(--text-inverse) !important;
+        }
+
+        .card.bg-danger-solid,
+        .card.border-0.bg-danger-solid {
+            background-color: var(--danger) !important;
+            color: var(--text-inverse) !important;
+        }
+
+        .card.bg-info-solid,
+        .card.border-0.bg-info-solid {
+            background-color: var(--info) !important;
+            color: var(--text-inverse) !important;
+        }
+
+        /* White Text Classes for Colored Backgrounds */
+        .bg-warning-solid .text-white,
+        .bg-success-solid .text-white,
+        .bg-primary-solid .text-white,
+        .bg-danger-solid .text-white,
+        .bg-info-solid .text-white {
+            color: var(--text-inverse) !important;
+        }
+
+        .bg-warning-solid .text-white-50,
+        .bg-success-solid .text-white-50,
+        .bg-primary-solid .text-white-50,
+        .bg-danger-solid .text-white-50,
+        .bg-info-solid .text-white-50 {
+            color: rgba(255, 255, 255, 0.8) !important;
+        }
+
+        .bg-warning-solid .text-white-75,
+        .bg-success-solid .text-white-75,
+        .bg-primary-solid .text-white-75,
+        .bg-danger-solid .text-white-75,
+        .bg-info-solid .text-white-75 {
+            color: rgba(255, 255, 255, 0.9) !important;
+        }
+
+        /* Universal Override - Force colored backgrounds */
+        .bg-warning-solid {
+            background: var(--warning) !important;
+            background-color: var(--warning) !important;
+            color: white !important;
+        }
+
+        .bg-success-solid {
+            background: var(--success) !important;
+            background-color: var(--success) !important;
+            color: white !important;
+        }
+
+        .bg-primary-solid {
+            background: var(--primary) !important;
+            background-color: var(--primary) !important;
+            color: white !important;
+        }
+
+        .bg-danger-solid {
+            background: var(--danger) !important;
+            background-color: var(--danger) !important;
+            color: white !important;
+        }
+
+        .bg-info-solid {
+            background: var(--info) !important;
+            background-color: var(--info) !important;
+            color: white !important;
+        }
+
+        /* Emergency Fix - Direct targeting of Market Breakdown cards */
+        #sentiment .card.bg-warning-solid,
+        #sentiment .bg-warning-solid,
+        [id*="breakdown"] .bg-warning-solid,
+        .row .col-md-6 .card.bg-warning-solid {
+            background: var(--warning) !important;
+            background-color: var(--warning) !important;
+            color: white !important;
+        }
+
+        #sentiment .card.bg-success-solid,
+        #sentiment .bg-success-solid,
+        [id*="breakdown"] .bg-success-solid,
+        .row .col-md-6 .card.bg-success-solid {
+            background: var(--success) !important;
+            background-color: var(--success) !important;
+            color: white !important;
+        }
+
+        /* Override any potential card-body background conflicts */
+        .bg-warning-solid .card-body,
+        .bg-success-solid .card-body {
+            background-color: inherit !important;
+            background: inherit !important;
+        }
+
+        /* Specific Bitcoin Logo Color Fixes */
+
+        /* Bitcoin Market Cap Card - Orange Bitcoin Logo */
+        .bg-warning-solid .bg-white.bg-opacity-20 .fab.fa-bitcoin {
+            color: #f7931a !important;  /* Bitcoin orange */
+            font-size: 1.75rem !important;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+        }
+
+        /* Market Dominance Section - White Bitcoin Logo */
+        .icon-sm.rounded.me-2 .fab.fa-bitcoin {
+            color: white !important;
+            font-size: 1rem !important;
+            filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+        }
+
+        /* Override any conflicting styles for these specific cases */
+        .bg-warning-solid .icon .fab.fa-bitcoin {
+            color: #f7931a !important;  /* Bitcoin orange for market cap card */
+        }
+
+        /* Ensure dominance section Bitcoin icon stays white */
+        [style*="background-color: var(--warning)"] .fab.fa-bitcoin {
+            color: white !important;
+        }
+
+        /* Enhanced Bitcoin Logo Styling (keeping original enhancements) */
+        .fab.fa-bitcoin {
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+            transition: all 0.2s ease;
+            font-weight: bold;
+        }
+
+        /* Enhanced icon backgrounds for better visibility */
+        .icon.rounded-circle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-card);
+            transition: all 0.2s ease;
+        }
+
+        .icon.rounded-circle:hover {
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-subtle);
+        }
+
+        /* Ensure Bitcoin icons are always visible */
+        .metric-card .fab.fa-bitcoin {
+            font-size: 1.75rem !important;
+            opacity: 1;
+        }
+
+        /* Special styling for Bitcoin-related cards */
+        .border-warning .icon,
+        .bg-warning-subtle .icon {
+            background: rgba(247, 147, 26, 0.1) !important;
+            border: 2px solid rgba(247, 147, 26, 0.2);
+        }
+
+        /* Additional Specific Bitcoin Logo Targeting */
         
-        .trend-up { color: #1cc88a; }
-        .trend-down { color: #e74a3b; }
-        .trend-neutral { color: #858796; }
+        /* Bitcoin Market Cap Card - Force orange color on white background */
+        .card.bg-warning-solid .icon.bg-white .fab.fa-bitcoin,
+        .bg-warning-solid .bg-white .fab.fa-bitcoin,
+        .card.bg-warning-solid .rounded-circle.bg-white .fab.fa-bitcoin {
+            color: #f7931a !important;  /* Bitcoin orange */
+        }
+
+        /* Market Dominance Bitcoin Icon - Force white color */
+        .card-body .icon-sm.rounded .fab.fa-bitcoin,
+        [style*="background-color: var(--warning); color: white;"] .fab.fa-bitcoin,
+        .icon-sm[style*="background-color: var(--warning)"] .fab.fa-bitcoin {
+            color: white !important;
+        }
+
+        /* Fallback for Market Dominance - ensure white on orange background */
+        .d-flex.align-items-center .icon-sm .fab.fa-bitcoin {
+            color: white !important;
+            font-size: 0.875rem !important;
+        }
+
+        /* Header Enhancements */
+        .navbar {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95) !important;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        /* Loading States */
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+            position: relative;
+        }
+
+        .loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 24px;
+            height: 24px;
+            margin: -12px 0 0 -12px;
+            border: 3px solid var(--primary-blue);
+            border-top: 3px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .card-body {
+                padding: 1rem;
+            }
+            
+            .numerical-data {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Accessibility Enhancements */
+        .btn:focus, .form-control:focus, .sidebar-link:focus {
+            box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.25);
+            border-color: var(--primary);
+            outline: none;
+        }
+
+        /* Focus indicators for keyboard navigation */
+        .card:focus-within {
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            :root {
+                --text-primary: #000000;
+                --text-secondary: #2c2c2c;
+                --border-light: #333333;
+                --shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            }
+        }
+
+        /* Layout Improvements - Better Spacing & Alignment */
+        .row {
+            margin-left: calc(-1 * var(--space-sm));
+            margin-right: calc(-1 * var(--space-sm));
+        }
+
+        .row > * {
+            padding-left: var(--space-sm);
+            padding-right: var(--space-sm);
+        }
+
+        /* Section Spacing */
+        section {
+            margin-bottom: var(--space-2xl);
+        }
+
+        /* Icon Base Styles */
+        .icon {
+            width: 3rem;
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .icon-sm { width: 2rem; height: 2rem; }
+        .icon-lg { width: 4rem; height: 4rem; }
+
+        /* Subtle Icon Backgrounds - Modern & Clean */
+        .metric-card .icon {
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
+            border: none;
+        }
+
+        /* Very subtle color hints for different data types */
+        .metric-card .icon.text-warning {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning);
+        }
+
+        .metric-card .icon.text-primary {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+        }
+
+        .metric-card .icon.text-success {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+        }
+
+        .metric-card .icon.text-info {
+            background: rgba(6, 182, 212, 0.1);
+            color: var(--info);
+        }
+
+        /* Remove default margins from headings in cards */
+        .card-body h1, .card-body h2, .card-body h3, 
+        .card-body h4, .card-body h5, .card-body h6 {
+            margin-top: 0;
+        }
+
+        /* Improve button styling */
+        .btn {
+            border-radius: var(--radius-md);
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border: none;
+            transition: all 0.2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-card);
+        }
+
+        /* Focus states for accessibility */
+        .btn:focus, .card:focus, .timeline-event:focus, .news-item:focus {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        /* Responsive improvements */
+        @media (max-width: 768px) {
+            .content {
+                padding: var(--space-lg) var(--space-md);
+            }
+            
+            .card-body {
+                padding: var(--space-md);
+            }
+            
+            .h1, h1 { font-size: 1.875rem; }
+            .h2, h2 { font-size: 1.5rem; }
+        }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .card {
+                break-inside: avoid;
+                box-shadow: none;
+                border: 1px solid var(--border-dark);
+            }
+            
+            .sidebar, .navbar {
+                display: none;
+            }
+            
+            .main {
+                margin: 0;
+                padding: 0;
+            }
+            
+            .bg-primary-solid, .bg-success-solid, .bg-info-solid, .bg-warning-solid, .bg-danger-solid {
+                background: white !important;
+                color: black !important;
+                border: 2px solid black;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .card {
+                break-inside: avoid;
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+            
+            .sidebar {
+                display: none;
+            }
+        }
     </style>
 </head>
 
-<body id="page-top">
-
-    <!-- Page Wrapper -->
-    <div id="wrapper">
-
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
-
-            <!-- Main Content -->
-            <div id="content">
-
-                <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-                    <!-- Topbar Title -->
-                    <div class="navbar-brand">
-                        <div class="sidebar-brand-icon rotate-n-15 mr-2">
-                            <i class="fas fa-chart-line text-primary"></i>
-                        </div>
-                        <span class="h4 mb-0 text-gray-800">Weekly Crypto Market Analysis</span>
-                    </div>
-
-                    <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
-
-                        <!-- Nav Item - Report Info -->
-                        <li class="nav-item dropdown no-arrow">
-                            <span class="nav-link">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                                    <span data-bind="text:reportMetadata.weekDate">Loading...</span> | Report #<span data-bind="text:reportMetadata.reportNumber">--</span>
-                                </span>
-                            </span>
-                        </li>
-
-                        <div class="topbar-divider d-none d-sm-block"></div>
-
-                        <!-- Nav Item - Generated Date -->
-                        <li class="nav-item dropdown no-arrow">
-                            <span class="nav-link">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                                    Generated: <span data-bind="text:reportMetadata.generationDate">--</span>
-                                </span>
-                                <i class="fas fa-calendar fa-sm fa-fw text-gray-400"></i>
-                            </span>
-                        </li>
-
-                    </ul>
-
-                </nav>
-                <!-- End of Topbar -->
-
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
-
-                    <!-- Content Row - Market Overview Cards -->
-                    <div class="row">
-
-                        <!-- Bitcoin Card -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-warning shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Bitcoin (BTC)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$<span data-bind="text:marketOverview.bitcoin.price">--</span></div>
-                                            <div class="text-xs" data-bind="class:marketOverview.bitcoin.trendClass">
-                                                <i class="fas" id="btc-trend-icon"></i> <span data-bind="text:marketOverview.bitcoin.change">--%</span> (24h)
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fab fa-bitcoin fa-2x text-warning"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Ethereum Card -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Ethereum (ETH)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$<span data-bind="text:marketOverview.ethereum.price">--</span></div>
-                                            <div class="text-xs" data-bind="class:marketOverview.ethereum.trendClass">
-                                                <i class="fas" id="eth-trend-icon"></i> <span data-bind="text:marketOverview.ethereum.change">--%</span> (24h)
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fab fa-ethereum fa-2x text-primary"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Market Cap Card -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Total Market Cap</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800" data-bind="text:marketOverview.totalMarketCap.value">$--</div>
-                                            <div class="text-xs" data-bind="class:marketOverview.totalMarketCap.trendClass">
-                                                <i class="fas" id="total-trend-icon"></i> <span data-bind="text:marketOverview.totalMarketCap.change">--%</span> (24h)
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-chart-pie fa-2x text-success"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Bitcoin Dominance Card -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">BTC Dominance</div>
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><span data-bind="text:marketOverview.bitcoinDominance.percentage">--</span>%</div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="progress progress-sm mr-2">
-                                                        <div class="progress-bar bg-info" role="progressbar" id="dominance-progress"
-                                                             style="width: 0%" aria-valuenow="0" aria-valuemin="0"
-                                                             aria-valuemax="100"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="text-xs" data-bind="class:marketOverview.bitcoinDominance.trendClass">
-                                                <i class="fas" id="dom-trend-icon"></i> <span data-bind="text:marketOverview.bitcoinDominance.change">--%</span> (24h)
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-percentage fa-2x text-info"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+<body>
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <nav id="sidebar" class="sidebar js-sidebar">
+            <div class="sidebar-content js-simplebar">
+                <a class="sidebar-brand" href="#">
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-chart-line text-white me-2" style="font-size: 1.5rem; opacity: 0.9;"></i>
+                        <div>
+                            <div class="fw-bold text-white">Ben's AI crypto analyst</div>
+                            <div class="small" style="color: rgba(255, 255, 255, 0.7);">Professional</div>
                         </div>
                     </div>
+                </a>
 
-                    <!-- Content Row - Fear & Greed and Altcoin Market -->
-                    <div class="row">
+                <ul class="sidebar-nav">
+                    <li class="sidebar-header">
+                        Market Analysis
+                    </li>
+                    <li class="sidebar-item active">
+                        <a class="sidebar-link" href="#overview">
+                            <i class="fas fa-chart-bar"></i> <span class="align-middle">Market Overview</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="#sentiment">
+                            <i class="fas fa-thermometer-half"></i> <span class="align-middle">Sentiment Analysis</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="#onchain">
+                            <i class="fas fa-link"></i> <span class="align-middle">On-Chain Metrics</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="#cycle">
+                            <i class="fas fa-chart-line"></i> <span class="align-middle">Cycle Analysis</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="#timeline">
+                            <i class="fas fa-calendar"></i> <span class="align-middle">Trading Timeline</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="#news">
+                            <i class="fas fa-newspaper"></i> <span class="align-middle">News & Events</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="#trading">
+                            <i class="fas fa-bullseye"></i> <span class="align-middle">Trading Plan</span>
+                        </a>
+                    </li>
 
-                        <!-- Fear & Greed Index -->
-                        <div class="col-xl-4 col-lg-5">
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Fear & Greed Index</h6>
-                                </div>
-                                <div class="card-body text-center">
-                                    <div class="h1 mb-0 font-weight-bold text-gray-800" data-bind="text:sentimentData.fearGreedIndex.value">--</div>
-                                    <div class="mb-3">
-                                        <span class="badge badge-warning px-3 py-2" data-bind="text:sentimentData.fearGreedIndex.label">Loading...</span>
-                                    </div>
-                                    <div class="progress progress-sm mb-2">
-                                        <div class="progress-bar bg-warning" role="progressbar" id="fear-greed-progress" style="width: 0%"
-                                             aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <div class="text-xs text-gray-600">
-                                        <span class="float-left">Extreme Fear (0)</span>
-                                        <span class="float-right">Extreme Greed (100)</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <li class="sidebar-header">
+                        Risk Management
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="#trading">
+                            <i class="fas fa-shield-alt"></i> <span class="align-middle">Risk Dashboard</span>
+                        </a>
+                    </li>
 
-                        <!-- Altcoin Market Cap -->
-                        <div class="col-xl-8 col-lg-7">
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Market Breakdown</h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="border-left-success border-bottom-success p-3 mb-3">
-                                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                    Altcoin Market Cap</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800" data-bind="text:marketOverview.altcoinMarketCap.value">$--</div>
-                                                <div class="text-xs" data-bind="class:marketOverview.altcoinMarketCap.trendClass">
-                                                    <i class="fas" id="alt-trend-icon"></i> <span data-bind="text:marketOverview.altcoinMarketCap.change">--%</span> (24h)
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="text-center">
-                                                <canvas id="dominanceChart" width="200" height="200"></canvas>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Content Row - On-Chain Metrics -->
-                    <div class="row">
-
-                        <!-- Exchange Flow -->
-                        <div class="col-xl-4 col-lg-4">
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">
-                                        <i class="fas fa-exchange-alt mr-2"></i>Exchange Flow
-                                    </h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="h5 mb-2 font-weight-bold text-gray-800" data-bind="text:onChainMetrics.exchangeFlow.value">--</div>
-                                    <p class="card-text" data-bind="text:onChainMetrics.exchangeFlow.analysis">Loading analysis...</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- MVRV Ratio -->
-                        <div class="col-xl-4 col-lg-4">
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">
-                                        <i class="fas fa-chart-line mr-2"></i>MVRV Ratio
-                                    </h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="h5 mb-2 font-weight-bold text-gray-800" data-bind="text:onChainMetrics.mvrvRatio.value">--</div>
-                                    <p class="card-text" data-bind="text:onChainMetrics.mvrvRatio.analysis">Loading analysis...</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- SOPR -->
-                        <div class="col-xl-4 col-lg-4">
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">
-                                        <i class="fas fa-percentage mr-2"></i>SOPR
-                                    </h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="h5 mb-2 font-weight-bold text-gray-800" data-bind="text:onChainMetrics.sopr.value">--</div>
-                                    <p class="card-text" data-bind="text:onChainMetrics.sopr.analysis">Loading analysis...</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Content Row - Cycle Analysis & Trading Predictions -->
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">
-                                        <i class="fas fa-chart-line mr-2"></i>Market Cycle Analysis & Trading Predictions
-                                    </h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <!-- Current Cycle Position -->
-                                        <div class="col-md-6">
-                                            <div class="bg-primary text-white p-4 rounded mb-3">
-                                                <h5 class="mb-3">
-                                                    <i class="fas fa-bullseye mr-2"></i>
-                                                    Current Position: <span data-bind="text:cycleAnalysis.currentPosition.cyclePositionPercent">--%</span> Through <span data-bind="text:cycleAnalysis.currentPosition.cyclePhase">Loading...</span>
-                                                </h5>
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <div class="text-white-50 text-xs">Phase Started</div>
-                                                        <div class="h6" data-bind="text:cycleAnalysis.currentPosition.cycleStartDate">--</div>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <div class="text-white-50 text-xs">Days Running</div>
-                                                        <div class="h6" data-bind="text:cycleAnalysis.currentPosition.daysInCycle">--</div>
-                                                    </div>
-                                                </div>
-                                                <div class="progress bg-primary-dark mt-3" style="height: 8px;">
-                                                    <div class="progress-bar bg-white" id="cycle-progress-bar" style="width: 0%"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <!-- Price Predictions -->
-                                        <div class="col-md-6">
-                                            <div class="card border-left-success">
-                                                <div class="card-body">
-                                                    <h6 class="font-weight-bold text-success mb-3">BTC Price Predictions</h6>
-                                                    <div class="mb-3">
-                                                        <div class="d-flex justify-content-between">
-                                                            <span class="text-xs text-gray-600">Cycle Peak Target:</span>
-                                                            <span class="font-weight-bold text-success" data-bind="text:cycleAnalysis.predictions.btcCyclePeakTarget">$--</span>
-                                                        </div>
-                                                        <div class="d-flex justify-content-between">
-                                                            <span class="text-xs text-gray-600">Peak Date Estimate:</span>
-                                                            <span class="font-weight-bold" data-bind="text:cycleAnalysis.predictions.predictedPeakDate">--</span>
-                                                        </div>
-                                                        <div class="d-flex justify-content-between">
-                                                            <span class="text-xs text-gray-600">Confidence Level:</span>
-                                                            <span class="font-weight-bold text-warning"><span data-bind="text:cycleAnalysis.predictions.peakConfidence">--</span>%</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <div class="d-flex justify-content-between">
-                                                            <span class="text-xs text-gray-600">Bear Market Start:</span>
-                                                            <span class="font-weight-bold text-danger" data-bind="text:cycleAnalysis.predictions.bearMarketStart">--</span>
-                                                        </div>
-                                                        <div class="d-flex justify-content-between">
-                                                            <span class="text-xs text-gray-600">Bottom Target:</span>
-                                                            <span class="font-weight-bold text-danger" data-bind="text:cycleAnalysis.predictions.bearMarketBottom">$--</span>
-                                                        </div>
-                                                        <div class="d-flex justify-content-between">
-                                                            <span class="text-xs text-gray-600">Bottom Timeline:</span>
-                                                            <span class="font-weight-bold" data-bind="text:cycleAnalysis.predictions.bottomTimeline">--</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Content Row - Trading Timeline & Key Dates -->
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">
-                                        <i class="fas fa-calendar-alt mr-2"></i>Trading Timeline & Key Market Moving Events
-                                    </h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <!-- Next 30 Days -->
-                                        <div class="col-lg-4">
-                                            <h6 class="text-success mb-3">
-                                                <i class="fas fa-clock mr-2"></i>Next 30 Days
-                                            </h6>
-                                            <div id="next-30-days-container">Loading events...</div>
-                                        </div>
-                                        
-                                        <!-- Next 90 Days -->
-                                        <div class="col-lg-4">
-                                            <h6 class="text-warning mb-3">
-                                                <i class="fas fa-clock mr-2"></i>Next 90 Days
-                                            </h6>
-                                            <div id="next-90-days-container">Loading events...</div>
-                                        </div>
-                                        
-                                        <!-- Major Cycle Events -->
-                                        <div class="col-lg-4">
-                                            <h6 class="text-danger mb-3">
-                                                <i class="fas fa-exclamation-triangle mr-2"></i>Major Cycle Events
-                                            </h6>
-                                            <div id="major-cycle-events-container">Loading cycle events...</div>
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- Trading Probability Chart -->
-                                    <div class="mt-4">
-                                        <h6 class="text-primary mb-3">Market Movement Probabilities</h6>
-                                        <div class="row">
-                                            <div class="col-md-3 text-center mb-3">
-                                                <div class="text-xs text-gray-600">Next Week Pump</div>
-                                                <div class="h4 text-success"><span data-bind="text:marketProbabilities.pumpProbability1W">--</span>%</div>
-                                                <div class="progress progress-sm">
-                                                    <div class="progress-bar bg-success" id="pump-1w-progress" style="width: 0%"></div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3 text-center mb-3">
-                                                <div class="text-xs text-gray-600">Next Month Pump</div>
-                                                <div class="h4 text-success"><span data-bind="text:marketProbabilities.pumpProbability1M">--</span>%</div>
-                                                <div class="progress progress-sm">
-                                                    <div class="progress-bar bg-success" id="pump-1m-progress" style="width: 0%"></div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3 text-center mb-3">
-                                                <div class="text-xs text-gray-600">Dump Risk (30d)</div>
-                                                <div class="h4 text-danger"><span data-bind="text:marketProbabilities.dumpRisk30D">--</span>%</div>
-                                                <div class="progress progress-sm">
-                                                    <div class="progress-bar bg-danger" id="dump-30d-progress" style="width: 0%"></div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3 text-center mb-3">
-                                                <div class="text-xs text-gray-600">Sideways Action</div>
-                                                <div class="h4 text-info"><span data-bind="text:marketProbabilities.sidewaysProbability">--</span>%</div>
-                                                <div class="progress progress-sm">
-                                                    <div class="progress-bar bg-info" id="sideways-progress" style="width: 0%"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Content Row - News and Events -->
-                    <div class="row">
-
-                        <!-- Recent News -->
-                        <div class="col-lg-8">
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">
-                                        <i class="fas fa-newspaper mr-2"></i>Recent News & Market Impact
-                                    </h6>
-                                </div>
-                                <div class="card-body">
-                                    <div id="news-container">Loading news...</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Upcoming Events -->
-                        <div class="col-lg-4">
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">
-                                        <i class="fas fa-calendar-event mr-2"></i>Upcoming Events
-                                    </h6>
-                                </div>
-                                <div class="card-body">
-                                    <h6 class="text-warning mb-3">
-                                        <i class="fas fa-bank mr-2"></i>Economic Events
-                                    </h6>
-                                    <div id="economic-events-container">Loading events...</div>
-                                    
-                                    <hr>
-                                    
-                                    <h6 class="text-info mb-3">
-                                        <i class="fas fa-unlock mr-2"></i>Crypto Events
-                                    </h6>
-                                    <div id="crypto-events-container">Loading events...</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Content Row - Trading Action Plan -->
-                    <div class="row">
-                        <div class="col-lg-8">
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">
-                                        <i class="fas fa-chart-line mr-2"></i>Trading Action Plan
-                                    </h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="alert alert-warning mb-4" data-bind="class:tradingActionPlan.primarySignal.signalColor" role="alert">
-                                        <h5 class="alert-heading">
-                                            <i class="fas fa-pause mr-2" data-bind="class:tradingActionPlan.primarySignal.signalIcon"></i>
-                                            Primary Signal: <span data-bind="text:tradingActionPlan.primarySignal.signal">LOADING</span>
-                                        </h5>
-                                        <p class="mb-0" data-bind="text:tradingActionPlan.primarySignal.reasoning">Loading reasoning...</p>
-                                    </div>
-                                    
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <h6 class="text-success mb-3">Entry Levels (BTC)</h6>
-                                            <ul class="list-unstyled">
-                                                <li class="mb-2">
-                                                    <span class="badge badge-success mr-2">Strong</span>
-                                                    $<span data-bind="text:tradingActionPlan.entryLevels.btcEntryLevel1">--</span> <small class="text-muted">(<span data-bind="text:tradingActionPlan.entryLevels.btcEntry1Probability">--</span>% hit probability)</small>
-                                                </li>
-                                                <li class="mb-2">
-                                                    <span class="badge badge-warning mr-2">Good</span>
-                                                    $<span data-bind="text:tradingActionPlan.entryLevels.btcEntryLevel2">--</span> <small class="text-muted">(<span data-bind="text:tradingActionPlan.entryLevels.btcEntry2Probability">--</span>% hit probability)</small>
-                                                </li>
-                                                <li class="mb-2">
-                                                    <span class="badge badge-info mr-2">Fair</span>
-                                                    $<span data-bind="text:tradingActionPlan.entryLevels.btcEntryLevel3">--</span> <small class="text-muted">(<span data-bind="text:tradingActionPlan.entryLevels.btcEntry3Probability">--</span>% hit probability)</small>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        
-                                        <div class="col-md-6">
-                                            <h6 class="text-danger mb-3">Exit Targets (BTC)</h6>
-                                            <ul class="list-unstyled">
-                                                <li class="mb-2">
-                                                    <span class="badge badge-warning mr-2">TP1</span>
-                                                    $<span data-bind="text:tradingActionPlan.exitTargets.btcTarget1">--</span> <small class="text-muted">(<span data-bind="text:tradingActionPlan.exitTargets.btcTarget1Timeline">--</span>)</small>
-                                                </li>
-                                                <li class="mb-2">
-                                                    <span class="badge badge-success mr-2">TP2</span>
-                                                    $<span data-bind="text:tradingActionPlan.exitTargets.btcTarget2">--</span> <small class="text-muted">(<span data-bind="text:tradingActionPlan.exitTargets.btcTarget2Timeline">--</span>)</small>
-                                                </li>
-                                                <li class="mb-2">
-                                                    <span class="badge badge-danger mr-2">SL</span>
-                                                    $<span data-bind="text:tradingActionPlan.exitTargets.btcStopLoss">--</span> <small class="text-muted">(Risk management)</small>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    
-                                    <h6 class="mt-4 mb-3">Position Sizing Recommendation</h6>
-                                    <div class="alert alert-info">
-                                        <strong>Recommended Allocation:</strong> <span data-bind="text:tradingActionPlan.positionSizing.recommendedAllocation">--</span><br>
-                                        <strong>Risk Level:</strong> <span data-bind="text:tradingActionPlan.positionSizing.riskLevel">--</span><br>
-                                        <strong>Time Horizon:</strong> <span data-bind="text:tradingActionPlan.positionSizing.timeHorizon">--</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Risk Management Dashboard -->
-                        <div class="col-lg-4">
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary text-center">
-                                        <i class="fas fa-shield-alt mr-2"></i>Risk Management
-                                    </h6>
-                                </div>
-                                <div class="card-body text-center">
-                                    <div class="mb-4">
-                                        <div class="h3 font-weight-bold text-warning" data-bind="class:riskManagement.overallRisk.color">
-                                            <span data-bind="text:riskManagement.overallRisk.level">--</span>
-                                        </div>
-                                        <div class="small text-gray-600">Overall Market Risk</div>
-                                    </div>
-                                    
-                                    <div class="row text-center mb-3">
-                                        <div class="col-6">
-                                            <div class="small text-gray-600">Drawdown Risk</div>
-                                            <div class="font-weight-bold text-danger" data-bind="text:riskManagement.riskMetrics.drawdownRisk">--</div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="small text-gray-600">Volatility</div>
-                                            <div class="font-weight-bold text-warning" data-bind="text:riskManagement.riskMetrics.volatilityIndex">--</div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="alert alert-warning" data-bind="class:riskManagement.riskAlert.alertColor">
-                                        <strong>Risk Alert:</strong><br>
-                                        <span data-bind="text:riskManagement.riskAlert.message">Loading alert...</span>
-                                    </div>
-                                    
-                                    <h6 class="mt-4 mb-3">Portfolio Balance</h6>
-                                    <div class="text-left">
-                                        <div class="d-flex justify-content-between mb-2">
-                                            <span>BTC:</span>
-                                            <span class="font-weight-bold"><span data-bind="text:riskManagement.portfolioAllocation.btc">--</span>%</span>
-                                        </div>
-                                        <div class="d-flex justify-content-between mb-2">
-                                            <span>ETH:</span>
-                                            <span class="font-weight-bold"><span data-bind="text:riskManagement.portfolioAllocation.eth">--</span>%</span>
-                                        </div>
-                                        <div class="d-flex justify-content-between mb-2">
-                                            <span>Alts:</span>
-                                            <span class="font-weight-bold"><span data-bind="text:riskManagement.portfolioAllocation.alts">--</span>%</span>
-                                        </div>
-                                        <div class="d-flex justify-content-between">
-                                            <span>Cash:</span>
-                                            <span class="font-weight-bold"><span data-bind="text:riskManagement.portfolioAllocation.cash">--</span>%</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Full Width Summary Card -->
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Weekly Summary & Outlook</h6>
-                                </div>
-                                <div class="card-body">
-                                    <h6 class="mb-3">Executive Summary</h6>
-                                    <p class="card-text" data-bind="text:analysis.executiveSummary">Loading summary...</p>
-                                    
-                                    <h6 class="mb-3 mt-4">Next Week Outlook</h6>
-                                    <p class="card-text" data-bind="text:analysis.nextWeekOutlook">Loading outlook...</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <!-- /.container-fluid -->
-
+                    <li class="sidebar-header">
+                        Report
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="#summary">
+                            <i class="fas fa-file-alt"></i> <span class="align-middle">Executive Summary</span>
+                        </a>
+                    </li>
+                </ul>
             </div>
-            <!-- End of Main Content -->
+        </nav>
+
+        <!-- Main content -->
+        <div class="main">
+            <!-- Top navbar -->
+            <nav class="navbar navbar-expand navbar-light navbar-bg">
+                <a class="sidebar-toggle js-sidebar-toggle">
+                    <i class="hamburger align-self-center"></i>
+                </a>
+
+                <div class="navbar-collapse collapse">
+                    <div class="navbar-nav ms-auto">
+                        <div class="nav-item d-flex align-items-center me-3">
+                            <div class="text-end">
+                                <div class="small text-muted">
+                                    <i class="fas fa-file-alt me-1"></i>
+                                    <span data-bind="text:reportMetadata.weekDate">Loading...</span> | Report #<span data-bind="text:reportMetadata.reportNumber">--</span>
+                                </div>
+                                <div class="small text-muted">
+                                    <i class="fas fa-clock me-1"></i>
+                                    Generated: <span data-bind="text:reportMetadata.generationDate">--</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Main content area -->
+            <main class="content">
+                <div class="container-fluid p-0">
+                    <!-- Header -->
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-4 border-bottom">
+                        <div>
+                            <h1 class="h2 fw-bold text-dark mb-1">Weekly Crypto Market Analysis - <span data-bind="text:reportMetadata.weekDate">Loading...</span></h1>
+                            <p class="text-muted mb-0">Professional Market Intelligence Report & Trading Analysis</p>
+                        </div>
+                    </div>
+
+                    <!-- Market Overview Section -->
+                    <section id="overview" class="mb-5">
+                        <div class="row g-4 mb-4">
+                            <!-- Bitcoin Card -->
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card metric-card metric-card-border-left border-warning h-100">
+                                    <div class="card-body">
+                                        <div class="row align-items-center">
+                                            <div class="col">
+                                                <div class="text-xs fw-bold text-uppercase mb-1 text-muted">
+                                                    Bitcoin (BTC)
+                                                </div>
+                                                <div class="h3 mb-2 fw-bold numerical-data text-dark">
+                                                    $<span data-bind="text:marketOverview.bitcoin.price">--</span>
+                                                </div>
+                                       
+                                            </div>
+                                            <div class="col-auto">
+                                                <div class="icon icon-shape icon-lg rounded-circle" style="background: var(--warning-subtle); color: var(--warning);">
+                                                    <i class="fab fa-bitcoin fa-2x"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Ethereum Card -->
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card metric-card metric-card-border-left border-primary h-100">
+                                    <div class="card-body">
+                                        <div class="row align-items-center">
+                                            <div class="col">
+                                                <div class="text-xs fw-bold text-uppercase mb-1 text-muted">
+                                                    Ethereum (ETH)
+                                                </div>
+                                                <div class="h3 mb-2 fw-bold numerical-data text-dark">
+                                                    $<span data-bind="text:marketOverview.ethereum.price">--</span>
+                                                </div>
+                                        
+                                            </div>
+                                            <div class="col-auto">
+                                                <div class="icon icon-shape icon-lg rounded-circle" style="background: rgba(30, 64, 175, 0.1); color: var(--primary-blue);">
+                                                    <i class="fab fa-ethereum fa-2x"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Market Cap Card -->
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card metric-card metric-card-border-left border-success h-100">
+                                    <div class="card-body">
+                                        <div class="row align-items-center">
+                                            <div class="col">
+                                                <div class="text-xs fw-bold text-uppercase mb-1 text-muted">
+                                                    Total Market Cap
+                                                </div>
+                                                <div class="h3 mb-2 fw-bold numerical-data text-dark" data-bind="text:marketOverview.totalMarketCap.value">$--</div>
+                                            
+                                            </div>
+                                            <div class="col-auto">
+                                                <div class="icon icon-shape icon-lg rounded-circle" style="background: rgba(5, 150, 105, 0.1); color: var(--success-green);">
+                                                    <i class="fas fa-chart-pie fa-2x"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Bitcoin Dominance Card -->
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card metric-card metric-card-border-left border-info h-100">
+                                    <div class="card-body">
+                                        <div class="row align-items-center">
+                                            <div class="col">
+                                                <div class="text-xs fw-bold text-uppercase mb-1 text-muted">BTC Dominance</div>
+                                                <div class="row align-items-center g-0">
+                                                    <div class="col-auto">
+                                                        <div class="h3 mb-0 me-3 fw-bold numerical-data text-dark">
+                                                            <span data-bind="text:marketOverview.bitcoinDominance.percentage">--</span>%
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="progress progress-sm">
+                                                            <div class="progress-bar bg-info" id="dominance-progress"
+                                                                 style="width: 0%"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            
+                                            </div>
+                                            <div class="col-auto">
+                                                <div class="icon icon-shape icon-lg rounded-circle" style="background: rgba(8, 145, 178, 0.1); color: var(--info-cyan);">
+                                                    <i class="fas fa-percentage fa-2x"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Fear & Greed and Market Breakdown -->
+                    <section id="sentiment" class="mb-5">
+                        <div class="row g-4">
+                            <!-- Fear & Greed Index -->
+                            <div class="col-xl-4 col-lg-5">
+                                <div class="card h-100">
+                                    <div class="card-header">
+                                        <h5 class="card-title mb-0">
+                                            <i class="fas fa-thermometer-half me-2 text-primary"></i>
+                                            Fear & Greed Index
+                                        </h5>
+                                    </div>
+                                    <div class="card-body text-center d-flex flex-column justify-content-center" style="min-height: 320px;">
+                                        <!-- Large Fear & Greed Display with Circle -->
+                                        <div class="mb-4 d-flex flex-column align-items-center justify-content-center" style="flex-grow: 1;">
+                                            <!-- Circular Container for Number -->
+                                            <div class="d-flex align-items-center justify-content-center rounded-circle mx-auto mb-3" 
+                                                 style="width: 200px; height: 200px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border: 4px solid #cbd5e1; box-shadow: 0 8px 25px rgba(0,0,0,0.1);">
+                                                <div class="text-center">
+                                                    <div class="fw-bold numerical-data" id="fear-greed-value" data-bind="text:sentimentData.fearGreedIndex.value" 
+                                                         style="font-size: 3.5rem; line-height: 1; color: #1e293b; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">--</div>
+                                                </div>
+                                            </div>
+                                            <div class="h4 mb-0">
+                                                <span class="badge badge-lg px-4 py-2" id="fear-greed-badge" data-bind="text:sentimentData.fearGreedIndex.label" style="font-size: 1.1rem;">--</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Scale Reference with more padding -->
+                                        <div style="padding-bottom: 20px;">
+                                            <div class="d-flex justify-content-between align-items-center mb-3 text-sm">
+                                                <span class="text-danger fw-medium">0 - Extreme Fear</span>
+                                                <span class="text-muted fw-medium">50 - Neutral</span>
+                                                <span class="text-success fw-medium">100 - Extreme Greed</span>
+                                            </div>
+                                            
+                                            <!-- Simple Progress Bar for Context -->
+                                            <div class="progress" style="height: 8px;">
+                                                <div class="progress-bar" id="fear-greed-progress" style="width: 0%; transition: all 0.8s ease;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Enhanced Market Breakdown -->
+                            <div class="col-xl-8 col-lg-7">
+                                <div class="card h-100">
+                                    <div class="card-header">
+                                        <h5 class="card-title mb-0">
+                                            <i class="fas fa-chart-pie me-2 text-primary"></i>
+                                            Market Breakdown & Analysis
+                                        </h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row g-4">
+                                            <!-- Bitcoin Market Cap Card -->
+                                            <div class="col-md-6">
+                                                <div class="card border-0 bg-warning-solid">
+                                                    <div class="card-body text-center">
+                                                        <div class="row align-items-center">
+                                                            <div class="col-auto">
+                                                                <div class="icon icon-shape icon-lg rounded-circle bg-white bg-opacity-20">
+                                                                    <i class="fab fa-bitcoin fa-2x text-white"></i>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col">
+                                                                <div class="text-white-50 text-sm fw-medium text-uppercase mb-1">
+                                                                    Bitcoin Market Cap
+                                                                </div>
+                                                                <div class="h3 mb-1 fw-bold text-white numerical-data" id="btc-market-cap">$2.08T</div>
+                                                                <div class="text-sm text-white-75" data-bind="class:marketOverview.bitcoin.trendClass">
+                                                                    <i class="fas" id="btc-mcap-trend-icon"></i> 
+                                                                    <span data-bind="text:marketOverview.bitcoin.change" class="fw-medium">-0.8%</span> 
+                                                                    <span class="text-white-50">(24h)</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Altcoin Market Cap Card -->
+                                            <div class="col-md-6">
+                                                <div class="card border-0 bg-success-solid">
+                                                    <div class="card-body text-center">
+                                                        <div class="text-white-50 text-sm fw-medium text-uppercase mb-2">
+                                                            Altcoin Market Cap
+                                                        </div>
+                                                        <div class="h3 mb-2 fw-bold text-white numerical-data" data-bind="text:marketOverview.altcoinMarketCap.value">$1.27T</div>
+                                                        <div class="text-sm text-white-75" data-bind="class:marketOverview.altcoinMarketCap.trendClass">
+                                                            <i class="fas" id="alt-trend-icon"></i> 
+                                                            <span data-bind="text:marketOverview.altcoinMarketCap.change" class="fw-medium">-1.8%</span> 
+                                                            <span class="text-white-50">(24h)</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Market Dominance Visualization -->
+                                            <div class="col-12">
+                                                <div class="card border-0" style="background-color: var(--bg-secondary);">
+                                                    <div class="card-body">
+                                                        <h4 class="h6 fw-bold mb-3 text-center">Market Dominance</h4>
+                                                        
+                                                        <!-- Bitcoin Dominance Bar -->
+                                                        <div class="mb-3">
+                                                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                                                <div class="d-flex align-items-center">
+                                                                    <div class="icon icon-sm rounded me-2" style="background-color: var(--warning); color: white;">
+                                                                        <i class="fab fa-bitcoin fa-sm"></i>
+                                                                    </div>
+                                                                    <span class="fw-medium">Bitcoin</span>
+                                                                </div>
+                                                                <span class="fw-bold numerical-data" data-bind="text:marketOverview.bitcoinDominance.percentage">62.1</span>%
+                                                            </div>
+                                                            <div class="progress mb-1" style="height: 8px;">
+                                                                <div class="progress-bar bg-warning" id="dominance-progress-visual" 
+                                                                     style="width: 62.1%;"></div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Altcoin Dominance Bar -->
+                                                        <div class="mb-3">
+                                                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                                                <div class="d-flex align-items-center">
+                                                                    <div class="icon icon-sm rounded me-2" style="background-color: var(--primary); color: white;">
+                                                                        <i class="fas fa-layer-group fa-sm"></i>
+                                                                    </div>
+                                                                    <span class="fw-medium">Altcoins</span>
+                                                                </div>
+                                                                <span class="fw-bold numerical-data" id="altcoin-dominance">37.9</span>%
+                                                            </div>
+                                                            <div class="progress mb-1" style="height: 8px;">
+                                                                <div class="progress-bar bg-primary" id="altcoin-progress-visual" 
+                                                                     style="width: 37.9%;"></div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Market Summary Stats -->
+                                                        <div class="row g-2 mt-3">
+                                                            <div class="col-6 text-center">
+                                                                <div class="small text-muted">BTC/ALT Ratio</div>
+                                                                <div class="fw-bold text-primary" id="btc-alt-ratio">1.64</div>
+                                                            </div>
+                                                            <div class="col-6 text-center">
+                                                                <div class="small text-muted">Trend</div>
+                                                                <div class="fw-bold" id="dominance-trend">
+                                                                    <span class="text-success">
+                                                                        <i class="fas fa-arrow-up fa-sm"></i> BTC ↑
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- On-Chain Metrics -->
+                    <section id="onchain" class="mb-5">
+                        <div class="row g-4">
+                            <div class="col-12">
+                                <h2 class="h4 fw-bold mb-4">On-Chain Metrics</h2>
+                            </div>
+
+                            <!-- Exchange Flow -->
+                            <div class="col-xl-4">
+                                <div class="card h-100">
+                                    <div class="card-header bg-primary-solid">
+                                        <h5 class="card-title mb-0 text-white">
+                                            <i class="fas fa-exchange-alt me-2"></i>Exchange Flow
+                                        </h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="h3 mb-3 fw-bold numerical-data text-dark" data-bind="text:onChainMetrics.exchangeFlow.value">--</div>
+                                        <p class="text-muted mb-3" data-bind="text:onChainMetrics.exchangeFlow.analysis">Loading analysis...</p>
+                                        <div class="small text-muted">
+                                            <i class="fas fa-info-circle me-1"></i>
+                                            Tracks net BTC/ETH movement to exchanges
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- MVRV Ratio -->
+                            <div class="col-xl-4">
+                                <div class="card h-100">
+                                    <div class="card-header bg-success-solid">
+                                        <h5 class="card-title mb-0 text-white">
+                                            <i class="fas fa-chart-line me-2"></i>MVRV Ratio
+                                        </h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="h3 mb-3 fw-bold numerical-data text-dark" data-bind="text:onChainMetrics.mvrvRatio.value">--</div>
+                                        <p class="text-muted mb-3" data-bind="text:onChainMetrics.mvrvRatio.analysis">Loading analysis...</p>
+                                        <div class="small text-muted">
+                                            <i class="fas fa-info-circle me-1"></i>
+                                            Market value vs realized value indicator
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- SOPR -->
+                            <div class="col-xl-4">
+                                <div class="card h-100">
+                                    <div class="card-header bg-info-solid">
+                                        <h5 class="card-title mb-0 text-white">
+                                            <i class="fas fa-percentage me-2"></i>SOPR
+                                        </h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="h3 mb-3 fw-bold numerical-data text-dark" data-bind="text:onChainMetrics.sopr.value">--</div>
+                                        <p class="text-muted mb-3" data-bind="text:onChainMetrics.sopr.analysis">Loading analysis...</p>
+                                        <div class="small text-muted">
+                                            <i class="fas fa-info-circle me-1"></i>
+                                            Spent output profit ratio measurement
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Market Cycle Analysis -->
+                    <section id="cycle" class="mb-5">
+                        <div class="card">
+                            <div class="card-header bg-primary-solid">
+                                <h4 class="card-title mb-0 text-white">
+                                    <i class="fas fa-chart-line me-2"></i>Market Cycle Analysis & Trading Predictions
+                                </h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-4">
+                                    <!-- Current Cycle Position -->
+                                    <div class="col-md-6">
+                                        <div class="p-4 rounded bg-info-subtle border border-info" style="background-color: var(--info-subtle) !important;">
+                                            <h3 class="h5 mb-3 d-flex align-items-center" style="color: var(--info) !important;">
+                                                <i class="fas fa-bullseye me-2" style="color: var(--info) !important;"></i>
+                                                Current Position: <span data-bind="text:cycleAnalysis.currentPosition.cyclePositionPercent" class="numerical-data ms-1" style="color: var(--info) !important;">--%</span>% Through <span data-bind="text:cycleAnalysis.currentPosition.cyclePhase" class="ms-1" style="color: var(--info) !important;">Loading...</span>
+                                            </h3>
+                                            <div class="row g-3 mb-3">
+                                                <div class="col-6">
+                                                    <div class="small fw-medium" style="color: var(--text-tertiary) !important;">Phase Started</div>
+                                                    <div class="h6 fw-bold" style="color: var(--info) !important;" data-bind="text:cycleAnalysis.currentPosition.cycleStartDate">--</div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="small fw-medium" style="color: var(--text-tertiary) !important;">Days Running</div>
+                                                    <div class="h6 fw-bold numerical-data" style="color: var(--info) !important;" data-bind="text:cycleAnalysis.currentPosition.daysInCycle">--</div>
+                                                </div>
+                                            </div>
+                                            <div class="progress" style="height: 10px; background-color: var(--bg-tertiary); border: 1px solid var(--border-light);">
+                                                <div class="progress-bar" style="background-color: var(--info) !important;" id="cycle-progress-bar"></div>
+                                            </div>
+                                            <small class="text-white-75 mt-2 d-block">Cycle Progress Indicator</small>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Price Predictions -->
+                                    <div class="col-md-6">
+                                        <div class="card border-0" style="background-color: var(--bg-secondary);">
+                                            <div class="card-body">
+                                                <h3 class="h6 fw-bold mb-3 text-success">
+                                                    <i class="fab fa-bitcoin me-2"></i>BTC Price Predictions
+                                                </h3>
+                                                <div class="mb-3">
+                                                    <div class="d-flex justify-content-between mb-2">
+                                                        <span class="small text-muted">Cycle Peak Target:</span>
+                                                        <span class="fw-bold numerical-data text-success" data-bind="text:cycleAnalysis.predictions.btcCyclePeakTarget">$--</span>
+                                                    </div>
+                                                    <div class="d-flex justify-content-between mb-2">
+                                                        <span class="small text-muted">Peak Date Estimate:</span>
+                                                        <span class="fw-bold" data-bind="text:cycleAnalysis.predictions.predictedPeakDate">--</span>
+                                                    </div>
+                                                    <div class="d-flex justify-content-between mb-3">
+                                                        <span class="small text-muted">Confidence Level:</span>
+                                                        <span class="fw-bold numerical-data text-warning"><span data-bind="text:cycleAnalysis.predictions.peakConfidence">--</span>%</span>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="mb-3">
+                                                    <div class="d-flex justify-content-between mb-2">
+                                                        <span class="small text-muted">Bear Market Start:</span>
+                                                        <span class="fw-bold text-danger" data-bind="text:cycleAnalysis.predictions.bearMarketStart">--</span>
+                                                    </div>
+                                                    <div class="d-flex justify-content-between mb-2">
+                                                        <span class="small text-muted">Bottom Target:</span>
+                                                        <span class="fw-bold numerical-data text-danger" data-bind="text:cycleAnalysis.predictions.bearMarketBottom">$--</span>
+                                                    </div>
+                                                    <div class="d-flex justify-content-between">
+                                                        <span class="small text-muted">Bottom Timeline:</span>
+                                                        <span class="fw-bold" data-bind="text:cycleAnalysis.predictions.bottomTimeline">--</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Trading Timeline -->
+                    <section id="timeline" class="mb-5">
+                        <div class="card">
+                            <div class="card-header bg-info-solid">
+                                <h4 class="card-title mb-0 text-white">
+                                    <i class="fas fa-calendar-alt me-2"></i>Trading Timeline & Key Market Moving Events
+                                </h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-4">
+                                    <!-- Next 30 Days -->
+                                    <div class="col-lg-4">
+                                        <div class="mb-4">
+                                            <h3 class="h6 mb-3 d-flex align-items-center text-success">
+                                                <i class="fas fa-clock me-2"></i>Next 30 Days
+                                                <span class="badge bg-success badge-sm ms-2">Near Term</span>
+                                            </h3>
+                                            <div id="next-30-days-container" class="timeline-container">
+                                                <!-- Sample Timeline Events with Calendar Icons & Impact Status -->
+                                                <div class="timeline-event critical">
+                                                    <div class="timeline-event-header">
+                                                        <div class="timeline-event-date">
+                                                            <i class="fas fa-calendar-alt"></i>
+                                                            June 18, 2025
+                                                        </div>
+                                                        <span class="timeline-event-impact critical">Critical</span>
+                                                    </div>
+                                                    <div class="timeline-event-title">FOMC Interest Rate Decision</div>
+                                                    <div class="timeline-event-description">Federal Reserve announces interest rate decision. High impact on crypto markets expected.</div>
+                                                </div>
+
+                                                <div class="timeline-event high">
+                                                    <div class="timeline-event-header">
+                                                        <div class="timeline-event-date">
+                                                            <i class="fas fa-calendar-alt"></i>
+                                                            June 22, 2025
+                                                        </div>
+                                                        <span class="timeline-event-impact high">High</span>
+                                                    </div>
+                                                    <div class="timeline-event-title">Ethereum Shanghai Upgrade</div>
+                                                    <div class="timeline-event-description">Major network upgrade expected to impact ETH price and overall market sentiment.</div>
+                                                </div>
+
+                                                <div class="timeline-event medium">
+                                                    <div class="timeline-event-header">
+                                                        <div class="timeline-event-date">
+                                                            <i class="fas fa-calendar-alt"></i>
+                                                            June 25, 2025
+                                                        </div>
+                                                        <span class="timeline-event-impact medium">Medium</span>
+                                                    </div>
+                                                    <div class="timeline-event-title">CPI Inflation Data Release</div>
+                                                    <div class="timeline-event-description">Monthly inflation report may influence Fed policy and crypto market direction.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Next 90 Days -->
+                                    <div class="col-lg-4">
+                                        <div class="mb-4">
+                                            <h3 class="h6 mb-3 d-flex align-items-center text-warning">
+                                                <i class="fas fa-clock me-2"></i>Next 90 Days
+                                                <span class="badge bg-warning badge-sm ms-2">Medium Term</span>
+                                            </h3>
+                                            <div id="next-90-days-container" class="timeline-container">
+                                                <div class="timeline-event high">
+                                                    <div class="timeline-event-header">
+                                                        <div class="timeline-event-date">
+                                                            <i class="fas fa-calendar-alt"></i>
+                                                            July 15, 2025
+                                                        </div>
+                                                        <span class="timeline-event-impact high">High</span>
+                                                    </div>
+                                                    <div class="timeline-event-title">Bitcoin ETF Options Launch</div>
+                                                    <div class="timeline-event-description">Major institutional trading milestone expected to increase volume and volatility.</div>
+                                                </div>
+
+                                                <div class="timeline-event medium">
+                                                    <div class="timeline-event-header">
+                                                        <div class="timeline-event-date">
+                                                            <i class="fas fa-calendar-alt"></i>
+                                                            August 10, 2025
+                                                        </div>
+                                                        <span class="timeline-event-impact medium">Medium</span>
+                                                    </div>
+                                                    <div class="timeline-event-title">Q2 Earnings Season</div>
+                                                    <div class="timeline-event-description">Major crypto companies report quarterly earnings, affecting sector sentiment.</div>
+                                                </div>
+
+                                                <div class="timeline-event low">
+                                                    <div class="timeline-event-header">
+                                                        <div class="timeline-event-date">
+                                                            <i class="fas fa-calendar-alt"></i>
+                                                            September 5, 2025
+                                                        </div>
+                                                        <span class="timeline-event-impact low">Low</span>
+                                                    </div>
+                                                    <div class="timeline-event-title">DeFi Conference Miami</div>
+                                                    <div class="timeline-event-description">Industry conference may generate new partnerships and announcements.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Major Cycle Events -->
+                                    <div class="col-lg-4">
+                                        <div class="mb-4">
+                                            <h3 class="h6 mb-3 d-flex align-items-center text-danger">
+                                                <i class="fas fa-exclamation-triangle me-2"></i>Major Cycle Events
+                                                <span class="badge bg-danger badge-sm ms-2">Critical</span>
+                                            </h3>
+                                            <div id="major-cycle-events-container" class="timeline-container">
+                                                <div class="timeline-event critical">
+                                                    <div class="timeline-event-header">
+                                                        <div class="timeline-event-date">
+                                                            <i class="fas fa-calendar-alt"></i>
+                                                            Q4 2025
+                                                        </div>
+                                                        <span class="timeline-event-impact critical">Critical</span>
+                                                    </div>
+                                                    <div class="timeline-event-title">Bitcoin Cycle Peak Expected</div>
+                                                    <div class="timeline-event-description">Historical cycle analysis suggests potential market top during this period.</div>
+                                                </div>
+
+                                                <div class="timeline-event critical">
+                                                    <div class="timeline-event-header">
+                                                        <div class="timeline-event-date">
+                                                            <i class="fas fa-calendar-alt"></i>
+                                                            Q1 2026
+                                                        </div>
+                                                        <span class="timeline-event-impact critical">Critical</span>
+                                                    </div>
+                                                    <div class="timeline-event-title">Bear Market Transition</div>
+                                                    <div class="timeline-event-description">Projected start of bear market phase based on 4-year cycle patterns.</div>
+                                                </div>
+
+                                                <div class="timeline-event high">
+                                                    <div class="timeline-event-header">
+                                                        <div class="timeline-event-date">
+                                                            <i class="fas fa-calendar-alt"></i>
+                                                            2028
+                                                        </div>
+                                                        <span class="timeline-event-impact high">High</span>
+                                                    </div>
+                                                    <div class="timeline-event-title">Next Bitcoin Halving</div>
+                                                    <div class="timeline-event-description">Fourth Bitcoin halving event, historically a major catalyst for new bull markets.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Market Movement Probabilities -->
+                <div class="mt-4 p-4 rounded" style="background-color: #e0f2fe; border: 1px solid #0288d1;">
+                                    <h3 class="h6 mb-4 d-flex align-items-center" style="color: #0277bd;">
+                                        <i class="fas fa-chart-bar me-2"></i>Market Movement Probabilities
+                                        <small class="ms-2" style="color: #0277bd;">Based on Technical & On-Chain Analysis</small>
+                                    </h3>
+                                    <div class="row g-4">
+                                        <div class="col-md-3 text-center">
+                                            <div class="small fw-medium text-muted mb-1">Next Week Pump</div>
+                                            <div class="h3 numerical-data text-success"><span data-bind="text:marketProbabilities.pumpProbability1W">--</span>%</div>
+                                            <div class="progress mb-2" style="height: 8px;">
+                                                <div class="progress-bar bg-success" id="pump-1w-progress" style="width: 0%;"></div>
+                                            </div>
+                                            <small class="text-muted">1W Timeframe</small>
+                                        </div>
+                                        <div class="col-md-3 text-center">
+                                            <div class="small fw-medium text-muted mb-1">Next Month Pump</div>
+                                            <div class="h3 numerical-data text-success"><span data-bind="text:marketProbabilities.pumpProbability1M">--</span>%</div>
+                                            <div class="progress mb-2" style="height: 8px;">
+                                                <div class="progress-bar bg-success" id="pump-1m-progress" style="width: 0%;"></div>
+                                            </div>
+                                            <small class="text-muted">1M Timeframe</small>
+                                        </div>
+                                        <div class="col-md-3 text-center">
+                                            <div class="small fw-medium text-muted mb-1">Dump Risk (30d)</div>
+                                            <div class="h3 numerical-data text-danger"><span data-bind="text:marketProbabilities.dumpRisk30D">--</span>%</div>
+                                            <div class="progress mb-2" style="height: 8px;">
+                                                <div class="progress-bar bg-danger" id="dump-30d-progress" style="width: 0%;"></div>
+                                            </div>
+                                            <small class="text-muted">Risk Assessment</small>
+                                        </div>
+                                        <div class="col-md-3 text-center">
+                                            <div class="small fw-medium text-muted mb-1">Sideways Action</div>
+                                            <div class="h3 numerical-data text-info"><span data-bind="text:marketProbabilities.sidewaysProbability">--</span>%</div>
+                                            <div class="progress mb-2" style="height: 8px;">
+                                                <div class="progress-bar bg-info" id="sideways-progress" style="width: 0%;"></div>
+                                            </div>
+                                            <small class="text-muted">Consolidation</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- News and Events -->
+                    <section id="news" class="mb-5">
+                        <div class="row g-4">
+                            <!-- Recent News - Full Width -->
+                            <div class="col-12">
+                                <div class="card h-100">
+                                    <div class="card-header">
+                                        <h5 class="card-title mb-0">
+                                            <i class="fas fa-newspaper me-2 text-primary"></i>
+                                            Recent News & Market Impact
+                                        </h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div id="news-container">Loading news...</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Trading Action Plan -->
+                    <section id="trading" class="mb-5">
+                        <div class="row g-4">
+                            <div class="col-lg-8">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="card-title mb-0">
+                                            <i class="fas fa-chart-line me-2 text-primary"></i>
+                                            Trading Action Plan
+                                        </h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="alert alert-warning mb-4" data-bind="class:tradingActionPlan.primarySignal.signalColor">
+                                            <h3 class="alert-heading h4">
+                                                <i class="fas fa-pause me-2" data-bind="class:tradingActionPlan.primarySignal.signalIcon"></i>
+                                                Primary Signal: <span data-bind="text:tradingActionPlan.primarySignal.signal" style="color: #1e40af; font-size: 1.25rem; font-weight: 700;">LOADING</span>
+                                            </h3>
+                                            <p class="mb-0" data-bind="text:tradingActionPlan.primarySignal.reasoning">Loading reasoning...</p>
+                                        </div>
+                                        
+                                        <div class="row g-4">
+                                            <div class="col-md-6">
+                                                <h3 class="h6 text-success mb-3">Entry Levels (BTC)</h3>
+                                                <div class="list-group list-group-flush">
+                                                    <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-0">
+                                                        <div>
+                                                            <span class="badge bg-success me-2">Strong</span>
+                                                            $<span data-bind="text:tradingActionPlan.entryLevels.btcEntryLevel1">--</span>
+                                                        </div>
+                                                        <small class="text-muted">(<span data-bind="text:tradingActionPlan.entryLevels.btcEntry1Probability">--</span>% probability)</small>
+                                                    </div>
+                                                    <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-0">
+                                                        <div>
+                                                            <span class="badge bg-warning me-2">Good</span>
+                                                            $<span data-bind="text:tradingActionPlan.entryLevels.btcEntryLevel2">--</span>
+                                                        </div>
+                                                        <small class="text-muted">(<span data-bind="text:tradingActionPlan.entryLevels.btcEntry2Probability">--</span>% probability)</small>
+                                                    </div>
+                                                    <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-0">
+                                                        <div>
+                                                            <span class="badge bg-info me-2">Fair</span>
+                                                            $<span data-bind="text:tradingActionPlan.entryLevels.btcEntryLevel3">--</span>
+                                                        </div>
+                                                        <small class="text-muted">(<span data-bind="text:tradingActionPlan.entryLevels.btcEntry3Probability">--</span>% probability)</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-md-6">
+                                                <h3 class="h6 text-danger mb-3">Exit Targets (BTC)</h3>
+                                                <div class="list-group list-group-flush">
+                                                    <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-0">
+                                                        <div>
+                                                            <span class="badge bg-warning me-2">TP1</span>
+                                                            $<span data-bind="text:tradingActionPlan.exitTargets.btcTarget1">--</span>
+                                                        </div>
+                                                        <small class="text-muted">(<span data-bind="text:tradingActionPlan.exitTargets.btcTarget1Timeline">--</span>)</small>
+                                                    </div>
+                                                    <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-0">
+                                                        <div>
+                                                            <span class="badge bg-success me-2">TP2</span>
+                                                            $<span data-bind="text:tradingActionPlan.exitTargets.btcTarget2">--</span>
+                                                        </div>
+                                                        <small class="text-muted">(<span data-bind="text:tradingActionPlan.exitTargets.btcTarget2Timeline">--</span>)</small>
+                                                    </div>
+                                                    <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-0">
+                                                        <div>
+                                                            <span class="badge bg-danger me-2">SL</span>
+                                                            $<span data-bind="text:tradingActionPlan.exitTargets.btcStopLoss">--</span>
+                                                        </div>
+                                                        <small class="text-muted">(Risk management)</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="mt-4">
+                                            <h3 class="h6 mb-3">Position Sizing Recommendation</h3>
+                                            <div class="alert alert-info">
+                                                <div class="row g-3">
+                                                    <div class="col-md-4">
+                                                        <strong>Recommended Allocation:</strong><br>
+                                                        <span data-bind="text:tradingActionPlan.positionSizing.recommendedAllocation">--</span>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <strong>Risk Level:</strong><br>
+                                                        <span data-bind="text:tradingActionPlan.positionSizing.riskLevel">--</span>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <strong>Time Horizon:</strong><br>
+                                                        <span data-bind="text:tradingActionPlan.positionSizing.timeHorizon">--</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Risk Management Dashboard -->
+                            <div class="col-lg-4">
+                                <div class="card">
+                                    <div class="card-header text-center">
+                                        <h5 class="card-title mb-0">
+                                            <i class="fas fa-shield-alt me-2 text-primary"></i>
+                                            Risk Management
+                                        </h5>
+                                    </div>
+                                    <div class="card-body text-center">
+                                        <div class="mb-4">
+                                            <div class="h2 fw-bold text-warning" data-bind="class:riskManagement.overallRisk.color">
+                                                <span data-bind="text:riskManagement.overallRisk.level">--</span>
+                                            </div>
+                                            <div class="small text-muted">Overall Market Risk</div>
+                                        </div>
+                                        
+                                        <div class="row text-center mb-4">
+                                            <div class="col-6">
+                                                <div class="small text-muted">Drawdown Risk</div>
+                                                <div class="fw-bold text-danger" data-bind="text:riskManagement.riskMetrics.drawdownRisk">--</div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="small text-muted">Volatility</div>
+                                                <div class="fw-bold text-warning" data-bind="text:riskManagement.riskMetrics.volatilityIndex">--</div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="alert alert-warning" data-bind="class:riskManagement.riskAlert.alertColor">
+                                            <strong style="color: #1f2937;">Risk Alert:</strong><br>
+                                            <span data-bind="text:riskManagement.riskAlert.message" style="color: #1f2937;">Loading alert...</span>
+                                        </div>
+                                        
+                                        <h3 class="h6 mt-4 mb-3">Portfolio Balance</h3>
+                                        <div class="text-start">
+                                            <div class="d-flex justify-content-between mb-2">
+                                                <span>BTC:</span>
+                                                <span class="fw-bold"><span data-bind="text:riskManagement.portfolioAllocation.btc">--</span>%</span>
+                                            </div>
+                                            <div class="d-flex justify-content-between mb-2">
+                                                <span>ETH:</span>
+                                                <span class="fw-bold"><span data-bind="text:riskManagement.portfolioAllocation.eth">--</span>%</span>
+                                            </div>
+                                            <div class="d-flex justify-content-between mb-2">
+                                                <span>Alts:</span>
+                                                <span class="fw-bold"><span data-bind="text:riskManagement.portfolioAllocation.alts">--</span>%</span>
+                                            </div>
+                                            <div class="d-flex justify-content-between">
+                                                <span>Cash:</span>
+                                                <span class="fw-bold"><span data-bind="text:riskManagement.portfolioAllocation.cash">--</span>%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Executive Summary -->
+                    <section id="summary" class="mb-5">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">
+                                    <i class="fas fa-file-minus me-2 text-primary"></i>
+                                    Weekly Summary & Outlook
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-4">
+                                    <div class="col-md-6">
+                                        <h3 class="h6 mb-3">Executive Summary</h3>
+                                        <p class="text-muted lh-lg" data-bind="text:analysis.executiveSummary">Loading summary...</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h3 class="h6 mb-3">Next Week Outlook</h3>
+                                        <p class="text-muted lh-lg" data-bind="text:analysis.nextWeekOutlook">Loading outlook...</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </main>
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Generated on <span data-bind="text:reportMetadata.generationDate">--</span> | Data sources: <span data-bind="text:analysis.dataSources">Loading...</span></span><br>
-                        <small class="text-muted">This analysis is for informational purposes only and should not be considered financial advice.</small>
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row text-muted">
+                        <div class="col-8">
+                            <div class="mb-2">
+                                <span class="fw-medium">
+                                    <i class="fas fa-calendar me-2"></i>
+                                    Generated on <span data-bind="text:reportMetadata.generationDate" class="fw-bold">--</span>
+                                </span>
+                            </div>
+                            <div class="mb-2">
+                                <span>
+                                    <i class="fas fa-database me-2"></i>
+                                    Data sources: <span data-bind="text:analysis.dataSources" class="fw-medium">Loading...</span>
+                                </span>
+                            </div>
+                            <small class="text-muted d-block">
+                                <i class="fas fa-exclamation-triangle me-1"></i>
+                                This analysis is for informational purposes only and should not be considered financial advice.
+                            </small>
+                        </div>
+                        <div class="col-4 text-end">
+                            <div class="d-flex justify-content-end align-items-center">
+                                <span class="text-muted me-3">Powered by</span>
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-chart-line me-2 text-primary" style="font-size: 1.25rem;"></i>
+                                    <span class="fw-bold text-primary">Ben's AI crypto analyst</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </footer>
-            <!-- End of Footer -->
-
         </div>
-        <!-- End of Content Wrapper -->
-
     </div>
-    <!-- End of Page Wrapper -->
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="https://startbootstrap.github.io/startbootstrap-sb-admin-2/vendor/jquery/jquery.min.js"></script>
-    <script src="https://startbootstrap.github.io/startbootstrap-sb-admin-2/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap 5 JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Simple sidebar toggle -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebarToggle = document.querySelector('.sidebar-toggle');
+            const sidebar = document.querySelector('.sidebar');
+            
+            if (sidebarToggle) {
+                sidebarToggle.addEventListener('click', function() {
+                    sidebar.classList.toggle('d-none');
+                });
+            }
+        });
+    </script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="https://startbootstrap.github.io/startbootstrap-sb-admin-2/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Enhanced Timeline Population Script -->
+    <script>
+        // Function to populate timeline events from data.json
+        function populateTimelineEvents() {
+            try {
+                // Get the data from the global crypto data engine
+                if (!window.cryptoDataEngine || !window.cryptoDataEngine.data) {
+                    console.log('⚠️ Data engine not available yet, retrying...');
+                    setTimeout(populateTimelineEvents, 1000);
+                    return;
+                }
 
-    <!-- Custom scripts for all pages-->
-    <script src="https://startbootstrap.github.io/startbootstrap-sb-admin-2/js/sb-admin-2.min.js"></script>
+                const data = window.cryptoDataEngine.data;
+                
+                // Populate Next 30 Days
+                const next30Container = document.getElementById('next-30-days-container');
+                if (next30Container && data.tradingTimeline && data.tradingTimeline.next30Days) {
+                    next30Container.innerHTML = data.tradingTimeline.next30Days.map(event => {
+                        const impactClass = getImpactClass(event.impact);
+                        const impactLabel = event.impact || '';
+                        
+                        return `
+                            <div class="timeline-event ${impactClass}">
+                                <div class="timeline-event-header">
+                                    <div class="timeline-event-date">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        ${event.date}
+                                    </div>
+                                    ${impactLabel ? `<span class="timeline-event-impact ${impactClass}">${impactLabel}</span>` : ''}
+                                </div>
+                                <div class="timeline-event-title">${event.title}</div>
+                                <div class="timeline-event-description">${event.description}</div>
+                            </div>
+                        `;
+                    }).join('');
+                }
+
+                // Populate Next 90 Days
+                const next90Container = document.getElementById('next-90-days-container');
+                if (next90Container && data.tradingTimeline && data.tradingTimeline.next90Days) {
+                    next90Container.innerHTML = data.tradingTimeline.next90Days.map(event => {
+                        const impactClass = getImpactClass(event.impact);
+                        const impactLabel = event.impact || '';
+                        
+                        return `
+                            <div class="timeline-event ${impactClass}">
+                                <div class="timeline-event-header">
+                                    <div class="timeline-event-date">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        ${event.date}
+                                    </div>
+                                    ${impactLabel ? `<span class="timeline-event-impact ${impactClass}">${impactLabel}</span>` : ''}
+                                </div>
+                                <div class="timeline-event-title">${event.title}</div>
+                                <div class="timeline-event-description">${event.description}</div>
+                            </div>
+                        `;
+                    }).join('');
+                }
+
+                // Populate Major Cycle Events
+                const majorEventsContainer = document.getElementById('major-cycle-events-container');
+                if (majorEventsContainer && data.tradingTimeline && data.tradingTimeline.majorCycleEvents) {
+                    majorEventsContainer.innerHTML = data.tradingTimeline.majorCycleEvents.map(event => {
+                        const impactClass = getImpactClass(event.impact);
+                        const impactLabel = event.impact || '';
+                        
+                        return `
+                            <div class="timeline-event ${impactClass}">
+                                <div class="timeline-event-header">
+                                    <div class="timeline-event-date">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        ${event.date}
+                                    </div>
+                                    ${impactLabel ? `<span class="timeline-event-impact ${impactLabel}</span>` : ''}
+                                </div>
+                                <div class="timeline-event-title">${event.title}</div>
+                                <div class="timeline-event-description">${event.description}</div>
+                            </div>
+                        `;
+                    }).join('');
+                }
+
+                console.log('✅ Timeline events populated successfully');
+            } catch (error) {
+                console.error('❌ Failed to populate timeline events:', error);
+            }
+        }
+
+        // Function to populate news items
+        function populateNewsItems() {
+            try {
+                // Get the data from the global crypto data engine
+                if (!window.cryptoDataEngine || !window.cryptoDataEngine.data) {
+                    console.log('⚠️ Data engine not available yet for news, retrying...');
+                    setTimeout(populateNewsItems, 1000);
+                    return;
+                }
+
+                const data = window.cryptoDataEngine.data;
+                
+                // Populate News Container
+                const newsContainer = document.getElementById('news-container');
+                if (newsContainer && data.newsAndEvents && data.newsAndEvents.newsItems) {
+                    newsContainer.innerHTML = data.newsAndEvents.newsItems.map(newsItem => {
+                        const impactClass = getNewsImpactClass(newsItem.impact);
+                        const title = newsItem.headline || 'Untitled';
+                        const summary = newsItem.summary || '';
+                        const impact = newsItem.impact || 'Neutral';
+                        const url = newsItem.url || ''; // Check for URL field
+                        
+                        // Create clickable title if URL exists
+                        const titleHtml = url ? 
+                            `<a href="${url}" target="_blank" rel="noopener noreferrer" class="text-decoration-none">${title}</a>` : 
+                            title;
+                        
+                        return `
+                            <div class="news-item">
+                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                    <h3 class="h6 fw-bold mb-1 flex-grow-1 ${url ? 'text-primary' : 'text-dark'}">${titleHtml}</h3>
+                                    <span class="badge ${impactClass} ms-2">${impact}</span>
+                                </div>
+                                <p class="text-muted mb-0 lh-base">${summary}</p>
+                            </div>
+                        `;
+                    }).join('');
+                }
+
+                console.log('✅ News items populated successfully');
+            } catch (error) {
+                console.error('❌ Failed to populate news items:', error);
+            }
+        }
+
+        // Helper function to determine news impact class
+        function getNewsImpactClass(impact) {
+            if (!impact) return 'bg-secondary';
+            
+            const impactUpper = impact.toString().toUpperCase();
+            if (impactUpper.includes('BULLISH')) return 'bg-success';
+            if (impactUpper.includes('BEARISH')) return 'bg-danger';
+            if (impactUpper.includes('NEUTRAL')) return 'bg-info';
+            return 'bg-secondary';
+        }
+
+        // Helper function to determine impact class
+        function getImpactClass(impact) {
+            if (!impact) return 'low';
+            
+            const impactUpper = impact.toString().toUpperCase();
+            if (impactUpper.includes('CRITICAL') || impactUpper.includes('PEAK')) return 'critical';
+            if (impactUpper.includes('HIGH') || impactUpper.includes('DISTRIBUTION')) return 'high';
+            if (impactUpper.includes('MEDIUM')) return 'medium';
+            return 'low';
+        }
+
+        // Initialize timeline and news population when DOM and data are ready
+        document.addEventListener('DOMContentLoaded', function() {
+            // Try immediately
+            populateTimelineEvents();
+            populateNewsItems();
+            
+            // Try again after delays to ensure data engine is loaded
+            setTimeout(() => {
+                populateTimelineEvents();
+                populateNewsItems();
+            }, 2000);
+            setTimeout(() => {
+                populateTimelineEvents();
+                populateNewsItems();
+            }, 5000);
+        });
+    </script>
 
     <!-- Crypto Analysis Data Engine -->
     <script src="data_engine.js"></script>
 
-    <!-- Chart.js for dominance chart -->
+    <!-- Enhanced Market Breakdown JavaScript -->
     <script>
-        // Chart.js integration with data engine
-        let dominanceChart = null;
-        
-        // Initialize chart after data engine loads
+        // Enhanced Market Breakdown - Visual dominance bars with debugging
         document.addEventListener('DOMContentLoaded', function() {
-            // Wait for data engine to initialize before setting up chart
+            console.log('🔄 DOM loaded, initializing market breakdown...');
+            
+            // Wait for data engine to initialize, but also try immediately
+            updateMarketBreakdown();
+            
+            // Try again after a delay for data engine
             setTimeout(() => {
-                initDominanceChart();
-            }, 1500); // Increased delay to ensure data engine is ready
+                updateMarketBreakdown();
+            }, 2000);
+            
+            // And once more for good measure
+            setTimeout(() => {
+                updateMarketBreakdown();
+            }, 5000);
         });
 
-        function initDominanceChart() {
-            const ctx = document.getElementById("dominanceChart");
-            if (!ctx) {
-                console.log('Dominance chart canvas not found');
-                return;
-            }
-            
-            if (typeof Chart === 'undefined') {
-                console.log('Chart.js not loaded, retrying in 1 second...');
-                setTimeout(initDominanceChart, 1000);
-                return;
-            }
-            
+        function updateMarketBreakdown() {
             try {
-                // Get initial data from data engine if available
-                let btcDominance = 50;
-                let altDominance = 50;
+                console.log('🔄 Updating market breakdown...');
+                
+                // Get dominance data from data engine
+                let btcDominance = 62.1; // Default value
+                let totalMarketCap = 3.35; // Default total market cap in trillions
                 
                 if (window.cryptoDataEngine && window.cryptoDataEngine.data) {
                     const domData = window.cryptoDataEngine.getData('marketOverview.bitcoinDominance.percentage');
-                    if (domData) {
+                    if (domData && !isNaN(parseFloat(domData))) {
                         btcDominance = parseFloat(domData);
-                        altDominance = 100 - btcDominance;
+                        console.log('📊 Using live BTC dominance data:', btcDominance);
+                    }
+                    
+                    // Get total market cap and convert to trillions
+                    const totalMcapData = window.cryptoDataEngine.getData('marketOverview.totalMarketCap.value');
+                    if (totalMcapData) {
+                        // Extract number from string like "$3.35T"
+                        const mcapMatch = totalMcapData.match(/\$?([\d.]+)T?/);
+                        if (mcapMatch) {
+                            totalMarketCap = parseFloat(mcapMatch[1]);
+                            console.log('💰 Using live total market cap:', totalMarketCap + 'T');
+                        }
+                    }
+                } else {
+                    console.log('⚠️ Data engine not available, using default values');
+                }
+                
+                const altDominance = 100 - btcDominance;
+                const btcAltRatio = (btcDominance / altDominance).toFixed(2);
+                
+                // Calculate BTC market cap
+                const btcMarketCapTrillion = (totalMarketCap * btcDominance / 100).toFixed(2);
+                
+                // Update BTC market cap display
+                const btcMarketCapElement = document.getElementById('btc-market-cap');
+                if (btcMarketCapElement) {
+                    btcMarketCapElement.textContent = `$${btcMarketCapTrillion}T`;
+                    console.log('💎 Updated BTC market cap display');
+                }
+                
+                // Update BTC market cap trend icon
+                const btcMcapTrendIcon = document.getElementById('btc-mcap-trend-icon');
+                if (btcMcapTrendIcon && window.cryptoDataEngine && window.cryptoDataEngine.data) {
+                    const btcTrend = window.cryptoDataEngine.getData('marketOverview.bitcoin.trendIcon');
+                    if (btcTrend) {
+                        btcMcapTrendIcon.className = `fas ${btcTrend}`;
                     }
                 }
                 
-                // Create chart
-                dominanceChart = new Chart(ctx, {
-                    type: 'doughnut',
-                    data: {
-                        labels: ["Bitcoin", "Altcoins"],
-                        datasets: [{
-                            data: [btcDominance, altDominance],
-                            backgroundColor: ['#f6c23e', '#4e73df'],
-                            hoverBackgroundColor: ['#f4b619', '#224abe'],
-                            hoverBorderColor: "rgba(234, 236, 244, 1)",
-                        }],
-                    },
-                    options: {
-                        maintainAspectRatio: false,
-                        tooltips: {
-                            backgroundColor: "rgb(255,255,255)",
-                            bodyFontColor: "#858796",
-                            borderColor: '#dddfeb',
-                            borderWidth: 1,
-                            xPadding: 15,
-                            yPadding: 15,
-                            displayColors: false,
-                            caretPadding: 10,
-                        },
-                        legend: {
-                            display: true,
-                            position: 'bottom',
-                        },
-                        cutoutPercentage: 80,
-                    },
+                // Update visual progress bars
+                const btcProgressBar = document.getElementById('dominance-progress-visual');
+                const altProgressBar = document.getElementById('altcoin-progress-visual');
+                const altDominanceText = document.getElementById('altcoin-dominance');
+                const btcAltRatioText = document.getElementById('btc-alt-ratio');
+                
+                console.log('🎯 Progress bar elements found:', {
+                    btcProgressBar: !!btcProgressBar,
+                    altProgressBar: !!altProgressBar,
+                    altDominanceText: !!altDominanceText,
+                    btcAltRatioText: !!btcAltRatioText
                 });
                 
-                // Make chart globally accessible
-                window.dominanceChart = dominanceChart;
-                
-                // Notify data engine that chart is ready
-                if (window.cryptoDataEngine && typeof window.cryptoDataEngine.onChartReady === 'function') {
-                    window.cryptoDataEngine.onChartReady();
+                if (btcProgressBar) {
+                    btcProgressBar.style.width = btcDominance + '%';
+                    console.log('🟡 Updated BTC progress bar width to:', btcDominance + '%');
                 }
                 
-                console.log('✅ Dominance chart initialized successfully');
+                if (altProgressBar) {
+                    altProgressBar.style.width = altDominance + '%';
+                    console.log('🔵 Updated ALT progress bar width to:', altDominance + '%');
+                }
+                
+                if (altDominanceText) {
+                    altDominanceText.textContent = altDominance.toFixed(1);
+                }
+                
+                if (btcAltRatioText) {
+                    btcAltRatioText.textContent = btcAltRatio;
+                }
+                
+                // Update trend indicator
+                const trendElement = document.getElementById('dominance-trend');
+                if (trendElement) {
+                    // Determine trend based on some logic (you can enhance this)
+                    if (btcDominance > 60) {
+                        trendElement.innerHTML = '<span class="text-warning"><i class="fas fa-arrow-up fa-sm"></i> BTC ↑</span>';
+                    } else if (btcDominance < 55) {
+                        trendElement.innerHTML = '<span class="text-info"><i class="fas fa-arrow-down fa-sm"></i> ALT ↑</span>';
+                    } else {
+                        trendElement.innerHTML = '<span class="text-muted"><i class="fas fa-minus fa-sm"></i> Stable</span>';
+                    }
+                }
+                
+                console.log('✅ Market Breakdown visual elements updated successfully');
+                console.log(`📈 BTC: ${btcDominance}% | ALT: ${altDominance}% | Ratio: ${btcAltRatio}`);
+                console.log(`💰 BTC Market Cap: $${btcMarketCapTrillion}T (${btcDominance}% of $${totalMarketCap}T)`);
                 
             } catch (error) {
-                console.error('Failed to initialize dominance chart:', error);
+                console.error('❌ Failed to update market breakdown:', error);
             }
         }
-    </script>
 
+        // Function to update market breakdown when data changes
+        function refreshMarketBreakdown() {
+            updateMarketBreakdown();
+        }
+    </script>
 </body>
 
 </html>

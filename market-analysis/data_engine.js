@@ -56,6 +56,7 @@ class CryptoDataEngine {
             { name: 'Trading Timeline', fn: () => this.renderTradingTimeline() },
             { name: 'Trend Icons', fn: () => this.renderTrendIcons() },
             { name: 'Progress Bars', fn: () => this.updateProgressBars() },
+            { name: 'Fear & Greed Display', fn: () => this.updateFearGreedGauge() },
             { name: 'Dominance Chart', fn: () => this.updateDominanceChart() }
         ];
 
@@ -437,6 +438,117 @@ class CryptoDataEngine {
             console.log('Dominance chart not initialized yet, will update when ready');
             // Store the data for later use when chart is ready
             window.pendingChartUpdate = { btcDominance, altDominance };
+        }
+    }
+
+    /**
+     * Update Fear & Greed Index large display
+     */
+    updateFearGreedGauge() {
+        try {
+            console.log('🎯 Updating Fear & Greed Index display...');
+            
+            if (!this.data || !this.data.sentimentData?.fearGreedIndex?.value) {
+                console.warn('⚠️ Fear & Greed Index data not available, data:', this.data?.sentimentData);
+                return;
+            }
+
+            const fearGreedValue = parseFloat(this.data.sentimentData.fearGreedIndex.value);
+            const fearGreedLabel = this.data.sentimentData.fearGreedIndex.label;
+
+            if (isNaN(fearGreedValue)) {
+                console.error('❌ Invalid Fear & Greed value:', this.data.sentimentData.fearGreedIndex.value);
+                return;
+            }
+
+            console.log(`📊 Fear & Greed Index: ${fearGreedValue} (${fearGreedLabel})`);
+
+            // Update large number color based on value
+            const valueElement = document.getElementById('fear-greed-value');
+            if (valueElement) {
+                // Remove existing color classes
+                valueElement.classList.remove('text-danger', 'text-warning', 'text-primary', 'text-success', 'text-dark');
+                
+                // Apply color based on value zones
+                if (fearGreedValue <= 24) {
+                    valueElement.classList.add('text-danger'); // Extreme Fear: Red
+                    console.log('🔴 Applied Extreme Fear color to value');
+                } else if (fearGreedValue <= 44) {
+                    valueElement.classList.add('text-warning'); // Fear: Yellow/Orange  
+                    console.log('🟡 Applied Fear color to value');
+                } else if (fearGreedValue <= 55) {
+                    valueElement.classList.add('text-primary'); // Neutral: Blue
+                    console.log('🔵 Applied Neutral color to value');
+                } else if (fearGreedValue <= 75) {
+                    valueElement.classList.add('text-success'); // Greed: Green
+                    console.log('🟢 Applied Greed color to value');
+                } else {
+                    valueElement.classList.add('text-success'); // Extreme Greed: Deep Green
+                    console.log('🟢 Applied Extreme Greed color to value');
+                }
+            } else {
+                console.warn('⚠️ Fear & Greed value element not found');
+            }
+
+            // Update badge color based on value
+            const badge = document.getElementById('fear-greed-badge');
+            if (badge) {
+                // Remove existing color classes
+                badge.classList.remove('bg-danger', 'bg-warning', 'bg-primary', 'bg-success', 'text-white', 'text-dark');
+                
+                // Apply color based on value zones (matching the large number)
+                if (fearGreedValue <= 24) {
+                    badge.classList.add('bg-danger', 'text-white'); // Extreme Fear: Red
+                    console.log('🔴 Applied Extreme Fear styling to badge');
+                } else if (fearGreedValue <= 44) {
+                    badge.classList.add('bg-warning', 'text-dark'); // Fear: Yellow/Orange  
+                    console.log('🟡 Applied Fear styling to badge');
+                } else if (fearGreedValue <= 55) {
+                    badge.classList.add('bg-primary', 'text-white'); // Neutral: Blue
+                    console.log('🔵 Applied Neutral styling to badge');
+                } else if (fearGreedValue <= 75) {
+                    badge.classList.add('bg-success', 'text-white'); // Greed: Green
+                    console.log('🟢 Applied Greed styling to badge');
+                } else {
+                    badge.classList.add('bg-success', 'text-white'); // Extreme Greed: Deep Green
+                    console.log('🟢 Applied Extreme Greed styling to badge');
+                }
+            } else {
+                console.warn('⚠️ Fear & Greed badge element not found');
+            }
+
+            // Update progress bar
+            const progressBar = document.getElementById('fear-greed-progress');
+            if (progressBar) {
+                // Remove existing color classes
+                progressBar.classList.remove('bg-danger', 'bg-warning', 'bg-primary', 'bg-success');
+                
+                // Set width and color
+                progressBar.style.width = `${fearGreedValue}%`;
+                
+                // Apply matching color to progress bar
+                if (fearGreedValue <= 24) {
+                    progressBar.classList.add('bg-danger');
+                } else if (fearGreedValue <= 44) {
+                    progressBar.classList.add('bg-warning');
+                } else if (fearGreedValue <= 55) {
+                    progressBar.classList.add('bg-primary');
+                } else if (fearGreedValue <= 75) {
+                    progressBar.classList.add('bg-success');
+                } else {
+                    progressBar.classList.add('bg-success');
+                }
+                
+                console.log(`📊 Updated progress bar to ${fearGreedValue}%`);
+            } else {
+                console.warn('⚠️ Fear & Greed progress bar element not found');
+            }
+
+            console.log('✅ Fear & Greed Index display updated successfully');
+            
+        } catch (error) {
+            console.error('❌ Failed to update Fear & Greed display:', error);
+            console.error('Stack trace:', error.stack);
         }
     }
 

@@ -127,12 +127,14 @@
       {
         "headline": "Bitcoin Golden Cross Triggers $500M Hourly Profit-Taking",
         "summary": "Bitcoin's 50-day moving average crossed above its 200-day average on May 22, confirming the golden cross pattern. This technical milestone has triggered increased profit-taking activity with hourly BTC cashouts exceeding $500M.",
-        "impact": "Neutral"
+        "impact": "Neutral",
+        "url": "https://example.com/bitcoin-golden-cross-analysis"
       },
       {
         "headline": "MicroStrategy Announces $84 Billion Bitcoin Acquisition Plan",
         "summary": "MicroStrategy has unveiled an aggressive $84 billion plan to acquire additional Bitcoin holdings, demonstrating continued institutional conviction in the asset despite market volatility.",
-        "impact": "Bullish"
+        "impact": "Bullish",
+        "url": "https://example.com/microstrategy-bitcoin-acquisition"
       },
       {
         "headline": "Ethereum ETF Inflows Surge as ETH Eyes $3,000 Breakout",
