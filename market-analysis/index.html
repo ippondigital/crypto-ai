@@ -852,6 +852,57 @@
             color: var(--text-inverse) !important;
         }
 
+        /* Light Background Market Cap Cards - Better Readability */
+        .bg-warning-light {
+            background: var(--warning-subtle) !important;
+            color: var(--text-primary) !important;
+            border: 1px solid var(--warning) !important;
+        }
+
+        .bg-success-light {
+            background: var(--success-subtle) !important;
+            color: var(--text-primary) !important;
+            border: 1px solid var(--success) !important;
+        }
+
+        .card.bg-warning-light,
+        .card.border-0.bg-warning-light {
+            background-color: var(--warning-subtle) !important;
+            color: var(--text-primary) !important;
+            border: 1px solid var(--warning) !important;
+        }
+
+        .card.bg-success-light,
+        .card.border-0.bg-success-light {
+            background-color: var(--success-subtle) !important;
+            color: var(--text-primary) !important;
+            border: 1px solid var(--success) !important;
+        }
+
+        /* Text color overrides for light background cards */
+        .bg-warning-light .text-white,
+        .bg-warning-light .text-white-50,
+        .bg-warning-light .text-white-75 {
+            color: var(--text-primary) !important;
+        }
+
+        .bg-success-light .text-white,
+        .bg-success-light .text-white-50,
+        .bg-success-light .text-white-75 {
+            color: var(--text-primary) !important;
+        }
+
+        /* Icon styling for light background cards */
+        .bg-warning-light .icon.bg-white {
+            background: var(--warning) !important;
+            color: white !important;
+        }
+
+        .bg-success-light .icon.bg-white {
+            background: var(--success) !important;
+            color: white !important;
+        }
+
         /* White Text Classes for Colored Backgrounds */
         .bg-warning-solid .text-white,
         .bg-success-solid .text-white,
@@ -1140,6 +1191,35 @@
             color: var(--info);
         }
 
+        /* Percentage Change Styling */
+        .trend-up {
+            color: var(--success) !important;
+            font-weight: 600;
+        }
+
+        .trend-down {
+            color: var(--danger) !important;
+            font-weight: 600;
+        }
+
+        .trend-neutral {
+            color: var(--text-muted) !important;
+            font-weight: 500;
+        }
+
+        /* Trend Icons */
+        .fa-arrow-up {
+            color: var(--success) !important;
+        }
+
+        .fa-arrow-down {
+            color: var(--danger) !important;
+        }
+
+        .fa-arrow-right {
+            color: var(--text-muted) !important;
+        }
+
         /* Remove default margins from headings in cards */
         .card-body h1, .card-body h2, .card-body h3, 
         .card-body h4, .card-body h5, .card-body h6 {
@@ -1353,8 +1433,12 @@
                                                 <div class="text-xs fw-bold text-uppercase mb-1 text-muted">
                                                     Bitcoin (BTC)
                                                 </div>
-                                                <div class="h3 mb-2 fw-bold numerical-data text-dark">
+                                <div class="h3 mb-2 fw-bold numerical-data text-dark">
                                                     $<span data-bind="text:marketOverview.bitcoin.price">--</span>
+                                                </div>
+                                                <div class="d-flex align-items-center">
+                                                    <span class="me-2 text-sm fw-medium" data-bind="text:marketOverview.bitcoin.change">--</span>
+                                                    <i id="btc-trend-icon" data-bind="class:marketOverview.bitcoin.trendIcon" class="fas fa-arrow-right text-muted"></i>
                                                 </div>
                                        
                                             </div>
@@ -1380,6 +1464,10 @@
                                                 <div class="h3 mb-2 fw-bold numerical-data text-dark">
                                                     $<span data-bind="text:marketOverview.ethereum.price">--</span>
                                                 </div>
+                                                <div class="d-flex align-items-center">
+                                                    <span class="me-2 text-sm fw-medium" data-bind="text:marketOverview.ethereum.change">--</span>
+                                                    <i id="eth-trend-icon" data-bind="class:marketOverview.ethereum.trendIcon" class="fas fa-arrow-right text-muted"></i>
+                                                </div>
                                         
                                             </div>
                                             <div class="col-auto">
@@ -1402,6 +1490,10 @@
                                                     Total Market Cap
                                                 </div>
                                                 <div class="h3 mb-2 fw-bold numerical-data text-dark" data-bind="text:marketOverview.totalMarketCap.value">$--</div>
+                                                <div class="d-flex align-items-center">
+                                                    <span class="me-2 text-sm fw-medium" data-bind="text:marketOverview.totalMarketCap.change">--</span>
+                                                    <i id="total-trend-icon" data-bind="class:marketOverview.totalMarketCap.trendIcon" class="fas fa-arrow-right text-muted"></i>
+                                                </div>
                                             
                                             </div>
                                             <div class="col-auto">
@@ -1433,6 +1525,10 @@
                                                                  style="width: 0%"></div>
                                                         </div>
                                                     </div>
+                                                </div>
+                                                <div class="d-flex align-items-center mt-2">
+                                                    <span class="me-2 text-sm fw-medium" data-bind="text:marketOverview.bitcoinDominance.change">--</span>
+                                                    <i id="dom-trend-icon" data-bind="class:marketOverview.bitcoinDominance.trendIcon" class="fas fa-arrow-right text-muted"></i>
                                                 </div>
                                             
                                             </div>
@@ -1506,23 +1602,23 @@
                                         <div class="row g-4">
                                             <!-- Bitcoin Market Cap Card -->
                                             <div class="col-md-6">
-                                                <div class="card border-0 bg-warning-solid">
+                                                <div class="card border-0 bg-warning-light">
                                                     <div class="card-body text-center">
                                                         <div class="row align-items-center">
                                                             <div class="col-auto">
                                                                 <div class="icon icon-shape icon-lg rounded-circle bg-white bg-opacity-20">
-                                                                    <i class="fab fa-bitcoin fa-2x text-white"></i>
+                                                                    <i class="fab fa-bitcoin fa-2x"></i>
                                                                 </div>
                                                             </div>
                                                             <div class="col">
-                                                                <div class="text-white-50 text-sm fw-medium text-uppercase mb-1">
+                                                                <div class="text-muted text-sm fw-medium text-uppercase mb-1">
                                                                     Bitcoin Market Cap
                                                                 </div>
-                                                                <div class="h3 mb-1 fw-bold text-white numerical-data" id="btc-market-cap">$2.08T</div>
-                                                                <div class="text-sm text-white-75" data-bind="class:marketOverview.bitcoin.trendClass">
+                                                                <div class="h3 mb-1 fw-bold numerical-data" id="btc-market-cap">$2.08T</div>
+                                                                <div class="text-sm" data-bind="class:marketOverview.bitcoin.trendClass">
                                                                     <i class="fas" id="btc-mcap-trend-icon"></i> 
                                                                     <span data-bind="text:marketOverview.bitcoin.change" class="fw-medium">-0.8%</span> 
-                                                                    <span class="text-white-50">(24h)</span>
+                                                                    <span class="text-muted">(24h)</span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1532,16 +1628,16 @@
                                             
                                             <!-- Altcoin Market Cap Card -->
                                             <div class="col-md-6">
-                                                <div class="card border-0 bg-success-solid">
+                                                <div class="card border-0 bg-success-light">
                                                     <div class="card-body text-center">
-                                                        <div class="text-white-50 text-sm fw-medium text-uppercase mb-2">
+                                                        <div class="text-muted text-sm fw-medium text-uppercase mb-2">
                                                             Altcoin Market Cap
                                                         </div>
-                                                        <div class="h3 mb-2 fw-bold text-white numerical-data" data-bind="text:marketOverview.altcoinMarketCap.value">$1.27T</div>
-                                                        <div class="text-sm text-white-75" data-bind="class:marketOverview.altcoinMarketCap.trendClass">
+                                                        <div class="h3 mb-2 fw-bold numerical-data" data-bind="text:marketOverview.altcoinMarketCap.value">$1.27T</div>
+                                                        <div class="text-sm" data-bind="class:marketOverview.altcoinMarketCap.trendClass">
                                                             <i class="fas" id="alt-trend-icon"></i> 
                                                             <span data-bind="text:marketOverview.altcoinMarketCap.change" class="fw-medium">-1.8%</span> 
-                                                            <span class="text-white-50">(24h)</span>
+                                                            <span class="text-muted">(24h)</span>
                                                         </div>
                                                     </div>
                                                 </div>

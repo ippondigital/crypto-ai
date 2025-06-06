@@ -8,6 +8,7 @@
 class CryptoDataEngine {
     constructor() {
         this.data = null;
+        this.liveData = null; // For API data
         this.bindingTypes = {
             'text': this.bindText,
             'html': this.bindHTML, 
@@ -16,6 +17,16 @@ class CryptoDataEngine {
             'style': this.bindStyle
         };
         this.templates = {};
+        
+        // API Configuration
+        this.apiConfig = {
+            coinGeckoBase: 'https://api.coingecko.com/api/v3',
+            fearGreedApi: 'https://api.alternative.me/fng/',
+            rateLimit: 30, // calls per minute for CoinGecko
+            retryDelay: 2000, // 2 seconds
+            maxRetries: 3
+        };
+        
         this.init();
     }
 
@@ -25,15 +36,24 @@ class CryptoDataEngine {
     async init() {
         try {
             console.log('🚀 Initializing Crypto Data Engine...');
+            this.updateStatusIndicator('🔄 Loading...', 'loading');
+            
             await this.loadData();
+            await this.fetchLiveMarketData(); // Fetch live API data
             await this.bindAll();
             
             // Render templates with error handling for each section
             await this.renderTemplatesSafely();
             
+            // Start auto-refresh every 1 minute automatically
+            this.startAutoRefresh(1);
+            
+            this.updateStatusIndicator('🟢 Live (1min refresh)', 'success');
             console.log('✅ Data Engine initialized successfully');
+            console.log('⏰ Auto-refresh started: Every 1 minute');
         } catch (error) {
             console.error('❌ Failed to initialize Data Engine:', error);
+            this.updateStatusIndicator('🔴 Offline', 'error');
             // Continue with fallback data to prevent complete failure
             this.data = this.getDefaultData();
             try {
@@ -155,11 +175,36 @@ class CryptoDataEngine {
             if (this.bindingTypes[bindType]) {
                 const value = this.getNestedValue(this.data, valuePath);
                 this.bindingTypes[bindType].call(this, element, value, extra);
+                
+                // Special handling for percentage change text elements
+                if (bindType === 'text' && valuePath.includes('.change')) {
+                    this.applyTrendClassToChangeElement(element, valuePath);
+                }
             } else {
                 console.warn(`Unknown binding type: ${bindType}`);
             }
         } catch (error) {
             console.error(`Binding error for expression "${expression}":`, error);
+        }
+    }
+
+    /**
+     * Apply trend class to percentage change elements
+     */
+    applyTrendClassToChangeElement(element, valuePath) {
+        try {
+            // Get the corresponding trend class path
+            const trendClassPath = valuePath.replace('.change', '.trendClass');
+            const trendClass = this.getNestedValue(this.data, trendClassPath);
+            
+            if (trendClass) {
+                // Remove existing trend classes
+                element.classList.remove('trend-up', 'trend-down', 'trend-neutral');
+                // Add the new trend class
+                element.classList.add(trendClass);
+            }
+        } catch (error) {
+            // Silently fail if trend class doesn't exist
         }
     }
 
@@ -176,11 +221,10 @@ class CryptoDataEngine {
 
     bindClass(element, value) {
         if (value) {
-            // Remove existing trend classes
+            // Remove existing trend classes and text color classes
             element.classList.remove('trend-up', 'trend-down', 'trend-neutral');
-            // Also remove alert classes for dynamic coloring
             element.classList.remove('alert-success', 'alert-warning', 'alert-danger', 'alert-info');
-            element.classList.remove('text-success', 'text-warning', 'text-danger', 'text-info');
+            element.classList.remove('text-success', 'text-warning', 'text-danger', 'text-info', 'text-muted');
             
             // Add the new class with appropriate prefix
             if (value.includes('alert-') || value.includes('text-') || value.includes('trend-')) {
@@ -219,6 +263,283 @@ class CryptoDataEngine {
             return current && current[key] !== undefined ? current[key] : null;
         }, obj);
     }
+
+    /**
+     * ===================================================================
+     * LIVE API DATA FETCHING METHODS
+     * ===================================================================
+     */
+
+    /**
+     * Fetch live market data from multiple free APIs
+     */
+    async fetchLiveMarketData() {
+        try {
+            console.log('📡 Fetching live market data from APIs...');
+            this.updateStatusIndicator('🔄 Refreshing...', 'refreshing');
+            
+            this.liveData = {};
+            
+            // Fetch in parallel for better performance
+            const [priceData, globalData, fearGreedData] = await Promise.allSettled([
+                this.fetchCoinPrices(),
+                this.fetchGlobalData(),
+                this.fetchFearGreedIndex()
+            ]);
+
+            // Process results
+            if (priceData.status === 'fulfilled') {
+                this.liveData.prices = priceData.value;
+                console.log('✅ Price data fetched successfully');
+            } else {
+                console.warn('⚠️ Failed to fetch price data:', priceData.reason);
+            }
+
+            if (globalData.status === 'fulfilled') {
+                this.liveData.global = globalData.value;
+                console.log('✅ Global market data fetched successfully');
+            } else {
+                console.warn('⚠️ Failed to fetch global data:', globalData.reason);
+            }
+
+            if (fearGreedData.status === 'fulfilled') {
+                this.liveData.fearGreed = fearGreedData.value;
+                console.log('✅ Fear & Greed Index fetched successfully');
+            } else {
+                console.warn('⚠️ Failed to fetch Fear & Greed data:', fearGreedData.reason);
+            }
+
+            // Update the main data object with live values
+            this.mergeLiveDataWithStatic();
+
+            console.log('🎯 Live market data integration complete');
+            
+        } catch (error) {
+            console.error('❌ Error fetching live market data:', error);
+            this.updateStatusIndicator('🔴 API Error', 'error');
+            console.log('📊 Continuing with static data from data.json');
+            throw error; // Re-throw to handle in calling function
+        }
+    }
+
+    /**
+     * Fetch Bitcoin and Ethereum prices from CoinGecko
+     */
+    async fetchCoinPrices() {
+        const url = `${this.apiConfig.coinGeckoBase}/simple/price?ids=bitcoin,ethereum&vs_currencies=usd&include_market_cap=true&include_24hr_change=true&include_24hr_vol=true`;
+        
+        return this.retryApiCall(async () => {
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`CoinGecko API error: ${response.status} ${response.statusText}`);
+            }
+            return await response.json();
+        });
+    }
+
+    /**
+     * Fetch global cryptocurrency market data from CoinGecko
+     */
+    async fetchGlobalData() {
+        const url = `${this.apiConfig.coinGeckoBase}/global`;
+        
+        return this.retryApiCall(async () => {
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`CoinGecko Global API error: ${response.status} ${response.statusText}`);
+            }
+            const result = await response.json();
+            return result.data; // Extract the data object
+        });
+    }
+
+    /**
+     * Fetch Fear & Greed Index from Alternative.me
+     */
+    async fetchFearGreedIndex() {
+        return this.retryApiCall(async () => {
+            const response = await fetch(this.apiConfig.fearGreedApi);
+            if (!response.ok) {
+                throw new Error(`Fear & Greed API error: ${response.status} ${response.statusText}`);
+            }
+            const result = await response.json();
+            return result.data[0]; // Get the latest entry
+        });
+    }
+
+    /**
+     * Retry API calls with exponential backoff
+     */
+    async retryApiCall(apiCall, retries = this.apiConfig.maxRetries) {
+        try {
+            return await apiCall();
+        } catch (error) {
+            if (retries > 0) {
+                console.log(`⏳ API call failed, retrying in ${this.apiConfig.retryDelay}ms... (${retries} retries left)`);
+                await new Promise(resolve => setTimeout(resolve, this.apiConfig.retryDelay));
+                return this.retryApiCall(apiCall, retries - 1);
+            }
+            throw error;
+        }
+    }
+
+    /**
+     * Merge live API data with static data.json content
+     */
+    mergeLiveDataWithStatic() {
+        if (!this.data || !this.liveData) return;
+
+        try {
+            // Update Bitcoin data
+            if (this.liveData.prices?.bitcoin) {
+                const btcData = this.liveData.prices.bitcoin;
+                if (this.data.marketOverview?.bitcoin) {
+                    this.data.marketOverview.bitcoin.price = this.formatCurrency(btcData.usd);
+                    this.data.marketOverview.bitcoin.change = this.formatPercentage(btcData.usd_24h_change);
+                    this.data.marketOverview.bitcoin.trendClass = this.getTrendClass(btcData.usd_24h_change);
+                    this.data.marketOverview.bitcoin.trendIcon = this.getTrendIcon(btcData.usd_24h_change);
+                }
+            }
+
+            // Update Ethereum data
+            if (this.liveData.prices?.ethereum) {
+                const ethData = this.liveData.prices.ethereum;
+                if (this.data.marketOverview?.ethereum) {
+                    this.data.marketOverview.ethereum.price = this.formatCurrency(ethData.usd);
+                    this.data.marketOverview.ethereum.change = this.formatPercentage(ethData.usd_24h_change);
+                    this.data.marketOverview.ethereum.trendClass = this.getTrendClass(ethData.usd_24h_change);
+                    this.data.marketOverview.ethereum.trendIcon = this.getTrendIcon(ethData.usd_24h_change);
+                }
+            }
+
+            // Update global market data
+            if (this.liveData.global) {
+                const globalData = this.liveData.global;
+                
+                // Total market cap
+                if (this.data.marketOverview?.totalMarketCap && globalData.total_market_cap?.usd) {
+                    this.data.marketOverview.totalMarketCap.value = this.formatMarketCap(globalData.total_market_cap.usd);
+                    if (globalData.market_cap_change_percentage_24h_usd !== undefined) {
+                        this.data.marketOverview.totalMarketCap.change = this.formatPercentage(globalData.market_cap_change_percentage_24h_usd);
+                        this.data.marketOverview.totalMarketCap.trendClass = this.getTrendClass(globalData.market_cap_change_percentage_24h_usd);
+                        this.data.marketOverview.totalMarketCap.trendIcon = this.getTrendIcon(globalData.market_cap_change_percentage_24h_usd);
+                    }
+                }
+
+                // Bitcoin dominance
+                if (this.data.marketOverview?.bitcoinDominance && globalData.market_cap_percentage?.btc) {
+                    const oldDominance = parseFloat(this.data.marketOverview.bitcoinDominance.percentage) || 0;
+                    const newDominance = globalData.market_cap_percentage.btc;
+                    const dominanceChange = newDominance - oldDominance;
+                    
+                    this.data.marketOverview.bitcoinDominance.percentage = newDominance.toFixed(1);
+                    this.data.marketOverview.bitcoinDominance.change = this.formatPercentage(dominanceChange);
+                    this.data.marketOverview.bitcoinDominance.trendClass = this.getTrendClass(dominanceChange);
+                    this.data.marketOverview.bitcoinDominance.trendIcon = this.getTrendIcon(dominanceChange);
+                }
+
+                // Calculate altcoin market cap
+                if (globalData.total_market_cap?.usd && this.liveData.prices?.bitcoin?.usd_market_cap) {
+                    const totalMarketCap = globalData.total_market_cap.usd;
+                    const btcMarketCap = this.liveData.prices.bitcoin.usd_market_cap;
+                    const altMarketCap = totalMarketCap - btcMarketCap;
+                    
+                    if (this.data.marketOverview?.altcoinMarketCap) {
+                        this.data.marketOverview.altcoinMarketCap.value = this.formatMarketCap(altMarketCap);
+                        
+                        // Calculate altcoin change (approximate)
+                        if (globalData.market_cap_change_percentage_24h_usd !== undefined) {
+                            this.data.marketOverview.altcoinMarketCap.change = this.formatPercentage(globalData.market_cap_change_percentage_24h_usd);
+                            this.data.marketOverview.altcoinMarketCap.trendClass = this.getTrendClass(globalData.market_cap_change_percentage_24h_usd);
+                            this.data.marketOverview.altcoinMarketCap.trendIcon = this.getTrendIcon(globalData.market_cap_change_percentage_24h_usd);
+                        }
+                    }
+                }
+            }
+
+            // Update Fear & Greed Index
+            if (this.liveData.fearGreed) {
+                const fgData = this.liveData.fearGreed;
+                if (this.data.sentimentData?.fearGreedIndex) {
+                    this.data.sentimentData.fearGreedIndex.value = fgData.value;
+                    this.data.sentimentData.fearGreedIndex.label = fgData.value_classification;
+                }
+            }
+
+            console.log('🔄 Successfully merged live API data with static data');
+
+        } catch (error) {
+            console.error('❌ Error merging live data:', error);
+        }
+    }
+
+    /**
+     * ===================================================================
+     * FORMATTING HELPER METHODS
+     * ===================================================================
+     */
+
+    /**
+     * Format currency values
+     */
+    formatCurrency(value) {
+        if (value >= 1000) {
+            return new Intl.NumberFormat('en-US').format(Math.round(value));
+        }
+        return new Intl.NumberFormat('en-US', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        }).format(value);
+    }
+
+    /**
+     * Format market cap values
+     */
+    formatMarketCap(value) {
+        if (value >= 1e12) {
+            return `$${(value / 1e12).toFixed(2)}T`;
+        } else if (value >= 1e9) {
+            return `$${(value / 1e9).toFixed(2)}B`;
+        } else if (value >= 1e6) {
+            return `$${(value / 1e6).toFixed(2)}M`;
+        }
+        return `$${new Intl.NumberFormat('en-US').format(value)}`;
+    }
+
+    /**
+     * Format percentage values
+     */
+    formatPercentage(value) {
+        if (value === null || value === undefined) return '0.0%';
+        const sign = value >= 0 ? '+' : '';
+        return `${sign}${value.toFixed(1)}%`;
+    }
+
+    /**
+     * Get trend class based on percentage change
+     */
+    getTrendClass(change) {
+        if (change === null || change === undefined) return 'trend-neutral';
+        if (change > 0) return 'trend-up';
+        if (change < 0) return 'trend-down';
+        return 'trend-neutral';
+    }
+
+    /**
+     * Get trend icon based on percentage change
+     */
+    getTrendIcon(change) {
+        if (change === null || change === undefined) return 'fa-arrow-right';
+        if (change > 0) return 'fa-arrow-up';
+        if (change < 0) return 'fa-arrow-down';
+        return 'fa-arrow-right';
+    }
+
+    /**
+     * ===================================================================
+     * END OF LIVE API METHODS
+     * ===================================================================
+     */
 
     /**
      * Render complex template sections
@@ -323,6 +644,31 @@ class CryptoDataEngine {
         
         // Update alert classes for trading signals and risk management
         this.updateAlertClasses();
+        
+        // Apply trend classes to percentage change text elements
+        this.applyTrendClassesToPercentageElements();
+    }
+
+    /**
+     * Apply trend classes to all percentage change elements
+     */
+    applyTrendClassesToPercentageElements() {
+        const changeElements = [
+            { selector: '[data-bind*="marketOverview.bitcoin.change"]', trendClass: this.data.marketOverview?.bitcoin?.trendClass },
+            { selector: '[data-bind*="marketOverview.ethereum.change"]', trendClass: this.data.marketOverview?.ethereum?.trendClass },
+            { selector: '[data-bind*="marketOverview.totalMarketCap.change"]', trendClass: this.data.marketOverview?.totalMarketCap?.trendClass },
+            { selector: '[data-bind*="marketOverview.bitcoinDominance.change"]', trendClass: this.data.marketOverview?.bitcoinDominance?.trendClass }
+        ];
+
+        changeElements.forEach(({ selector, trendClass }) => {
+            const element = document.querySelector(selector);
+            if (element && trendClass) {
+                // Remove existing trend classes
+                element.classList.remove('trend-up', 'trend-down', 'trend-neutral');
+                // Add the new trend class
+                element.classList.add(trendClass);
+            }
+        });
     }
 
     updateTrendIcon(elementId, iconClass) {
@@ -751,6 +1097,7 @@ class CryptoDataEngine {
     async refresh() {
         console.log('🔄 Refreshing data...');
         await this.loadData();
+        await this.fetchLiveMarketData(); // Refresh live API data
         await this.bindAll();
         await this.renderTemplatesSafely();
         console.log('✅ Data refreshed successfully');
@@ -768,11 +1115,156 @@ class CryptoDataEngine {
         // This would be useful for real-time updates
         console.log(`Updating ${path} to ${value}`);
     }
+
+    /**
+     * Set up automatic refresh of live data
+     * @param {number} intervalMinutes - How often to refresh (in minutes)
+     */
+    startAutoRefresh(intervalMinutes = 1) {
+        if (this.refreshInterval) {
+            clearInterval(this.refreshInterval);
+        }
+        
+        console.log(`⏰ Setting up auto-refresh every ${intervalMinutes} minute(s)`);
+        
+        this.refreshInterval = setInterval(async () => {
+            try {
+                const timestamp = new Date().toLocaleTimeString();
+                console.log(`🔄 Auto-refreshing live market data... (${timestamp})`);
+                
+                await this.fetchLiveMarketData();
+                await this.bindAll();
+                await this.renderTemplatesSafely();
+                
+                console.log(`✅ Auto-refresh complete (${timestamp})`);
+                
+                // Update any "last updated" display if it exists
+                this.updateLastRefreshTime();
+                
+            } catch (error) {
+                console.error('❌ Auto-refresh failed:', error);
+                this.updateStatusIndicator('🔴 Refresh failed', 'error');
+                // Try to recover on next interval
+            }
+        }, intervalMinutes * 60 * 1000);
+        
+        // Update status to show auto-refresh is active
+        this.updateStatusIndicator(`🟢 Live (${intervalMinutes}min refresh)`, 'success');
+    }
+
+    /**
+     * Stop automatic refresh
+     */
+    stopAutoRefresh() {
+        if (this.refreshInterval) {
+            clearInterval(this.refreshInterval);
+            this.refreshInterval = null;
+            this.updateStatusIndicator('⏸️ Manual mode', 'neutral');
+            console.log('⏹️ Auto-refresh stopped');
+        }
+    }
+
+    /**
+     * Refresh only the live API data (faster than full refresh)
+     */
+    async refreshLiveData() {
+        const timestamp = new Date().toLocaleTimeString();
+        console.log(`🔄 Refreshing live market data only... (${timestamp})`);
+        try {
+            await this.fetchLiveMarketData();
+            await this.bindAll();
+            // Only update specific dynamic elements
+            await this.updateProgressBars();
+            await this.updateFearGreedGauge();
+            await this.renderTrendIcons();
+            
+            this.updateLastRefreshTime();
+            console.log(`✅ Live data refreshed successfully (${timestamp})`);
+        } catch (error) {
+            console.error('❌ Live data refresh failed:', error);
+        }
+    }
+
+    /**
+     * Update last refresh time display
+     */
+    updateLastRefreshTime() {
+        try {
+            const now = new Date();
+            const timestamp = now.toLocaleTimeString();
+            
+            // Try to find and update any last-updated elements
+            const lastUpdatedElements = document.querySelectorAll('[data-last-updated], .last-updated, #last-updated');
+            lastUpdatedElements.forEach(element => {
+                element.textContent = `Last updated: ${timestamp}`;
+            });
+            
+            // Update live status indicator if it exists
+            const statusIndicator = document.getElementById('live-status');
+            if (statusIndicator) {
+                statusIndicator.textContent = `🟢 Live (${timestamp})`;
+                statusIndicator.className = 'live-status-indicator success';
+            }
+            
+            // Also update document title to show refresh status
+            if (document.title && !document.title.includes('●')) {
+                document.title = '● ' + document.title.replace('● ', '');
+                // Remove the dot after 2 seconds to create a "pulse" effect
+                setTimeout(() => {
+                    document.title = document.title.replace('● ', '');
+                }, 2000);
+            }
+            
+        } catch (error) {
+            // Silently fail if elements don't exist
+        }
+    }
+
+    /**
+     * Update status indicator during refresh
+     */
+    updateStatusIndicator(status, type = 'loading') {
+        try {
+            const statusIndicator = document.getElementById('live-status');
+            if (statusIndicator) {
+                statusIndicator.textContent = status;
+                statusIndicator.className = `live-status-indicator ${type}`;
+            }
+        } catch (error) {
+            // Silently fail if element doesn't exist
+        }
+    }
 }
 
 // Initialize the data engine when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
     window.cryptoDataEngine = new CryptoDataEngine();
+    
+    // Expose useful methods globally for console access
+    window.refreshLiveData = () => window.cryptoDataEngine.refreshLiveData();
+    window.startAutoRefresh = (minutes = 1) => window.cryptoDataEngine.startAutoRefresh(minutes);
+    window.stopAutoRefresh = () => window.cryptoDataEngine.stopAutoRefresh();
+    window.getRefreshStatus = () => {
+        const isRunning = !!window.cryptoDataEngine.refreshInterval;
+        console.log(`Auto-refresh is ${isRunning ? 'RUNNING' : 'STOPPED'}`);
+        if (isRunning) {
+            console.log('Current interval: Every 1 minute');
+            console.log('To stop: stopAutoRefresh()');
+            console.log('To change interval: startAutoRefresh(minutes)');
+        } else {
+            console.log('To start: startAutoRefresh(minutes)');
+        }
+        return isRunning;
+    };
+    
+    console.log('🎯 Global methods available:');
+    console.log('  - refreshLiveData() - Refresh market data now');
+    console.log('  - startAutoRefresh(minutes) - Start auto-refresh (default: 1 min)');
+    console.log('  - stopAutoRefresh() - Stop auto-refresh');
+    console.log('  - getRefreshStatus() - Check if auto-refresh is running');
+    console.log('');
+    console.log('📊 Auto-refresh: ENABLED (every 1 minute)');
+    console.log('💡 Tip: Watch for "🔄" and "✅" messages to see live updates');
 });
 
 // Export for potential module use
