@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteRule ^$ /market-analysis/ [R=301,L]
+RewriteRule ^(.*)$ /market-analysis/$1 [R=301,L]
