@@ -1,0 +1,73 @@
+{
+  "reportMetadata": {
+    "weekDate": "Week of June 5, 2025",
+    "reportNumber": "2",
+    "generationDate": "June 5, 2025"
+  },
+  "marketOverview": {
+    "bitcoin": {
+      "price": "105,000",
+      "change": "-0.8%",
+      "trendClass": "trend-down",
+      "trendIcon": "fa-arrow-down"
+    },
+    "ethereum": {
+      "price": "2,620",
+      "change": "+1.2%",
+      "trendClass": "trend-up",
+      "trendIcon": "fa-arrow-up"
+    },
+    "totalMarketCap": {
+      "value": "$3.35T",
+      "change": "-0.7%",
+      "trendClass": "trend-down",
+      "trendIcon": "fa-arrow-down"
+    },
+    "bitcoinDominance": {
+      "percentage": "62.1",
+      "change": "+0.5%",
+      "trendClass": "trend-up",
+      "trendIcon": "fa-arrow-up"
+    },
+    "altcoinMarketCap": {
+      "value": "$1.27T",
+      "change": "-1.8%",
+      "trendClass": "trend-down",
+      "trendIcon": "fa-arrow-down"
+    }
+  },
+  "sentimentData": {
+    "fearGreedIndex": {
+      "value": "57",
+      "label": "Neutral"
+    }
+  },  "onChainMetrics": {
+    "exchangeFlow": {
+      "value": "-1,800 BTC (7d)",
+      "analysis": "Continued net outflow from exchanges, though at a slower pace than last week. Exchange balances at 7-year lows signal strong institutional accumulation continues."
+    },
+    "mvrvRatio": {
+      "value": "2.0",
+      "analysis": "MVRV slightly down from 2.1, indicating fair valuation territory. Golden cross confirmation on May 22 triggered profit-taking but hasn't reached concerning levels."
+    },
+    "sopr": {
+      "value": "1.06",
+      "analysis": "SOPR above 1.0 shows profit-taking activity increased post golden cross. Hourly BTC cashouts topped $500M but remain within healthy distribution range."
+    }
+  },
+  "cycleAnalysis": {
+    "currentPosition": {
+      "cyclePositionPercent": "80",
+      "cyclePhase": "Late Bull Market",
+      "cycleStartDate": "October 2023",
+      "daysInCycle": "417"
+    },
+    "predictions": {
+      "btcCyclePeakTarget": "$250,000-310,000",
+      "predictedPeakDate": "August-October 2025",
+      "peakConfidence": "75",
+      "bearMarketStart": "Q4 2025-Q1 2026",
+      "bearMarketBottom": "$50,000-75,000",
+      "bottomTimeline": "Q1-Q2 2027"
+    }
+  },

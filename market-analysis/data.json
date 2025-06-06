@@ -1,67 +1,66 @@
 {
   "reportMetadata": {
-    "weekDate": "Week of June 5, 2025",
-    "reportNumber": "2",
-    "generationDate": "June 5, 2025"
+    "weekDate": "Week of June 6, 2025",
+    "reportNumber": "3",
+    "generationDate": "June 6, 2025"
   },
   "marketOverview": {
     "bitcoin": {
-      "price": "105,000",
-      "change": "-0.8%",
+      "price": "103,188",
+      "change": "-0.0%",
+      "trendClass": "trend-neutral",
+      "trendIcon": "fa-arrow-right"
+    },
+    "ethereum": {
+      "price": "2,464",
+      "change": "-5.8%",
       "trendClass": "trend-down",
       "trendIcon": "fa-arrow-down"
     },
-    "ethereum": {
-      "price": "2,620",
-      "change": "+1.2%",
-      "trendClass": "trend-up",
-      "trendIcon": "fa-arrow-up"
-    },
     "totalMarketCap": {
-      "value": "$3.35T",
-      "change": "-0.7%",
+      "value": "$3.33T",
+      "change": "-4.1%",
       "trendClass": "trend-down",
       "trendIcon": "fa-arrow-down"
     },
     "bitcoinDominance": {
-      "percentage": "62.1",
-      "change": "+0.5%",
+      "percentage": "61.6",
+      "change": "+0.3%",
       "trendClass": "trend-up",
       "trendIcon": "fa-arrow-up"
     },
     "altcoinMarketCap": {
-      "value": "$1.27T",
-      "change": "-1.8%",
+      "value": "$1.30T",
+      "change": "-6.2%",
       "trendClass": "trend-down",
       "trendIcon": "fa-arrow-down"
     }
-  },
-  "sentimentData": {
+  },  "sentimentData": {
     "fearGreedIndex": {
       "value": "57",
-      "label": "Neutral"
+      "label": "Greed"
     }
   },
   "onChainMetrics": {
     "exchangeFlow": {
-      "value": "-1,800 BTC (7d)",
-      "analysis": "Continued net outflow from exchanges, though at a slower pace than last week. Exchange balances at 7-year lows signal strong institutional accumulation continues."
+      "value": "-2,400 BTC (7d)",
+      "analysis": "Sharp drop in BTC reserves on centralized exchanges now at all-time lows. This pattern signals aggressive institutional accumulation and long-term bullish sentiment from major players."
     },
     "mvrvRatio": {
-      "value": "2.0",
-      "analysis": "MVRV slightly down from 2.1, indicating fair valuation territory. Golden cross confirmation on May 22 triggered profit-taking but hasn't reached concerning levels."
+      "value": "2.1",
+      "analysis": "BTC has broken above the short-term holder realized price. MVRV at 2.1 indicates fair to slightly overvalued territory, but historical patterns suggest room for growth in late cycle phase."
     },
     "sopr": {
-      "value": "1.06",
-      "analysis": "SOPR above 1.0 shows profit-taking activity increased post golden cross. Hourly BTC cashouts topped $500M but remain within healthy distribution range."
+      "value": "1.04",
+      "analysis": "SOPR slightly above 1.0 shows measured profit-taking activity. Long-term holders leading the selling indicates mature capital rotation rather than speculative churn."
     }
   },
   "cycleAnalysis": {
     "currentPosition": {
-      "cyclePositionPercent": "80",
+      "cyclePositionPercent": "82",
       "cyclePhase": "Late Bull Market",
       "cycleStartDate": "October 2023",
-      "daysInCycle": "417"
+      "daysInCycle": "420"
     },
     "predictions": {
       "btcCyclePeakTarget": "$250,000-310,000",
@@ -71,26 +70,31 @@
       "bearMarketBottom": "$50,000-75,000",
       "bottomTimeline": "Q1-Q2 2027"
     }
-  },
-  "tradingTimeline": {
+  },  "tradingTimeline": {
     "next30Days": [
       {
-        "date": "Jun 12",
+        "date": "Jun 11",
         "impact": "HIGH IMPACT",
-        "title": "CPI Release - May inflation data",
-        "description": "Expected: 3.0% vs 3.1% prior | 80% pump probability if under 2.9%"
+        "title": "U.S. Jobs Report",
+        "description": "Expected NFP: 185K vs 175K prior | Critical for Fed policy direction"
       },
       {
         "date": "Jun 17-18",
         "impact": "CRITICAL",
         "title": "FOMC Meeting Decision",
-        "description": "70% chance of 25bp cut | Fed in 'wait and see' mode on trade policy impacts"
+        "description": "75% chance of 25bp cut | Market pricing in dovish pivot"
+      },
+      {
+        "date": "Jul 2",
+        "impact": "MEDIUM",
+        "title": "ISM Manufacturing PMI",
+        "description": "Key economic indicator for Q3 outlook"
       }
     ],
     "next90Days": [
       {
         "date": "Jul 29-30",
-        "impact": "MEDIUM",
+        "impact": "HIGH IMPACT",
         "title": "Next FOMC Meeting",
         "description": "Additional rate cuts expected if economic data supports dovish stance"
       },
@@ -99,6 +103,12 @@
         "impact": "CRITICAL",
         "title": "Pi Cycle Top Signal Date",
         "description": "Key technical indicator date | 99% historical accuracy for cycle peaks"
+      },
+      {
+        "date": "Sep 16-17",
+        "impact": "HIGH IMPACT",
+        "title": "September FOMC Meeting",
+        "description": "Potential for continued rate cutting cycle"
       }
     ],
     "majorCycleEvents": [
@@ -106,7 +116,7 @@
         "date": "Q3 2025",
         "impact": "PEAK",
         "title": "Expected Cycle Peak",
-        "description": "Begin systematic profit taking above $200K | Golden cross confirmed"
+        "description": "Begin systematic profit taking above $200K | Target $250K-310K range"
       },
       {
         "date": "Q4 2025",
@@ -115,41 +125,37 @@
         "description": "Heavy cash position recommended by November 2025"
       }
     ]
-  },
-  "marketProbabilities": {
-    "pumpProbability1W": "68",
-    "pumpProbability1M": "80",
-    "dumpRisk30D": "30",
-    "sidewaysProbability": "25"
+  },  "marketProbabilities": {
+    "pumpProbability1W": "72",
+    "pumpProbability1M": "85",
+    "dumpRisk30D": "25",
+    "sidewaysProbability": "20"
   },
   "newsAndEvents": {
     "newsItems": [
       {
-        "headline": "Bitcoin Golden Cross Triggers $500M Hourly Profit-Taking",
-        "summary": "Bitcoin's 50-day moving average crossed above its 200-day average on May 22, confirming the golden cross pattern. This technical milestone has triggered increased profit-taking activity with hourly BTC cashouts exceeding $500M.",
-        "impact": "Neutral",
-        "url": "https://example.com/bitcoin-golden-cross-analysis"
+        "headline": "Bitcoin Retreats from $111.8K ATH as Long-Term Holders Take Profits",
+        "summary": "Bitcoin recently surged to new all-time high of $111.8K before retreating as long-term holders began realizing profits, with daily profits spiking to $1.47B marking the fifth such event this cycle.",
+        "impact": "Neutral"
       },
       {
-        "headline": "MicroStrategy Announces $84 Billion Bitcoin Acquisition Plan",
-        "summary": "MicroStrategy has unveiled an aggressive $84 billion plan to acquire additional Bitcoin holdings, demonstrating continued institutional conviction in the asset despite market volatility.",
-        "impact": "Bullish",
-        "url": "https://example.com/microstrategy-bitcoin-acquisition"
+        "headline": "Ethereum ETF Inflows Continue 13-Day Streak Despite Price Weakness",
+        "summary": "US ETH spot ETFs continue inflows streak of thirteen consecutive days, gaining $56.98 million on June 4th with BlackRock leading at $73.18 million, showing institutional confidence.",
+        "impact": "Bullish"
       },
       {
-        "headline": "Ethereum ETF Inflows Surge as ETH Eyes $3,000 Breakout",
-        "summary": "Institutional interest in Ethereum is growing sharply, with exchange balances dropping to seven-year lows and ETH-focused investment products seeing significant inflows. Analysts predict potential breakout above $3,000.",
+        "headline": "Trump Calls for Fed Rate Cuts After Weak Jobs Data",
+        "summary": "Following ADP data showing only 37,000 jobs created (slowest in two years), Trump renewed calls for Federal Reserve Chair Powell to cut interest rates to support economic growth.",
         "impact": "Bullish"
       }
-    ],
-    "economicEvents": [
+    ],    "economicEvents": [
       {
-        "date": "June 12",
-        "description": "CPI Release - May inflation data expected"
+        "date": "June 11",
+        "description": "U.S. Jobs Report - NFP expected 185K vs 175K prior"
       },
       {
         "date": "June 17-18",
-        "description": "FOMC Meeting - 70% probability of 25bp rate cut"
+        "description": "FOMC Meeting - 75% probability of 25bp rate cut"
       },
       {
         "date": "July 29-30",
@@ -163,7 +169,7 @@
       },
       {
         "date": "Q3 2025",
-        "description": "Expected altcoin season peak"
+        "description": "Expected cycle peak targeting $250K-310K"
       },
       {
         "date": "Q4 2025",
@@ -173,30 +179,29 @@
   },
   "tradingActionPlan": {
     "primarySignal": {
-      "signal": "HOLD",
-      "signalColor": "info",
-      "signalIcon": "fa-grip-horizontal",
-      "reasoning": "Market at 80% cycle completion with golden cross confirmed. Profit-taking activity increasing but still healthy. Hold positions while monitoring for $108K resistance break or $100K support test."
-    },
-    "entryLevels": {
-      "btcEntryLevel1": "100,000",
-      "btcEntry1Probability": "35",
-      "btcEntryLevel2": "103,000",
-      "btcEntry2Probability": "55",
-      "btcEntryLevel3": "105,000",
-      "btcEntry3Probability": "75"
+      "signal": "STRATEGIC HOLD",
+      "signalColor": "warning",
+      "signalIcon": "fa-pause",
+      "reasoning": "Market at critical juncture post-ATH with healthy profit-taking. Hold positions while monitoring key support at $100K-$102K and upcoming jobs report catalyst."
+    },    "entryLevels": {
+      "btcEntryLevel1": "95,000",
+      "btcEntry1Probability": "25",
+      "btcEntryLevel2": "100,000",
+      "btcEntry2Probability": "45",
+      "btcEntryLevel3": "103,000",
+      "btcEntry3Probability": "70"
     },
     "exitTargets": {
-      "btcTarget1": "120,000",
-      "btcTarget1Timeline": "1-3 months",
-      "btcTarget2": "200,000",
-      "btcTarget2Timeline": "3-5 months",
-      "btcStopLoss": "95,000"
+      "btcTarget1": "150,000",
+      "btcTarget1Timeline": "2-4 months",
+      "btcTarget2": "250,000",
+      "btcTarget2Timeline": "4-6 months",
+      "btcStopLoss": "90,000"
     },
     "positionSizing": {
-      "recommendedAllocation": "30-45% of risk capital",
-      "riskLevel": "Medium-High (late cycle with profit-taking)",
-      "timeHorizon": "2-5 months for major targets"
+      "recommendedAllocation": "25-40% of risk capital",
+      "riskLevel": "Medium-High (late cycle)",
+      "timeHorizon": "3-6 months for peak targeting"
     }
   },
   "riskManagement": {
@@ -205,23 +210,22 @@
       "color": "warning"
     },
     "riskMetrics": {
-      "drawdownRisk": "35-45%",
+      "drawdownRisk": "30-40%",
       "volatilityIndex": "HIGH"
     },
     "riskAlert": {
       "alertColor": "warning",
-      "message": "Golden cross triggering profit-taking. Monitor $100K support closely."
-    },
-    "portfolioAllocation": {
-      "btc": "40",
-      "eth": "30",
+      "message": "Late cycle dynamics increase downside risk. Monitor support levels closely."
+    },    "portfolioAllocation": {
+      "btc": "45",
+      "eth": "25",
       "alts": "20",
       "cash": "10"
     }
   },
   "analysis": {
-    "executiveSummary": "Bitcoin consolidates around $105,000 following the golden cross confirmation on May 22, with increased profit-taking activity as expected at this late-cycle stage. At 80% cycle completion, we're entering the final critical phase where technical signals and macroeconomic events carry outsized importance. The Fear & Greed index at 57 (neutral) suggests healthy market psychology despite some profit-taking. Key catalysts ahead include the June 17-18 FOMC meeting with 70% probability of a rate cut, and the approaching Pi Cycle Top indicator convergence in August. Ethereum shows relative strength with ETF inflows accelerating and potential for $3,000 breakout.",
-    "nextWeekOutlook": "The upcoming week centers on the June 12 CPI release and subsequent FOMC meeting on June 17-18. A cooler CPI print (under 2.9%) has an 80% probability of triggering renewed buying, while the FOMC's dovish pivot could provide significant tailwinds. Bitcoin's key levels remain $100K support and $108K resistance. The golden cross pattern typically leads to 20-30% gains over 3-6 months, supporting targets toward $120K-$130K. Ethereum's outperformance signals potential altcoin rotation if Bitcoin stabilizes. Overall outlook remains cautiously optimistic with increased focus on risk management as we approach peak cycle dynamics.",
-    "dataSources": "CoinGecko, Alternative.me, Federal Reserve, CoinDesk, The Block, CME FedWatch"
+    "executiveSummary": "Bitcoin consolidates around $103,000 following its retreat from the $111.8K all-time high, with the market entering a critical juncture as long-term holders realize profits. At 82% cycle completion, we're in the final phase where technical signals and macroeconomic events carry outsized importance. The Fear & Greed index at 57 (greed) suggests measured optimism despite recent weakness. Exchange reserves at all-time lows indicate continued institutional accumulation, while the upcoming jobs report and FOMC meeting represent key catalysts. Ethereum shows relative weakness but ETF inflows continue, signaling institutional confidence.",
+    "nextWeekOutlook": "The upcoming week centers on the June 11 jobs report and approaching June 17-18 FOMC meeting. A strong jobs print could pressure BTC back toward $100K support, while a weak reading may reignite buying toward $110K resistance. The Fed's expected dovish pivot (75% probability of rate cut) should provide medium-term tailwinds. Key levels remain $100K-$102K support and $108K-$111K resistance. The market appears to be in a healthy consolidation phase typical of late-cycle dynamics, with altcoin weakness suggesting Bitcoin dominance may persist near-term.",
+    "dataSources": "CoinGecko, Alternative.me, Federal Reserve, CoinDesk, Glassnode, CryptoQuant"
   }
 }
