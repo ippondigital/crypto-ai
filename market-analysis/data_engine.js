@@ -605,30 +605,69 @@ class CryptoDataEngine {
     }
 
     /**
-     * Render trading timeline sections
+     * Render trading timeline sections - preserve static content if no data
      */
     renderTradingTimeline() {
-        this.renderTimelineSection('next-30-days-container', this.data.tradingTimeline?.next30Days);
-        this.renderTimelineSection('next-90-days-container', this.data.tradingTimeline?.next90Days);
-        this.renderTimelineSection('major-cycle-events-container', this.data.tradingTimeline?.majorCycleEvents);
+        // Only render if we have actual timeline data, otherwise preserve static HTML
+        if (this.data.tradingTimeline && 
+            (this.hasTimelineData(this.data.tradingTimeline.next30Days) ||
+             this.hasTimelineData(this.data.tradingTimeline.next90Days) ||
+             this.hasTimelineData(this.data.tradingTimeline.majorCycleEvents))) {
+            
+            this.renderTimelineSection('next-30-days-container', this.data.tradingTimeline?.next30Days);
+            this.renderTimelineSection('next-90-days-container', this.data.tradingTimeline?.next90Days);
+            this.renderTimelineSection('major-cycle-events-container', this.data.tradingTimeline?.majorCycleEvents);
+            console.log('✅ Dynamic timeline data rendered from data.json');
+        } else {
+            console.log('📅 No timeline data in data.json, preserving static HTML timeline events');
+        }
+    }
+
+    /**
+     * Check if timeline data array has actual content
+     */
+    hasTimelineData(timelineArray) {
+        return timelineArray && Array.isArray(timelineArray) && timelineArray.length > 0;
     }
 
     renderTimelineSection(containerId, events) {
         const container = document.getElementById(containerId);
         if (!container || !events) return;
 
-        const eventsHTML = events.map(event => `
-            <div class="mb-3">
-                <div class="d-flex justify-content-between align-items-center mb-2">
-                    <span class="font-weight-bold text-primary">${event.date}</span>
-                    <span class="badge badge-${this.getImpactBadgeColor(event.impact)}">${event.impact}</span>
+        const eventsHTML = events.map(event => {
+            // Determine impact class for styling
+            const impactClass = this.getImpactClass(event.impact);
+            const impactLabel = event.impact || '';
+            
+            return `
+                <div class="timeline-event ${impactClass}">
+                    <div class="timeline-event-header">
+                        <div class="timeline-event-date">
+                            <i class="fas fa-calendar-alt"></i>
+                            ${event.date}
+                        </div>
+                        ${impactLabel ? `<span class="timeline-event-impact ${impactClass}">${impactLabel}</span>` : ''}
+                    </div>
+                    <div class="timeline-event-title">${event.title}</div>
+                    <div class="timeline-event-description">${event.description}</div>
                 </div>
-                <div class="text-sm">${event.title}</div>
-                <div class="text-xs text-muted">${event.description}</div>
-            </div>
-        `).join('');
+            `;
+        }).join('');
 
         container.innerHTML = eventsHTML;
+    }
+
+    /**
+     * Helper function to determine impact class for timeline events
+     */
+    getImpactClass(impact) {
+        if (!impact) return 'low';
+        
+        const impactUpper = impact.toString().toUpperCase();
+        if (impactUpper.includes('CRITICAL') || impactUpper.includes('PEAK')) return 'critical';
+        if (impactUpper.includes('HIGH') || impactUpper.includes('DISTRIBUTION')) return 'high';
+        if (impactUpper.includes('MEDIUM')) return 'medium';
+        return 'low';
     }
 
     /**
