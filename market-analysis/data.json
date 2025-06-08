@@ -1,215 +1,232 @@
 {
   "reportMetadata": {
-    "weekDate": "Week of June 6, 2025",
-    "reportNumber": "4",
-    "generationDate": "June 6, 2025",
+    "weekDate": "Week of June 8, 2025",
+    "reportNumber": "6",
+    "generationDate": "June 8, 2025",
     "methodology": "COMPREHENSIVE-REPORT-GUIDE.md v2.0",
     "validationStatus": "PASSED",
-    "lastValidated": "2025-06-06T19:45:00Z"
+    "lastValidated": "2025-06-08T22:21:00Z"
   },
   "marketOverview": {
     "bitcoin": {
-      "price": "103,828",
-      "change": "+0.6%",
-      "trendClass": "trend-up",
-      "trendIcon": "fa-arrow-up"
-    },
-    "ethereum": {
-      "price": "2,483",
+      "price": "105,600",
       "change": "+0.8%",
       "trendClass": "trend-up",
       "trendIcon": "fa-arrow-up"
     },
-    "totalMarketCap": {
-      "value": "$3.35T",
-      "change": "-3.8%",
-      "trendClass": "trend-down",
-      "trendIcon": "fa-arrow-down"
-    },
-    "bitcoinDominance": {
-      "percentage": "61.6",
-      "change": "+0.2%",
+    "ethereum": {
+      "price": "2,510",
+      "change": "+1.6%",
       "trendClass": "trend-up",
       "trendIcon": "fa-arrow-up"
     },
-    "altcoinMarketCap": {
-      "value": "$1.29T",
-      "change": "-5.1%",
+    "totalMarketCap": {
+      "value": "$3.27T",
+      "change": "+0.1%",
+      "trendClass": "trend-up",
+      "trendIcon": "fa-arrow-up"
+    },
+    "bitcoinDominance": {
+      "percentage": "63.5",
+      "change": "-0.2%",
       "trendClass": "trend-down",
       "trendIcon": "fa-arrow-down"
+    },
+    "altcoinMarketCap": {
+      "value": "$1.19T",
+      "change": "+0.3%",
+      "trendClass": "trend-up",
+      "trendIcon": "fa-arrow-up"
     }
   },
   "sentimentData": {
     "fearGreedIndex": {
-      "value": "57",
+      "value": "55",
       "label": "Greed"
     }
   },
   "onChainMetrics": {
     "exchangeFlow": {
-      "value": "-2,400 BTC (7d)",
-      "analysis": "Continued net outflows from exchanges maintain all-time low reserves, reinforcing the institutional accumulation narrative. This persistent drain indicates strong conviction among large holders and supports the bullish medium-term thesis."
+      "value": "-1,800 BTC (7d)",
+      "analysis": "Continued outflows from exchanges suggest accumulation behavior and reduced selling pressure, supporting current price stability above $105K."
     },
     "mvrvRatio": {
-      "value": "2.1",
-      "analysis": "MVRV holding steady at 2.1 suggests Bitcoin remains in fair value territory with room for growth. Historical patterns indicate this level can sustain further upward movement, particularly with continued institutional demand."
+      "value": "2.3",
+      "analysis": "MVRV ratio remains elevated but not at extreme levels, indicating room for further upside before reaching traditional cycle peak territory around 3.5-4.0."
     },
     "sopr": {
-      "value": "1.04",
-      "analysis": "SOPR maintaining above 1.0 reflects controlled profit-taking rather than panic selling. This measured approach by long-term holders suggests market maturity and supports continued price stability."
+      "value": "1.06",
+      "analysis": "SOPR above 1.0 indicates investors are realizing profits on average, but the moderate level suggests no panic selling, supporting current consolidation phase."
     }
   },
   "cycleAnalysis": {
     "currentPosition": {
-      "cyclePositionPercent": "83",
-      "cyclePhase": "Late Bull Market",
-      "cycleStartDate": "October 2023",
-      "daysInCycle": "425"
+      "cyclePositionPercent": "82",
+      "cyclePhase": "Late Bull Market - Peak Preparation",
+      "cycleStartDate": "November 2022",
+      "daysInCycle": "930"
     },
     "predictions": {
-      "btcCyclePeakTarget": "$250,000-310,000",
+      "btcCyclePeakTarget": "$140,000-170,000",
       "predictedPeakDate": "August-October 2025",
-      "peakConfidence": "75",
+      "peakConfidence": "85",
       "bearMarketStart": "Q4 2025-Q1 2026",
-      "bearMarketBottom": "$50,000-75,000",
-      "bottomTimeline": "Q1-Q2 2027"
+      "bearMarketBottom": "$35,000-50,000",
+      "bottomTimeline": "Q4 2026-Q1 2027"
     }
   },
   "tradingTimeline": {
     "next30Days": [
       {
         "date": "Jun 11",
-        "impact": "CRITICAL",
-        "title": "CPI Release (May 2025 Data)",
-        "description": "Expected: 2.3% vs 2.3% prior | Critical for Fed rate cut expectations"
+        "impact": "HIGH IMPACT",
+        "title": "CPI Inflation Report (May 2025)",
+        "description": "Critical inflation data that will influence Fed policy at the June 17-18 FOMC meeting. Lower readings increase rate cut probability."
       },
       {
         "date": "Jun 17-18",
         "impact": "CRITICAL",
-        "title": "FOMC Meeting Decision",
-        "description": "70% chance of 25bp cut | Powell press conference will set tone for summer"
+        "title": "FOMC Meeting & Rate Decision",
+        "description": "Federal Reserve policy meeting with potential for first rate cut in 2025. Markets pricing in 70% probability of 25bp cut. Major crypto catalyst."
       },
       {
-        "date": "Jul 1",
+        "date": "Jun 26",
         "impact": "MEDIUM",
-        "title": "ISM Manufacturing PMI",
-        "description": "Manufacturing sentiment indicator for Q3 outlook"
+        "title": "GDP Third Estimate (Q1 2025)",
+        "description": "Final Q1 GDP revision providing economic growth confirmation and macro backdrop for crypto markets."
+      },
+      {
+        "date": "Jun 28",
+        "impact": "MEDIUM",
+        "title": "Thailand Exchange Blocks",
+        "description": "Major exchanges (OKX, Bybit, 1000X, XT.com) blocked in Thailand due to licensing issues. Regional regulatory pressure."
       }
     ],
     "next90Days": [
       {
         "date": "Jul 29-30",
         "impact": "HIGH IMPACT",
-        "title": "Next FOMC Meeting",
-        "description": "Additional rate cuts expected if June data supports dovish stance"
+        "title": "FOMC Meeting #5",
+        "description": "Summer Fed meeting during critical altcoin season timing. Policy direction will impact crypto risk appetite."
       },
       {
-        "date": "Aug 24",
-        "impact": "CRITICAL",
-        "title": "Pi Cycle Top Signal Date",
-        "description": "Key technical indicator | Historical accuracy for cycle peak timing"
+        "date": "Aug 13",
+        "impact": "HIGH IMPACT",
+        "title": "CPI Report (July 2025)",
+        "description": "Mid-summer inflation reading crucial for understanding price trends and Fed policy trajectory into fall."
       },
       {
         "date": "Sep 16-17",
-        "impact": "HIGH IMPACT",
-        "title": "September FOMC Meeting",
-        "description": "Potential continuation of rate cutting cycle into fall"
+        "impact": "CRITICAL",
+        "title": "FOMC Meeting - Cycle Peak Window",
+        "description": "Fed meeting near historical cycle peak timing. Critical for determining late cycle monetary policy and crypto market direction."
       }
     ],
     "majorCycleEvents": [
       {
         "date": "Q3 2025",
         "impact": "PEAK",
-        "title": "Expected Cycle Peak Window",
-        "description": "Begin systematic profit taking above $200K | Target $250K-310K range"
+        "title": "Altcoin Season Peak",
+        "description": "Historical pattern suggests major altcoin outperformance during late summer before cycle top formation."
       },
       {
         "date": "Q4 2025",
         "impact": "DISTRIBUTION",
-        "title": "Bear Market Transition Phase",
-        "description": "Heavy cash position recommended by November 2025"
+        "title": "Cycle Peak Formation",
+        "description": "Expected timeframe for Bitcoin cycle peak based on 35-month historical pattern, targeting $140K-170K price range."
+      },
+      {
+        "date": "Q1 2026",
+        "impact": "DISTRIBUTION",
+        "title": "Bear Market Transition",
+        "description": "Anticipated start of bear market cycle with distribution phase and institutional profit-taking."
       }
     ]
   },
   "marketProbabilities": {
-    "pumpProbability1W": "70",
-    "pumpProbability1M": "82",
-    "dumpRisk30D": "23",
-    "sidewaysProbability": "18"
+    "pumpProbability1W": "78",
+    "pumpProbability1M": "85",
+    "dumpRisk30D": "25",
+    "sidewaysProbability": "15"
   },
   "newsAndEvents": {
     "newsItems": [
       {
-        "headline": "Bitcoin Whales Accumulate 122,330 BTC in Six Weeks Amid Price Consolidation",
-        "summary": "On-chain data reveals Bitcoin whales holding 100-1,000 BTC have accumulated significant positions during recent price consolidation, with Santiment tracking this influential cohort's continued buying pressure as a bullish signal.",
+        "headline": "Bitcoin Holds Above $105K Despite Trump-Musk Feud",
+        "summary": "Political drama between Trump and Musk fails to impact crypto markets, showing increased resilience and institutional adoption strength.",
+        "impact": "Neutral"
+      },
+      {
+        "headline": "ETH Bounces from $2,460 with Strong ETF Inflows",
+        "summary": "Ethereum recovers from support levels backed by 15-day streak of ETF inflows, signaling renewed institutional confidence.",
         "impact": "Bullish"
       },
       {
-        "headline": "Ethereum Eyes $3,000 Breakout as Bull Flag Pattern Emerges",
-        "summary": "Technical analysis shows Ethereum forming a bull flag pattern with 67% of ETH holders now in profit. Strong support at $2,316-$2,402 and rising Money Flow Index suggest potential breakout to $3,069 level in June.",
-        "impact": "Bullish"
+        "headline": "Thailand to Block Major Exchanges by June 28",
+        "summary": "Thai SEC blocks OKX, Bybit, 1000X, and XT.com for licensing violations, representing regional regulatory tightening.",
+        "impact": "Bearish"
       },
       {
-        "headline": "SharpLink Gaming Plans $425M Ethereum Treasury Strategy",
-        "summary": "SharpLink Gaming announces significant private placement to initiate Ethereum treasury strategy, adding to institutional rotation toward ETH. Options data suggests market expects ETH to reach $3,000 as accumulation begins.",
+        "headline": "BiT Global Dismisses Lawsuit Against Coinbase",
+        "summary": "Legal resolution between major crypto firms reduces regulatory uncertainty and supports market stability.",
         "impact": "Bullish"
       }
     ],
     "economicEvents": [
       {
-        "date": "June 11",
-        "description": "CPI Release (May 2025 data) - Expected 2.3% vs 2.3% prior"
+        "date": "June 11, 2025",
+        "description": "CPI Inflation Report (May 2025) - Key Fed policy input"
       },
       {
-        "date": "June 17-18",
-        "description": "FOMC Meeting - 70% probability of 25bp rate cut"
+        "date": "June 17-18, 2025", 
+        "description": "FOMC Meeting - Potential first rate cut of 2025"
       },
       {
-        "date": "July 29-30",
-        "description": "Next FOMC Meeting"
+        "date": "July 3, 2025",
+        "description": "Monthly Employment Report (June 2025)"
       }
     ],
     "cryptoEvents": [
       {
-        "date": "June 2025",
-        "description": "Ethereum's Pectra upgrade improving network efficiency"
+        "date": "June 28, 2025",
+        "description": "Thailand exchange access blocks take effect"
       },
       {
-        "date": "August 24",
-        "description": "Pi Cycle Top indicator convergence date"
+        "date": "July 2025",
+        "description": "Continued Ethereum ETF inflow monitoring"
       },
       {
-        "date": "Q3 2025",
-        "description": "Expected cycle peak targeting $250K-310K"
+        "date": "August 2025",
+        "description": "Peak altcoin season expectations"
       }
     ]
   },
   "tradingActionPlan": {
     "primarySignal": {
-      "signal": "ACCUMULATE",
-      "signalColor": "success",
-      "signalIcon": "fa-chart-up",
-      "reasoning": "Strong whale accumulation signals and upcoming Fed dovish pivot create favorable risk-reward. CPI data and FOMC meeting represent key catalysts for breakout above $110K resistance."
+      "signal": "STRATEGIC HOLD",
+      "signalColor": "info",
+      "signalIcon": "fa-pause",
+      "reasoning": "Late cycle positioning with major FOMC catalyst ahead. Hold current positions while preparing for increased volatility around Fed decision."
     },
     "entryLevels": {
-      "btcEntryLevel1": "97,000",
+      "btcEntryLevel1": "95,000",
       "btcEntry1Probability": "25",
-      "btcEntryLevel2": "101,000",
+      "btcEntryLevel2": "100,000", 
       "btcEntry2Probability": "45",
-      "btcEntryLevel3": "104,000",
+      "btcEntryLevel3": "103,000",
       "btcEntry3Probability": "70"
     },
     "exitTargets": {
-      "btcTarget1": "150,000",
-      "btcTarget1Timeline": "2-4 months",
-      "btcTarget2": "250,000",
-      "btcTarget2Timeline": "4-6 months",
+      "btcTarget1": "140,000",
+      "btcTarget1Timeline": "2-3 months",
+      "btcTarget2": "165,000", 
+      "btcTarget2Timeline": "3-5 months",
       "btcStopLoss": "95,000"
     },
     "positionSizing": {
       "recommendedAllocation": "30-45% of risk capital",
-      "riskLevel": "Medium-High (late cycle accumulation)",
-      "timeHorizon": "3-6 months for cycle peak targeting"
+      "riskLevel": "Medium-High (late cycle with Fed catalyst)",
+      "timeHorizon": "2-4 months for cycle peak targeting"
     }
   },
   "riskManagement": {
@@ -219,32 +236,31 @@
     },
     "riskMetrics": {
       "drawdownRisk": "25-35%",
-      "volatilityIndex": "HIGH"
+      "volatilityIndex": "MEDIUM"
     },
     "riskAlert": {
-      "alertColor": "info",
-      "message": "Favorable accumulation window before major catalysts. Monitor Fed policy closely."
+      "alertColor": "warning",
+      "message": "FOMC Decision Risk: June 17-18 Fed meeting represents major volatility catalyst. Prepare for 10-15% price swings in either direction based on rate decision and guidance."
     },
     "portfolioAllocation": {
-      "btc": "50",
-      "eth": "25",
-      "alts": "15",
+      "btc": "40",
+      "eth": "30", 
+      "alts": "20",
       "cash": "10"
     }
   },
   "analysis": {
-    "executiveSummary": "Bitcoin stabilizes near $103,800 as whale accumulation and upcoming Federal Reserve policy decisions create a compelling setup for the next major move. With the cycle at 83% completion, institutional players continue aggressive accumulation despite price consolidation. The Fear & Greed Index at 57 (Greed) reflects measured optimism ahead of critical catalysts. Exchange reserves remain at all-time lows while on-chain metrics signal sustained institutional conviction. Ethereum shows technical strength with bull flag formation and institutional treasury adoption accelerating. The convergence of dovish Fed expectations, strong on-chain fundamentals, and technical breakout patterns positions the market for significant moves in June.",
-    "nextWeekOutlook": "The week ahead centers on two pivotal events: the June 11 CPI release and June 17-18 FOMC meeting. CPI data matching expectations (2.3%) should reinforce Fed rate cut probabilities, while any downside surprise could trigger immediate buying. The FOMC meeting carries 70% odds of a 25bp cut, with Powell's press conference setting the tone for summer policy direction. Bitcoin's key levels remain $104K resistance and $101K support, with whale accumulation providing strong underlying bid. Ethereum approaches the critical $2,750 resistance level, with a breakout potentially targeting $3,000. Altcoin weakness continues as Bitcoin dominance holds steady, suggesting institutional focus remains on the majors.",
-    "dataVerification": "All market data cross-verified per COMPREHENSIVE-REPORT-GUIDE.md (19:45 UTC). Bitcoin price verified across CoinMarketCap, CoinDesk, and Coinbase with 2.8% variance. Fear & Greed Index confirmed at 57 across multiple platforms.",
+    "executiveSummary": "Bitcoin continues to demonstrate resilience above $105K while markets await the critical June 17-18 FOMC meeting. Current price action suggests consolidation before the next major move, with 78% probability of pump in the next week rising to 85% over the month. The upcoming Fed decision represents the most significant near-term catalyst, with markets pricing in 70% odds of a rate cut. Late cycle positioning (82% through current cycle) suggests we're approaching the final phase before Q4 2025 peak formation. Ethereum strength from ETF inflows and altcoin market cap growth indicate healthy risk appetite despite regional regulatory pressures.",
+    "nextWeekOutlook": "Expect heightened volatility leading into FOMC meeting. Pre-CPI positioning (June 11) could drive initial moves, followed by major volatility around Fed decision. Key levels to watch: $103K support and $108K resistance for Bitcoin. Successful hold above $105K with dovish Fed outcome could trigger rally toward $115K-120K range.",
     "dataConfidence": "HIGH",
-    "dataSources": "CoinMarketCap, CoinDesk, Coinbase, Alternative.me, Changelly, Santiment, Federal Reserve",
+    "dataSources": "CoinGecko, CoinMarketCap, TradingView, Federal Reserve, CoinDesk, The Block, Alternative.me",
     "calculationInputs": {
-      "fearGreedIndex": 57,
-      "exchangeFlow7d": "-2400 BTC",
-      "mvrvRatio": 2.1,
-      "cyclePosition": "83%",
-      "upcomingEvents": ["CPI Jun 11", "FOMC Jun 17-18"]
+      "fearGreedIndex": 55,
+      "exchangeFlow7d": "-1800 BTC",
+      "mvrvRatio": 2.3,
+      "cyclePosition": "82%",
+      "upcomingEvents": ["FOMC Jun 17-18", "CPI Jun 11"]
     },
-    "validationNotes": "All derived values validated per COMPREHENSIVE-REPORT-GUIDE.md v2.0. Market probabilities within 15-85% range, entry probabilities correctly ordered by distance, confidence values appropriate for late cycle phase."
+    "validationNotes": "All derived values validated per COMPREHENSIVE-REPORT-GUIDE.md v2.0. Market probabilities within required ranges, entry probabilities properly ordered, data verified within tolerance levels."
   }
 }
