@@ -1488,6 +1488,38 @@
                 display: none;
             }
         }
+        
+        /* =================================================================
+           LIVE DATA LOADING STATES
+           ================================================================= */
+        
+        .live-data {
+            transition: all 0.3s ease;
+        }
+        
+        .live-data.loading {
+            color: #64748b;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .badge.bg-success {
+            background-color: #10b981 !important;
+            animation: badge-glow 2s ease-in-out infinite;
+        }
+        
+        @keyframes badge-glow {
+            0%, 100% { box-shadow: 0 0 5px rgba(16, 185, 129, 0.3); }
+            50% { box-shadow: 0 0 10px rgba(16, 185, 129, 0.6); }
+        }
+        
+        .numerical-data {
+            font-variant-numeric: tabular-nums;
+        }
     </style>
 </head>
 
@@ -1621,14 +1653,17 @@
                                     <div class="card-body">
                                         <div class="row align-items-center">
                                             <div class="col">
-                                                <div class="text-xs fw-bold text-uppercase mb-1 text-muted">
-                                                    Bitcoin (BTC)
+                                                <div class="d-flex align-items-center justify-content-between mb-1">
+                                                    <div class="text-xs fw-bold text-uppercase text-muted">
+                                                        Bitcoin (BTC)
+                                                    </div>
+                                                    <span class="badge bg-success rounded-pill px-2 py-1" style="font-size: 0.65rem; margin-left: 8px;">LIVE</span>
                                                 </div>
-                                <div class="h3 mb-2 fw-bold numerical-data text-dark">
-                                                    $<span data-bind="text:marketOverview.bitcoin.price">--</span>
+                                                <div class="h3 mb-2 fw-bold numerical-data text-dark">
+                                                    $<span data-bind="text:marketOverview.bitcoin.price" class="live-data">Loading...</span>
                                                 </div>
                                                 <div class="d-flex align-items-center">
-                                                    <span class="me-2 text-sm fw-medium" data-bind="text:marketOverview.bitcoin.change">--</span>
+                                                    <span class="me-2 text-sm fw-medium live-data" data-bind="text:marketOverview.bitcoin.change">Loading...</span>
                                                     <i id="btc-trend-icon" data-bind="class:marketOverview.bitcoin.trendIcon" class="fas fa-arrow-right text-muted"></i>
                                                 </div>
                                        
@@ -1649,14 +1684,17 @@
                                     <div class="card-body">
                                         <div class="row align-items-center">
                                             <div class="col">
-                                                <div class="text-xs fw-bold text-uppercase mb-1 text-muted">
-                                                    Ethereum (ETH)
+                                                <div class="d-flex align-items-center justify-content-between mb-1">
+                                                    <div class="text-xs fw-bold text-uppercase text-muted">
+                                                        Ethereum (ETH)
+                                                    </div>
+                                                    <span class="badge bg-success rounded-pill px-2 py-1" style="font-size: 0.65rem; margin-left: 8px;">LIVE</span>
                                                 </div>
                                                 <div class="h3 mb-2 fw-bold numerical-data text-dark">
-                                                    $<span data-bind="text:marketOverview.ethereum.price">--</span>
+                                                    $<span data-bind="text:marketOverview.ethereum.price" class="live-data">Loading...</span>
                                                 </div>
                                                 <div class="d-flex align-items-center">
-                                                    <span class="me-2 text-sm fw-medium" data-bind="text:marketOverview.ethereum.change">--</span>
+                                                    <span class="me-2 text-sm fw-medium live-data" data-bind="text:marketOverview.ethereum.change">Loading...</span>
                                                     <i id="eth-trend-icon" data-bind="class:marketOverview.ethereum.trendIcon" class="fas fa-arrow-right text-muted"></i>
                                                 </div>
                                         
@@ -1677,12 +1715,15 @@
                                     <div class="card-body">
                                         <div class="row align-items-center">
                                             <div class="col">
-                                                <div class="text-xs fw-bold text-uppercase mb-1 text-muted">
-                                                    Total Market Cap
+                                                <div class="d-flex align-items-center justify-content-between mb-1">
+                                                    <div class="text-xs fw-bold text-uppercase text-muted">
+                                                        Total Market Cap
+                                                    </div>
+                                                    <span class="badge bg-success rounded-pill px-2 py-1" style="font-size: 0.65rem; margin-left: 8px;">LIVE</span>
                                                 </div>
-                                                <div class="h3 mb-2 fw-bold numerical-data text-dark" data-bind="text:marketOverview.totalMarketCap.value">$--</div>
+                                                <div class="h3 mb-2 fw-bold numerical-data text-dark live-data" data-bind="text:marketOverview.totalMarketCap.value">Loading...</div>
                                                 <div class="d-flex align-items-center">
-                                                    <span class="me-2 text-sm fw-medium" data-bind="text:marketOverview.totalMarketCap.change">--</span>
+                                                    <span class="me-2 text-sm fw-medium live-data" data-bind="text:marketOverview.totalMarketCap.change">Loading...</span>
                                                     <i id="total-trend-icon" data-bind="class:marketOverview.totalMarketCap.trendIcon" class="fas fa-arrow-right text-muted"></i>
                                                 </div>
                                             
@@ -1703,11 +1744,14 @@
                                     <div class="card-body">
                                         <div class="row align-items-center">
                                             <div class="col">
-                                                <div class="text-xs fw-bold text-uppercase mb-1 text-muted">BTC Dominance</div>
+                                                <div class="d-flex align-items-center justify-content-between mb-1">
+                                                    <div class="text-xs fw-bold text-uppercase text-muted">BTC Dominance</div>
+                                                    <span class="badge bg-success rounded-pill px-2 py-1" style="font-size: 0.65rem; margin-left: 8px;">LIVE</span>
+                                                </div>
                                                 <div class="row align-items-center g-0">
                                                     <div class="col-auto">
                                                         <div class="h3 mb-0 me-3 fw-bold numerical-data text-dark">
-                                                            <span data-bind="text:marketOverview.bitcoinDominance.percentage">--</span>%
+                                                            <span data-bind="text:marketOverview.bitcoinDominance.percentage" class="live-data">Loading...</span>%
                                                         </div>
                                                     </div>
                                                     <div class="col">
@@ -1742,10 +1786,13 @@
                             <div class="col-xl-4 col-lg-5">
                                 <div class="card h-100">
                                     <div class="card-header">
-                                        <h5 class="card-title mb-0">
-                                            <i class="fas fa-thermometer-half me-2 text-primary"></i>
-                                            Fear & Greed Index
-                                        </h5>
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <h5 class="card-title mb-0">
+                                                <i class="fas fa-thermometer-half me-2 text-primary"></i>
+                                                Fear & Greed Index
+                                            </h5>
+                                            <span class="badge bg-success rounded-pill px-2 py-1" style="font-size: 0.65rem;">LIVE</span>
+                                        </div>
                                     </div>
                                     <div class="card-body text-center d-flex flex-column justify-content-center" style="min-height: 320px;">
                                         <!-- Large Fear & Greed Display with Circle -->
@@ -1759,7 +1806,7 @@
                                                 </div>
                                             </div>
                                             <div class="h4 mb-0">
-                                                <span class="badge badge-lg px-4 py-2" id="fear-greed-badge" data-bind="text:sentimentData.fearGreedIndex.label" style="font-size: 1.1rem;">--</span>
+                                                <span class="badge badge-lg px-4 py-2 live-data" id="fear-greed-badge" data-bind="text:sentimentData.fearGreedIndex.label" style="font-size: 1.1rem;">Loading...</span>
                                             </div>
                                         </div>
                                         
@@ -2813,7 +2860,16 @@
     </script>
 
     <!-- Crypto Analysis Data Engine -->
-    <script src="data_engine.js"></script>
+    <script src="./data_engine.js"></script>
+    
+    <!-- Live Data Fetcher with CORS Proxy -->
+    <script src="./live-data-fetcher.js"></script>
+    
+    <!-- Phase 2: Data Source Transparency (Simplified) -->
+    <script src="phase2-transparency-simple.js"></script>
+    
+    <!-- Phase 3: Auto-Update System -->
+    <script src="phase3-auto-update.js"></script>
 
     <!-- Enhanced Market Breakdown JavaScript -->
     <script>

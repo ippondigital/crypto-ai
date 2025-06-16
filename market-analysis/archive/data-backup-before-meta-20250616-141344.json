@@ -8,91 +8,41 @@
     "lastValidated": "2025-06-08T22:21:00Z"
   },
   "marketOverview": {
-    "_meta": {
-      "source": "live",
-      "provider": "CoinGecko + TradingView",
-      "lastUpdated": "2025-06-16T14:30:00Z",
-      "updateFreq": "1 min",
-      "confidence": "HIGH"
-    },
     "bitcoin": {
       "price": "105,600",
       "change": "+0.8%",
       "trendClass": "trend-up",
-      "trendIcon": "fa-arrow-up",
-      "_meta": {
-        "source": "live",
-        "provider": "CoinGecko",
-        "lastUpdated": "2025-06-16T14:30:00Z",
-        "updateFreq": "1 min"
-      }
+      "trendIcon": "fa-arrow-up"
     },
     "ethereum": {
       "price": "2,510",
       "change": "+1.6%",
       "trendClass": "trend-up",
-      "trendIcon": "fa-arrow-up",
-      "_meta": {
-        "source": "live",
-        "provider": "CoinGecko",
-        "lastUpdated": "2025-06-16T14:30:00Z",
-        "updateFreq": "1 min"
-      }
+      "trendIcon": "fa-arrow-up"
     },
     "totalMarketCap": {
       "value": "$3.27T",
       "change": "+0.1%",
       "trendClass": "trend-up",
-      "trendIcon": "fa-arrow-up",
-      "_meta": {
-        "source": "live",
-        "provider": "CoinGecko",
-        "lastUpdated": "2025-06-16T14:30:00Z",
-        "updateFreq": "5 min"
-      }
+      "trendIcon": "fa-arrow-up"
     },
     "bitcoinDominance": {
       "percentage": "63.5",
       "change": "-0.2%",
       "trendClass": "trend-down",
-      "trendIcon": "fa-arrow-down",
-      "_meta": {
-        "source": "live",
-        "provider": "TradingView",
-        "lastUpdated": "2025-06-16T14:30:00Z",
-        "updateFreq": "1 min"
-      }
+      "trendIcon": "fa-arrow-down"
     },
     "altcoinMarketCap": {
       "value": "$1.19T",
       "change": "+0.3%",
       "trendClass": "trend-up",
-      "trendIcon": "fa-arrow-up",
-      "_meta": {
-        "source": "calculated",
-        "formula": "Total Market Cap - Bitcoin Market Cap",
-        "inputSources": ["CoinGecko Total", "CoinGecko Bitcoin"],
-        "lastUpdated": "2025-06-16T14:30:00Z"
-      }
+      "trendIcon": "fa-arrow-up"
     }
   },
   "sentimentData": {
-    "_meta": {
-      "source": "live",
-      "provider": "Alternative.me",
-      "lastUpdated": "2025-06-16T14:30:00Z",
-      "updateFreq": "24 hours",
-      "confidence": "HIGH"
-    },
     "fearGreedIndex": {
       "value": "55",
-      "label": "Greed",
-      "_meta": {
-        "source": "live",
-        "provider": "Alternative.me",
-        "lastUpdated": "2025-06-16T14:30:00Z",
-        "updateFreq": "24 hours"
-      }
+      "label": "Greed"
     }
   },
   "onChainMetrics": {
@@ -110,24 +60,11 @@
     }
   },
   "cycleAnalysis": {
-    "_meta": {
-      "source": "research",
-      "methodology": "Historical cycle analysis + on-chain metrics",
-      "confidence": "MEDIUM",
-      "lastUpdated": "2025-06-16T14:30:00Z",
-      "updateFreq": "weekly"
-    },
     "currentPosition": {
       "cyclePositionPercent": "82",
       "cyclePhase": "Late Bull Market - Peak Preparation",
       "cycleStartDate": "November 2022",
-      "daysInCycle": "930",
-      "_meta": {
-        "source": "calculated",
-        "formula": "Days since cycle bottom / Average cycle length",
-        "inputSources": ["Historical cycle data", "Current date"],
-        "confidence": "HIGH"
-      }
+      "daysInCycle": "930"
     },
     "predictions": {
       "btcCyclePeakTarget": "$140,000-170,000",
@@ -135,13 +72,7 @@
       "peakConfidence": "85",
       "bearMarketStart": "Q4 2025-Q1 2026",
       "bearMarketBottom": "$35,000-50,000",
-      "bottomTimeline": "Q4 2026-Q1 2027",
-      "_meta": {
-        "source": "research",
-        "methodology": "Fibonacci extensions + historical cycle analysis",
-        "confidence": "MEDIUM",
-        "dataSource": "Benjamin Cowen, Willy Woo, Plan B analysis"
-      }
+      "bottomTimeline": "Q4 2026-Q1 2027"
     }
   },
   "tradingTimeline": {

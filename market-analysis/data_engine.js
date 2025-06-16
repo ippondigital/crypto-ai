@@ -33,37 +33,81 @@ class CryptoDataEngine {
     /**
      * Initialize the data engine
      */
+    /**
+     * Initialize the data engine - RELIABLE LIVE DATA LOADING
+     */
     async init() {
+        console.log('🚀 Starting Data Engine...');
+        
         try {
-            console.log('🚀 Initializing Crypto Data Engine...');
-            this.updateStatusIndicator('🔄 Loading...', 'loading');
+            this.updateStatusIndicator('🔄 Loading Live Data...', 'loading');
             
+            // Step 1: Load static data as fallback
             await this.loadData();
             
-            // Skip live API data for now to use static data.json values
-            // await this.fetchLiveMarketData(); 
+            // Step 2: Immediately try to get live data (no delays) with multiple attempts
+            console.log('📡 Fetching live market data...');
+            let liveDataLoaded = false;
             
+            // Try multiple times to ensure reliability
+            for (let attempt = 1; attempt <= 3 && !liveDataLoaded; attempt++) {
+                try {
+                    console.log(`📡 Live data fetch attempt ${attempt}/3...`);
+                    await this.fetchLiveMarketData();
+                    if (this.liveData && this.liveData.prices?.bitcoin?.usd) {
+                        console.log(`✅ Live data fetched successfully on attempt ${attempt}`);
+                        liveDataLoaded = true;
+                    } else {
+                        console.warn(`⚠️ Attempt ${attempt}: Live data fetch returned but no valid data`);
+                        if (attempt < 3) {
+                            await new Promise(resolve => setTimeout(resolve, 1000)); // Wait 1 second between attempts
+                        }
+                    }
+                } catch (error) {
+                    console.error(`❌ Attempt ${attempt} failed:`, error.message);
+                    if (attempt < 3) {
+                        await new Promise(resolve => setTimeout(resolve, 1000)); // Wait 1 second between attempts
+                    }
+                }
+            }
+            
+            // Step 3: Bind data (live if available, static as fallback)
             await this.bindAll();
-            
-            // Render templates with error handling for each section
             await this.renderTemplatesSafely();
             
-            // Don't start auto-refresh to avoid API issues
-            // this.startAutoRefresh(1);
-            
-            this.updateStatusIndicator('🟢 Using Static Data', 'success');
-            console.log('✅ Data Engine initialized successfully with static data');
-        } catch (error) {
-            console.error('❌ Failed to initialize Data Engine:', error);
-            this.updateStatusIndicator('🔴 Offline', 'error');
-            // Continue with fallback data to prevent complete failure
-            this.data = this.getDefaultData();
-            try {
-                await this.bindAll();
-                console.log('⚠️ Data Engine running with fallback data');
-            } catch (fallbackError) {
-                console.error('❌ Complete initialization failure:', fallbackError);
+            if (liveDataLoaded) {
+                this.updateStatusIndicator('🟢 Live Data Active', 'success');
+                console.log('✅ Dashboard loaded with live data');
+            } else {
+                this.updateStatusIndicator('🟡 Using Static Data', 'warning');
+                console.log('⚠️ Dashboard loaded with static data (live data unavailable)');
+                
+                // Retry live data in background
+                setTimeout(async () => {
+                    console.log('🔄 Retrying live data fetch...');
+                    try {
+                        await this.refreshLiveData();
+                        this.updateStatusIndicator('🟢 Live Data Active', 'success');
+                        console.log('✅ Live data loaded on retry');
+                    } catch (retryError) {
+                        console.error('❌ Live data retry failed:', retryError.message);
+                    }
+                }, 2000);
             }
+            
+            // Start regular auto-refresh
+            this.startAutoRefresh(60);
+            
+        } catch (error) {
+            console.error('❌ Critical initialization error:', error);
+            this.updateStatusIndicator('🔴 Error', 'error');
+            
+            // Emergency fallback
+            if (!this.data) {
+                this.data = this.getDefaultData();
+            }
+            await this.bindAll();
+            await this.renderTemplatesSafely();
         }
     }
 
@@ -348,13 +392,49 @@ class CryptoDataEngine {
      * Bind all elements with data-bind attributes
      */
     async bindAll() {
+        console.log('🔗 ===== STARTING DATA BINDING =====');
+        console.log('🔗 Timestamp:', new Date().toISOString());
+        
+        // Log current data state for key values
+        console.log('📊 Current data state:');
+        console.log('📊 BTC Price:', this.data?.marketOverview?.bitcoin?.price);
+        console.log('📊 ETH Price:', this.data?.marketOverview?.ethereum?.price);
+        console.log('📊 F&G Index:', this.data?.sentimentData?.fearGreedIndex?.value);
+        console.log('📊 BTC Dominance:', this.data?.marketOverview?.bitcoinDominance?.percentage);
+        
         const elements = document.querySelectorAll('[data-bind]');
         console.log(`🔗 Found ${elements.length} elements to bind`);
+
+        // Special tracking for key elements
+        const keyElements = {
+            btcPrice: document.querySelector('[data-bind*="bitcoin.price"]'),
+            ethPrice: document.querySelector('[data-bind*="ethereum.price"]'), 
+            fgValue: document.querySelector('[data-bind*="fearGreedIndex.value"]'),
+            btcDominance: document.querySelector('[data-bind*="bitcoinDominance.percentage"]')
+        };
+        
+        console.log('🔍 Key elements BEFORE binding:');
+        Object.entries(keyElements).forEach(([key, element]) => {
+            if (element) {
+                console.log(`🔍 ${key}: "${element.textContent}" (selector: ${element.getAttribute('data-bind')})`);
+            } else {
+                console.log(`🔍 ${key}: NOT FOUND`);
+            }
+        });
 
         elements.forEach(element => {
             const bindExpression = element.getAttribute('data-bind');
             this.processBinding(element, bindExpression);
         });
+        
+        console.log('🔍 Key elements AFTER binding:');
+        Object.entries(keyElements).forEach(([key, element]) => {
+            if (element) {
+                console.log(`🔍 ${key}: "${element.textContent}"`);
+            }
+        });
+        
+        console.log('🔗 ===== DATA BINDING COMPLETE =====');
     }
 
     /**
@@ -372,8 +452,23 @@ class CryptoDataEngine {
 
             if (this.bindingTypes[bindType]) {
                 const value = this.getNestedValue(this.data, valuePath);
-                console.log(`🔗 Binding ${bindType}:${valuePath} = "${value}"`);
+                
+                // Enhanced logging for key elements
+                const isKeyElement = valuePath.includes('bitcoin.price') || 
+                                   valuePath.includes('ethereum.price') || 
+                                   valuePath.includes('fearGreedIndex.value') || 
+                                   valuePath.includes('bitcoinDominance.percentage');
+                
+                if (isKeyElement) {
+                    console.log(`🔑 KEY ELEMENT: ${bindType}:${valuePath} = "${value}" (element: ${element.tagName}${element.className ? '.' + element.className : ''})`);
+                    console.log(`🔑 Element current content BEFORE: "${element.textContent}"`);
+                }
+                
                 this.bindingTypes[bindType].call(this, element, value, extra);
+                
+                if (isKeyElement) {
+                    console.log(`🔑 Element content AFTER: "${element.textContent}"`);
+                }
                 
                 // Special handling for percentage change text elements
                 if (bindType === 'text' && valuePath.includes('.change')) {
@@ -682,13 +777,21 @@ class CryptoDataEngine {
             // Update Fear & Greed Index
             if (this.liveData.fearGreed) {
                 const fgData = this.liveData.fearGreed;
+                console.log('😰 Live F&G data:', fgData.value, '(' + fgData.value_classification + ')');
+                
                 if (this.data.sentimentData?.fearGreedIndex) {
+                    const oldValue = this.data.sentimentData.fearGreedIndex.value;
+                    const oldLabel = this.data.sentimentData.fearGreedIndex.label;
                     this.data.sentimentData.fearGreedIndex.value = fgData.value;
                     this.data.sentimentData.fearGreedIndex.label = fgData.value_classification;
+                    console.log('😰 F&G updated:', oldValue + ' (' + oldLabel + ')', '→', fgData.value + ' (' + fgData.value_classification + ')');
                 }
+            } else {
+                console.warn('⚠️ No live Fear & Greed data available');
             }
 
-            console.log('🔄 Successfully merged live API data with static data');
+            console.log('✅ Successfully merged live API data with static data');
+            console.log('🔄 ===== LIVE DATA MERGE COMPLETE =====');
 
         } catch (error) {
             console.error('❌ Error merging live data:', error);

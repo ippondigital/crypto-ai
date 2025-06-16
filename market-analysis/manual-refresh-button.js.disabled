@@ -1,0 +1,138 @@
+/**
+ * MANUAL LIVE DATA REFRESH BUTTON
+ * Simple solution: Add a button users can click to get live data
+ */
+
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(() => {
+        if (window.cryptoDataEngine) {
+            createRefreshButton();
+        }
+    }, 1000);
+    
+    function createRefreshButton() {
+        // Create refresh button
+        const refreshBtn = document.createElement('button');
+        refreshBtn.id = 'manual-refresh-btn';
+        refreshBtn.className = 'btn btn-success btn-sm';
+        refreshBtn.innerHTML = '🔄 Get Live Data';
+        refreshBtn.style.cssText = `
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 1000;
+            background: #198754;
+            border: none;
+            color: white;
+            font-size: 0.85rem;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(25, 135, 84, 0.3);
+            transition: all 0.2s ease;
+            font-weight: 600;
+        `;
+        
+        // Add hover effects
+        refreshBtn.addEventListener('mouseenter', () => {
+            refreshBtn.style.background = '#157347';
+            refreshBtn.style.transform = 'scale(1.05)';
+        });
+        
+        refreshBtn.addEventListener('mouseleave', () => {
+            refreshBtn.style.background = '#198754';
+            refreshBtn.style.transform = 'scale(1)';
+        });
+        
+        // Add click handler
+        refreshBtn.addEventListener('click', () => {
+            performLiveDataRefresh(refreshBtn);
+        });
+        
+        document.body.appendChild(refreshBtn);
+        console.log('✅ Manual refresh button created');
+        
+        // TEMPORARILY DISABLED: Auto-click the button once on page load
+        // Testing if this auto-click is causing timing conflicts with natural initialization
+        /*
+        setTimeout(() => {
+            console.log('🚀 Auto-clicking refresh button...');
+            refreshBtn.click();
+        }, 500);
+        */
+        console.log('⚠️ Auto-click temporarily disabled for testing');
+    }
+    
+    function performLiveDataRefresh(button) {
+        console.log('🔄 Manual live data refresh triggered...');
+        
+        // Change button to loading state
+        const originalText = button.innerHTML;
+        button.innerHTML = '⏳ Loading...';
+        button.disabled = true;
+        button.style.opacity = '0.7';
+        
+        // Perform the refresh
+        window.cryptoDataEngine.refreshLiveData()
+            .then(() => {
+                console.log('✅ Manual refresh completed successfully');
+                
+                // Show success state
+                button.innerHTML = '✅ Live Data Loaded';
+                button.style.background = '#20c997';
+                
+                // Show brief success message
+                showSuccessMessage();
+                
+                // Reset button after 2 seconds
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.style.background = '#198754';
+                    button.disabled = false;
+                    button.style.opacity = '1';
+                }, 2000);
+            })
+            .catch(error => {
+                console.error('❌ Manual refresh failed:', error);
+                
+                // Show error state
+                button.innerHTML = '❌ Failed';
+                button.style.background = '#dc3545';
+                
+                // Reset button after 3 seconds
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.style.background = '#198754';
+                    button.disabled = false;
+                    button.style.opacity = '1';
+                }, 3000);
+            });
+    }
+    
+    function showSuccessMessage() {
+        // Create temporary success message
+        const message = document.createElement('div');
+        message.style.cssText = `
+            position: fixed;
+            top: 5rem;
+            right: 1rem;
+            background: #d1e7dd;
+            border: 1px solid #a3cfbb;
+            color: #0f5132;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.85rem;
+            z-index: 1001;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            font-weight: 500;
+        `;
+        message.innerHTML = '✅ Live market data loaded successfully!';
+        
+        document.body.appendChild(message);
+        
+        // Remove after 4 seconds
+        setTimeout(() => {
+            message.remove();
+        }, 4000);
+    }
+});
